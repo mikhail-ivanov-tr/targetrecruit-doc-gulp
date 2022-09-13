@@ -1,0 +1,810 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: sfdx-source/TMS/main/default/lwc/customElement/customElement.js | Shared Code Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 80px; height: 13px">
+        
+            <a href="https://targetrecruit.com" rel="noopener noreferrer" target="_blank">
+                <img src="https://targetrecruit.com/wp-content/uploads/2022/07/TargetRecruit_logo_purple.png" width="100%" height="100%">
+            </a>
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Shared Code Documentation</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+        <ol class="lnb-tab">
+            <li id="api-tab">
+                <a href="#"><h4>API</h4></a>
+            </li>
+            <li id="examples-tab">
+                <a href="#"><h4>Examples</h4></a>
+            </li>
+        </ol>
+    
+    <h2>Main</h2><div class="lnb-examples hidden"><h3>Examples</h3><ul><li><a href="tutorial-jest-tests.html">Jest Tests</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="jest-tests_sub"></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="CustomElement.html">CustomElement</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CustomElement_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="CustomElement.html#initialError">initialError</a></li><li><a href="CustomElement.html#initialErrorLabel">initialErrorLabel</a></li><li><a href="CustomElement.html#initialLoading">initialLoading</a></li><li><a href="CustomElement.html#label">label</a></li><li><a href="CustomElement.html#loading">loading</a></li><li><a href="CustomElement.html#loadingGlobal">loadingGlobal</a></li><li><a href="CustomElement.html#messages">messages</a></li><li><a href="CustomElement.html#messagesGlobal">messagesGlobal</a></li><li><a href="CustomElement.html#ready">ready</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="CustomElement.html#addError">addError</a></li><li><a href="CustomElement.html#addInfo">addInfo</a></li><li><a href="CustomElement.html#addSuccess">addSuccess</a></li><li><a href="CustomElement.html#addWarning">addWarning</a></li><li><a href="CustomElement.html#apex">apex</a></li><li><a href="CustomElement.html#closeWindow">closeWindow</a></li><li><a href="CustomElement.html#renderedOnceCallback">renderedOnceCallback</a></li></ul></div></li><li><a href="Messages.html">Messages</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Messages_sub"></div></li><li><span class="icon green">LWC</span>&nbsp;<a href="UploadFiles.html">UploadFiles</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="UploadFiles_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="UploadFiles.html#extensions">extensions</a></li><li><a href="UploadFiles.html#helpText">helpText</a></li><li><a href="UploadFiles.html#label">label</a></li><li><a href="UploadFiles.html#multiple">multiple</a></li><li><a href="UploadFiles.html#required">required</a></li><li><a href="UploadFiles.html#type">type</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="UploadFiles.html#checkValidity">checkValidity</a></li><li><a href="UploadFiles.html#hasErrorMessage">hasErrorMessage</a></li><li><a href="UploadFiles.html#reportValidity">reportValidity</a></li><li><a href="UploadFiles.html#setCustomValidity">setCustomValidity</a></li></ul><div class="member-type">Events</div><ul class="inner"><li><a href="UploadFiles.html#event:upload">upload</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Mixins</h3><ul><li><a href="CustomInput.html">CustomInput</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CustomInput_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="CustomInput.html#.controlClass">controlClass</a></li><li><a href="CustomInput.html#.helpMessage">helpMessage</a></li><li><a href="CustomInput.html#.required">required</a></li><li><a href="CustomInput.html#.value">value</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="CustomInput.html#.checkValidity">checkValidity</a></li><li><a href="CustomInput.html#.hasErrorMessage">hasErrorMessage</a></li><li><a href="CustomInput.html#.reportValidity">reportValidity</a></li><li><a href="CustomInput.html#.setCustomValidity">setCustomValidity</a></li><li><a href="CustomInput.html#.validate">validate</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li class="hidden"><a href="global.html#Message">Message</a></li><li><a href="global.html#Severity">Severity</a></li></ul></div><h2>Testing</h2><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="JestHtmlElement.html">JestHtmlElement</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="JestHtmlElement_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="JestHtmlElement.html#.dispatch">dispatch</a></li><li><a href="JestHtmlElement.html#.listen">listen</a></li><li><a href="JestHtmlElement.html#.query">query</a></li><li><a href="JestHtmlElement.html#.queryAll">queryAll</a></li></ul></div></li><li><a href="SharedTestHelpers.html">SharedTestHelpers</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SharedTestHelpers_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="SharedTestHelpers.html#.staticData">staticData</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="SharedTestHelpers.html#.apexMock">apexMock</a></li><li><a href="SharedTestHelpers.html#.createComponent">createComponent</a></li><li><a href="SharedTestHelpers.html#.flushPromises">flushPromises</a></li><li><a href="SharedTestHelpers.html#.getMessages">getMessages</a></li></ul></div></li><li><a href="SharedTestHelpers.Timer.html">Timer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SharedTestHelpers.Timer_sub"></div></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// noinspection ES6CheckImport
+import {NavigationMixin} from 'lightning/navigation';
+import {LightningElement, track, api} from 'lwc';
+
+import {fireEvent, registerListener, unregisterListener} from 'c/publishSubscribe';
+
+import Messages from "c/messages";
+import {Copy} from "c/utils";
+
+/**
+ * Base class for all TargetRecruit lightning web components.
+ * > 📝 **Note:**
+ * > Any function of the class which extends the CustomElement class with a name
+ * prefixed with 'handle' will be automatically wrapped by try/catch/addError block.
+ * See example in {@link CustomElement#ready} -> parent.js -> handleButtonClicked() function.
+ * @hideconstructor
+ * */
+class CustomElement extends NavigationMixin(LightningElement) {
+	@track __messages;
+	
+	/**
+	 * Represents a list of messages of the current component.
+	 *
+	 * ##### Example
+	 *
+	 * See example in {@link CustomElement#ready}.
+	 *
+	 * @type Message[]
+	 */
+	get messages() {
+		return this.__messages;
+	};
+	
+	set messages(value) {
+		if (!value) {
+			this.__messages = [];
+			return;
+		}
+		
+		this.__messages = value;
+		
+		for (const message of this.__messages) {
+			Messages.setMessageKey(message);
+		}
+	}
+	
+	/**
+	 * Represents a list of messages of all instantiated {@link CustomElement} components.
+	 *
+	 * ##### Example
+	 *
+	 * See example in {@link CustomElement#ready}.
+	 *
+	 * @type Message[]
+	 */
+	@track messagesGlobal = [];
+	
+	/**
+	 * Use this flag to show a spinner which should be shown
+	 * only till the initial apex call is done.
+	 * It is *true* till the first {@link CustomElement#apex} call is done.
+	 * After that the *initialLoading* property is always *false*.
+	 *
+	 * ##### Example
+	 *
+	 * See example in {@link CustomElement#ready}.
+	 *
+	 * @type Boolean
+	 * @default true
+	 */
+	@track initialLoading = true;
+	/**
+	 * Use this flag to show a block of error messages which happened
+	 * inside *try* block of *connectedCallback()* function.
+	 * It is *false* by default and will be set to *true* if {@link CustomElement#addError}
+	 * will be called inside of *connectedCallback()* function.
+	 *
+	 * ##### Example
+	 *
+	 * See example in {@link CustomElement#ready}.
+	 *
+	 * @type Boolean
+	 * @default false
+	 */
+	@track initialError = false;
+	/**
+	 * Use this property as a label for *Back/Close* button in conjunction
+	 * with {@link CustomElement#initialError} and {@link CustomElement#closeWindow}.
+	 * The value of the property can be
+	 * *Back* (if *window.history* has previous URLs, usually it is true if the component
+	 * is opened as a page in the same browser's tab or window) or
+	 * *Close* (otherwise, usually it is true if the component is opened as a page in
+	 * the new browser's tab or window).
+	 *
+	 * ##### Example
+	 *
+	 * See example in {@link CustomElement#ready}.
+	 *
+	 * @type String
+	 */
+	@track initialErrorLabel = history.length > 1 ? 'Back' : 'Close';
+	
+	/**
+	 * This flag is used to specify an initial loading state. By default it equals to *false*.
+	 * Once initial call to an Apex method from *connectedCallback()* is successfully done
+	 * via {@link CustomElement#apex} it is set to *true*.
+	 * If during the Apex method call some exception happened and caught/registered
+	 * by {@link CustomElement#addError} then this flag will be left as *false*.
+	 * Use this flag to identify whether to show functional content of the component
+	 * once the initial Apex method call is successfully done (*ready = true*).
+	 *
+	 * ##### Example
+	 *
+	 * It shows the usage of all capabilities of {@link CustomElement}.
+	 * There are 2 LWC components which extend {@link CustomElement}:
+	 * Parent component and Child component. Both components have 2 buttons.
+	 * First button is disabled if the component is making a call to Apex
+	 * via {@link CustomElement#apex}.
+	 * Second button is disabled if any of the components are making a call to Apex
+	 * via {@link CustomElement#apex}.
+	 * So, if user clicks any button on Parent component
+	 * then 2 buttons on Parent and 'Global' button on Child will be disabled.
+	 * If user clicks any button on Child component
+	 * then 2 buttons on Child and 'Global' button on Parent will be disabled.
+	 *
+	 * **Messages**:
+	 *
+	 * Parent component contains 2 [\&lt;c-messages\>]{@link Messages} LWCs.
+	 * The first (type="alert") is to show the messages of the current (parent) LWC only.
+	 * See {@link CustomElement#messages}.
+	 * The second LWC (type="toast") is to show all messages which will happen
+	 * in the both parent and child components. See {@link CustomElement#messagesGlobal}.
+	 *
+	 * **Initial loading**:
+	 *
+	 * When initial rendering happens and some database data is required
+	 * use {@link CustomElement#apex} inside of connectedCallback() to load it from Apex code.
+	 *
+	 * Use &lt;a href="https://developer.salesforce.com/docs/component-library/bundle/lightning-spinner/example" target="_blank">
+	 * \&lt;lightning-spinner\>&lt;/a> with {@link CustomElement#initialLoading}
+	 * as a rendering conditions to show the spinner before the functional content will be rendered
+	 * and use *\&lt;div\>* with {@link CustomElement#ready} to show the functional content.
+	 *
+	 * You can also add a block which uses
+	 * {@link CustomElement#initialError},
+	 * {@link CustomElement#initialErrorLabel} and
+	 * {@link CustomElement#closeWindow} to show a *Back\/Close* button
+	 * in case some exception occurred and processed by {@link CustomElement#addError}
+	 * during connectedCallback() phase.
+	 *
+	 * **Apex calls**:
+	 *
+	 * There are 2 additional properties/flags to identify whether the Apex call in progress or not.
+	 * Use {@link CustomElement#loading} to identify if the current component is doing the Apex call
+	 * using {@link CustomElement#apex}.
+	 * Use {@link CustomElement#loadingGlobal} to identify if any component is doing the Apex call
+	 * using {@link CustomElement#apex}.
+	 *
+	 * ***parent.html***
+	 * ```html
+&lt;template>
+	&lt;!-- Shows current component's messages. -->
+	&lt;c-messages messages={messages} type="alert">&lt;/c-messages>
+
+	&lt;!-- Shows messages of all {@link CustomElement} components. -->
+	&lt;c-messages messages={messagesGlobal} type="toast">&lt;/c-messages>
+
+	&lt;!-- Shows a spinner till initial call to Apex code is completed. -->
+	&lt;lightning-spinner size="large" variant="brand" if:true={initialLoading}>&lt;/lightning-spinner>
+
+	&lt;!-- Shows a Back/Close button in case an error occurred. -->
+	&lt;div if:true={initialError}>
+		&lt;lightning-button onclick={closeWindow} label={initialErrorLabel}>&lt;/lightning-button>
+	&lt;/div>
+
+	&lt;!-- Functional content is inside of the div
+		and its appearance is controlled by {@link CustomElement#ready} -->
+	&lt;div if:true={ready}>
+		&lt;!-- The button is disabled when {@link CustomElement#apex} call
+			of the current component is in progress. -->
+		&lt;lightning-button label="Local" disabled={loading}
+				onclick={handleButtonClicked}>&lt;/lightning-button>
+
+		&lt;!-- The button is disabled when {@link CustomElement#apex} call
+			of any {@link CustomElement} component is in progress. -->
+		&lt;lightning-button label="Global" disabled={loadingGlobal}
+				onclick={handleButtonClicked}>&lt;/lightning-button>
+
+		&lt;c-test-cache-child>&lt;/c-test-cache-child>
+	&lt;/div>
+&lt;/template>
+	 * ```
+	 *
+	 * ***parent.js***
+	 * ```javascript
+import CustomElement from "c/customElement";
+
+import getAccounts from '@salesforce/apex/testCacheController.getAccounts';
+import getAccountsWithApexInfoMessage
+	from '@salesforce/apex/testCacheController.getAccountsWithApexInfoMessage';
+
+export default class Parent extends CustomElement {
+	async connectedCallback() {
+		try {
+			// getAccounts Apex method returns Account[],
+			// so this is what will be assigned to the "const accounts" JS variable.
+			const accounts = await this.apex(getAccounts);
+
+			// Adds a value of accounts.length as a warning message
+			// to {@link CustomElement#messages} and {@link CustomElement#messagesGlobal}.
+			this.addWarning(accounts.length);
+		} catch (e) {
+			this.addError(e);
+		}
+	}
+
+	// This callback will be called every time the component's DOM is changed.
+	renderedCallback() {
+		// You need the following statement only
+		// if you override renderedOnceCallback() also.
+		super.renderedCallback();
+
+		// This log message will be added to the console
+		// multiple times on the load of the component.
+		console.log(`Component rendered.`);
+	}
+
+	// This is a new {@link CustomElement} callback which will be called
+	// only one time when the component initially rendered.
+	renderedOnceCallback() {
+		// This log message will be added to the console
+		// just one time on the load of the component.
+		console.log(`Component rendered first time.`);
+	}
+
+	// No need for try/catch here as any "handle..." function of the class
+	// which extends {@link CustomElement} will be wrapped by the try/catch automatically.
+	async handleButtonClicked() {
+		// getAccountsWithApexInfoMessage Apex method returns Logger.AuraResult type,
+		// so "const accounts" JS variable will be assigned
+		// with the Logger.AuraResult.result value
+		// and the Logger.AuraResult.messages will be added automatically
+		// to {@link CustomElement#messages} and {@link CustomElement#messagesGlobal}.
+		const accounts = await this.apex(getAccountsWithApexInfoMessage);
+
+		// Adds a value of accounts.length as a success message
+		// to {@link CustomElement#messages} and {@link CustomElement#messagesGlobal}.
+		this.addSuccess(accounts.length);
+	}
+}
+	 * ```
+	 *
+	 * ***child.html***
+	 * ```html
+&lt;template>
+	&lt;!-- The button is disabled when {@link CustomElement#apex} call
+			of the current component is in progress. -->
+	&lt;lightning-button label="Child Local" disabled={loading}
+			onclick={handleButtonClicked}>&lt;/lightning-button>
+
+	&lt;!-- The button is disabled when {@link CustomElement#apex} call
+			of any {@link CustomElement} component is in progress. -->
+	&lt;lightning-button label="Child Global" disabled={loadingGlobal}
+			onclick={handleButtonClicked}>&lt;/lightning-button>
+&lt;/template>
+	 * ```
+	 *
+	 * ***child.js***
+	 * ```javascript
+import CustomElement from "c/customElement";
+
+import getAccountsWithApexInfoMessage
+	from '@salesforce/apex/testCacheController.getAccountsWithApexInfoMessage';
+
+export default class Child extends CustomElement {
+	async handleButtonClicked() {
+		const accounts = await this.apex(getAccountsWithApexInfoMessage);
+		this.addError(accounts.length);
+	}
+}
+	 * ```
+	 *
+	 * @type Boolean
+	 * @default false
+	 */
+	@track ready = false;
+	
+	/**
+	 * Use this flag identify whether the {@link CustomElement#apex} call
+	 * of current component is in progress or is done.
+	 *
+	 * ##### Example
+	 *
+	 * See example in {@link CustomElement#ready}.
+	 *
+	 * @type Boolean
+	 * @default false
+	 */
+	@track loading = false;
+	
+	/**
+	 * Use this flag identify whether the {@link CustomElement#apex} call
+	 * of any component is in progress or is done.
+	 *
+	 * ##### Example
+	 *
+	 * See example in {@link CustomElement#ready}.
+	 *
+	 * @type Boolean
+	 * @default false
+	 */
+	@track loadingGlobal = false;
+	
+	__label;
+	
+	constructor() {
+		super();
+		
+		this.messages = [];
+		
+		let methodNames = getClassMethodNames(this);
+		for (const methodName of methodNames) {
+			if (/*methodName === 'connectedCallback' || */methodName.startsWith('handle')) {
+				Object.defineProperty(this, methodName, {
+					value: tryCatchDecorator(
+						this[methodName], this, false/*methodName === 'connectedCallback'*/),
+				});
+			}
+		}
+		
+		/**
+		 * @name CustomElement#label
+		 * @description Contains a list of labels which can be accessed by modified property names.
+		 *
+		 * ##### Example
+		 *
+		 * ***yourLwc.js***
+		 * ```javascript
+		 * import CustomElement from 'c/customElement';
+
+// Import labels. Use names equal to "label&lt;Name of the labels in CustomLabels.labels-meta.xml file>"
+import labelLabel_Name_One from '@salesforce/label/c.Label_Name_One';
+import labelLabel_Name_Two from '@salesforce/label/c.Label_Name_Two';
+
+export default class YourLwc extends CustomElement {
+  // Add a "label" property to your LWC class and include the imported labels.
+  label = {
+    labelLabel_Name_One,
+    labelLabel_Name_Two
+  };
+}
+		 * ```
+		 *
+		 * ***yourLwc.html***
+		 * ```html
+&lt;!-- Now in your HTML markup you can access the labels with {label.Label_Name_One}.
+NOTE: Instead of {label.labelLabel_Name_One} you can use {label.Label_Name_One}.
+Actually, 3 options are available:
+  {label.labelLabel_Name_One},
+  {label.label_Name_One},
+  {label.Label_Name_One}.
+But the latter is preferred as it will be a clickable reference
+to the appropriate tag in CustomLabels.labels-meta.xml. -->
+&lt;p class="title">{label.Label_Name_One}&lt;/p>
+		 * ```*/
+		Object.defineProperty(this, 'label', {
+			get() {
+				return this.__label;
+			},
+			
+			set(value) {
+				this.__label = value;
+				for (let [name,] of Object.entries(this.__label)) {
+					if (name.startsWith('label')) {
+						const shortName = name.slice(5);
+						this.__label[shortName] = this.__label[name];
+						
+						const shortNameLower =
+							shortName.charAt(0).toLowerCase() + shortName.slice(1);
+						this.__label[shortNameLower] = this.__label[name];
+					}
+				}
+			}
+		});
+		
+		registerListener('CustomElement_action_start', () => {
+			this.loadingGlobal = true;
+		});
+		
+		registerListener('CustomElement_action_end', () => {
+			this.loadingGlobal = false;
+		});
+		
+		this.__globalMessageListener = messageToAdd => {
+			CustomElement.messages.push(messageToAdd);
+			
+			this.messagesGlobal.push(messageToAdd);
+			this.messagesGlobal = Copy.deep(this.messagesGlobal);
+		};
+		registerListener('CustomElement_messages_global', this.__globalMessageListener);
+		
+		this.template.addEventListener('closemessage', (event) => {
+			this.messages =
+				this.messages.filter(message => message.key !== event.detail.key);
+			this.messagesGlobal =
+				this.messagesGlobal.filter(message => message.key !== event.detail.key);
+		});
+	}
+	
+	renderedCallback() {
+		if (!this.__renderedOnce) {
+			this.renderedOnceCallback();
+			
+			this.__renderedOnce = true;
+		}
+	}
+	
+	/**
+	 * If overridden in extending class then it will be called
+	 * when the component is rendered first time. If you need to override both renderedCallback()
+	 * and renderedOnceCallback() then inside of renderedCallback() first statement
+	 * should be *super.renderedCallback();*.
+	 *
+	 * ##### Example
+	 *
+	 * See example in {@link CustomElement#ready}.
+	 */
+	renderedOnceCallback() {
+	}
+	
+	disconnectedCallback() {
+		unregisterListener('CustomElement_messages_global', this.__globalMessageListener);
+		
+		for (const message of this.messages) {
+			CustomElement.messages =
+				CustomElement.messages.filter(staticMessage => staticMessage.key !== message.key);
+		}
+	}
+	
+	/**
+	 * Calls an @AuraEnabled action method and manage different component states and messages.
+	 * @param {Function} action @AuraEnabled action method imported into your LWC class
+	 * with import action from '@salesforce/apex/controller.method' statement.
+	 * @param {Object} [args] Parameters of the @AuraEnabled action method.
+	 * @returns {Promise&lt;{Object}>} This is a return of the @AuraEnabled action method.
+	 * It can be any type supported for @AuraEnabled methods.
+	 * Also, it supports a specific type Logger.AuraResult which contains array of messages
+	 * and the method return data. In case the Logger.AuraResult is returned
+	 * by the @AuraEnabled action method this {@link CustomElement#apex} method
+	 * will add the messages from the Logger.AuraResult to the {@link CustomElement#messages} array
+	 * and will return data part of the Logger.AuraResult.
+	 * See example of the AuraMessage type in
+	 * AVTRRT project -> classes/SendPayPackageController.cls -> init(...) method.
+	 */
+	async apex(action, args) {
+		if (typeof describe !== 'undefined') { // if in Jest context
+			let jestFn =
+				this.constructor.actionNameToJestFn[this.constructor.name + ' - ' + action.name];
+			if (!jestFn) {
+				jestFn = this.constructor.actionNameToJestFn[action.name];
+			}
+			
+			if (jestFn) {
+				action = jestFn;
+			}
+		}
+		
+		this.loading = true;
+		fireEvent('CustomElement_action_start');
+		
+		try {
+			let result = await action(args ?? {});
+			
+			if (result) {
+				result = Copy.deep(result);
+			}
+			
+			this.messages = [];
+			
+			if (result &amp;&amp; result.messages) {
+				// The result in apex code's Logger.AuraResult format.
+				for (const message of result.messages) {
+					this.__addMessage(message.title, message.severity);
+				}
+				
+				return result.result;
+			}
+			
+			return result;
+		} catch (e) {
+			let message = e.message;
+			if (!message) {
+				if (Array.isArray(e.body.message)) {
+					message = e.body.message[0].message;
+				} else {
+					message = e.body.message;
+				}
+			}
+			
+			return Promise.reject(Error(message));
+		} finally {
+			let setBooleans = () => {
+				this.ready = !this.initialError;
+				this.initialLoading = false;
+				this.loading = false;
+				fireEvent('CustomElement_action_end');
+			};
+			
+			setTimeout(() => {
+				setBooleans();
+			}, 0);
+		}
+	}
+	
+	/**
+	 * Adds an info message to the {@link CustomElement#messages}
+	 * and {@link CustomElement#messagesGlobal} arrays.
+	 * @param {String} message Message to pass to the arrays.
+	 */
+	addInfo(message) {
+		this.__addMessage(message, 'INFO');
+	}
+	
+	/**
+	 * Adds a success message to the {@link CustomElement#messages}
+	 * and {@link CustomElement#messagesGlobal} arrays.
+	 * @param {String} message Message to pass to the arrays.
+	 */
+	addSuccess(message) {
+		this.__addMessage(message, 'SUCCESS');
+	}
+	
+	/**
+	 * Adds a warning message to the {@link CustomElement#messages}
+	 * and {@link CustomElement#messagesGlobal} arrays.
+	 * @param {String} message Message to pass to the arrays.
+	 */
+	addWarning(message) {
+		this.__addMessage(message, 'WARNING');
+	}
+	
+	/**
+	 * Adds an error message to the {@link CustomElement#messages}
+	 * and {@link CustomElement#messagesGlobal} arrays.
+	 * Also, if the method is called from *connectedCallback()*
+	 * then {@link CustomElement#initialError} is set to *true*
+	 * and {@link CustomElement#ready} is set to *false*.
+	 * @param {Error|String} error Error message. If it is passed as an Error object
+	 * then also the error message will be added to the Browser's console
+	 * with an appropriate stack trace to easily debug the reason of the error.
+	 */
+	addError(error) {
+		let errorMessage = error;
+		
+		if (error instanceof Error) {
+			console.error(error);
+			
+			if (typeof describe !== 'undefined') { // if in Jest context
+				throw error;
+			}
+			
+			errorMessage = error.message;
+		}
+		
+		let errorForStackTrace;
+		try {
+			throw new Error();
+		} catch (error) {
+			errorForStackTrace = error;
+		}
+		
+		const stackRows = errorForStackTrace.stack.split("\n");
+		for (let i = 0; i &lt; stackRows.length; i++) {
+			const stackRow = stackRows[i];
+			const exec = /(.*(^|\W))addError(\W|$)/.exec(stackRow);
+			if (exec) {
+				let beforeAddErrorText = exec[1];
+				const nextRow = stackRows[i + 1];
+				if (nextRow.startsWith(beforeAddErrorText)
+					&amp;&amp; nextRow.includes(`connectedCallback`)) {
+					
+					this.initialError = true;
+					this.ready = false;
+				}
+				
+				break;
+			}
+		}
+		
+		this.__addMessage(errorMessage, 'ERROR');
+	}
+	
+	addErrors(errors) {
+		for (const error of errors) {
+			this.addError(error);
+		}
+	}
+	
+	__addMessage(message, severity) {
+		const messageToAdd = {title: message, severity: severity, duration: 5000};
+		
+		Messages.setMessageKey(messageToAdd);
+		
+		this.messages.push(messageToAdd);
+		this.messages = Copy.deep(this.messages);
+		
+		fireEvent('CustomElement_messages_global', messageToAdd);
+	}
+	
+	/**
+	 * The function redirects to the previous page of the current window/tab
+	 * (if *window.history* has previous URLs, usually it is true if the component
+	 * is opened as a page in the same browser's tab or window) or
+	 * closes current window/tab
+	 * (otherwise, usually it is true if the component is opened as a page in
+	 * the new browser's tab or window). If the current component is inside an IFRAME
+	 * and *window.history* doesn't have the previous URL
+	 * then the parent window/tab of the IFRAME will be closed.
+	 * @param {Number} delay If the attribute is set then the window/tab will be redirected
+	 * back or closed after the milliseconds provided by the attribute.
+	 * Otherwise, the action will happen immediately.
+	 */
+	closeWindow(delay) {
+		let closeIt = () => {
+			if (history.length > 1) {
+				history.back();
+			} else {
+				if (window.location !== window.parent.location) {
+					// Close parent window if the current page is in iFrame.
+					window.parent.close();
+				} else {
+					window.close();
+				}
+			}
+		};
+		
+		if (isNaN(delay)) {
+			closeIt();
+		} else {
+			setTimeout(() => {
+				closeIt();
+			}, delay);
+		}
+	}
+	
+	isInputValid(selector) {
+		let isValid = true;
+		let inputFields = this.template.querySelectorAll(selector);
+		for (const inputField of inputFields) {
+			if (!inputField.checkValidity()) {
+				inputField.reportValidity();
+				isValid = false;
+			}
+		}
+		return isValid;
+	}
+	
+	getDocumentOffset(element) {
+		const rect = element.getBoundingClientRect();
+		const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		return {top: rect.top + scrollTop, left: rect.left + scrollLeft}
+	}
+	
+	static actionNameToJestFn = {};
+	
+	static apexMock(actionName, componentClass) {
+		const key = componentClass ? (componentClass.name + ' - ' + actionName) : actionName;
+		
+		let jestFn = jest.fn();
+		this.actionNameToJestFn[key] = jestFn;
+		
+		return jestFn;
+	}
+	
+	static messages = [];
+	
+	static getMessages(severity = null) {
+		return severity
+			? this.messages.filter(message => message.severity === severity)
+			: this.messages;
+	}
+	
+	static staticData = {};
+	
+	@api get staticData() {
+		return CustomElement.staticData;
+	}
+}
+
+export default CustomElement;
+
+function getClassMethodNames(klass) {
+	const isGetter = (x, name) => (Object.getOwnPropertyDescriptor(x, name) || {}).get;
+	const isFunction = (x, name) => typeof x[name] === 'function';
+	const deepFunctions = x => {
+		if (x &amp;&amp; x !== Object.prototype) {
+			return Object.getOwnPropertyNames(x)
+				.filter(name => isGetter(x, name) || isFunction(x, name))
+				.concat(deepFunctions(Object.getPrototypeOf(x)) || []);
+		} else {
+			return false;
+		}
+	};
+	
+	const distinctDeepFunctions = klass => Array.from(new Set(deepFunctions(klass)));
+	
+	const allMethods = distinctDeepFunctions(klass);
+	return allMethods.filter(name => name !== 'constructor' &amp;&amp; !name.startsWith('__'))
+}
+
+function tryCatchDecorator(method, self, isInit) {
+	return async function (...args) {
+		try {
+			await method.call(self, ...args);
+		} catch (e) {
+			self.loading = false;
+			self.addError(e, isInit);
+		}
+	}
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="https://targetrecruit.com/wp-content/uploads/2022/07/TargetRecruit_logo_purple.png" style="width: 80px; height: 13px">
+    <div class="footer-text">2022</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>

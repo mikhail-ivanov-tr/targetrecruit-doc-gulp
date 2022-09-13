@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tutorial: Jest Tests | Shared Code Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 80px; height: 13px">
+        
+            <a href="https://targetrecruit.com" rel="noopener noreferrer" target="_blank">
+                <img src="https://targetrecruit.com/wp-content/uploads/2022/07/TargetRecruit_logo_purple.png" width="100%" height="100%">
+            </a>
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Shared Code Documentation</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+        <ol class="lnb-tab">
+            <li id="api-tab">
+                <a href="#"><h4>API</h4></a>
+            </li>
+            <li id="examples-tab">
+                <a href="#"><h4>Examples</h4></a>
+            </li>
+        </ol>
+    
+    <h2>Main</h2><div class="lnb-examples hidden"><h3>Examples</h3><ul><li><a href="tutorial-jest-tests.html">Jest Tests</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="jest-tests_sub"></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="CustomElement.html">CustomElement</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CustomElement_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="CustomElement.html#initialError">initialError</a></li><li><a href="CustomElement.html#initialErrorLabel">initialErrorLabel</a></li><li><a href="CustomElement.html#initialLoading">initialLoading</a></li><li><a href="CustomElement.html#label">label</a></li><li><a href="CustomElement.html#loading">loading</a></li><li><a href="CustomElement.html#loadingGlobal">loadingGlobal</a></li><li><a href="CustomElement.html#messages">messages</a></li><li><a href="CustomElement.html#messagesGlobal">messagesGlobal</a></li><li><a href="CustomElement.html#ready">ready</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="CustomElement.html#addError">addError</a></li><li><a href="CustomElement.html#addInfo">addInfo</a></li><li><a href="CustomElement.html#addSuccess">addSuccess</a></li><li><a href="CustomElement.html#addWarning">addWarning</a></li><li><a href="CustomElement.html#apex">apex</a></li><li><a href="CustomElement.html#closeWindow">closeWindow</a></li><li><a href="CustomElement.html#renderedOnceCallback">renderedOnceCallback</a></li></ul></div></li><li><a href="Messages.html">Messages</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Messages_sub"></div></li><li><span class="icon green">LWC</span>&nbsp;<a href="UploadFiles.html">UploadFiles</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="UploadFiles_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="UploadFiles.html#extensions">extensions</a></li><li><a href="UploadFiles.html#helpText">helpText</a></li><li><a href="UploadFiles.html#label">label</a></li><li><a href="UploadFiles.html#multiple">multiple</a></li><li><a href="UploadFiles.html#required">required</a></li><li><a href="UploadFiles.html#type">type</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="UploadFiles.html#checkValidity">checkValidity</a></li><li><a href="UploadFiles.html#hasErrorMessage">hasErrorMessage</a></li><li><a href="UploadFiles.html#reportValidity">reportValidity</a></li><li><a href="UploadFiles.html#setCustomValidity">setCustomValidity</a></li></ul><div class="member-type">Events</div><ul class="inner"><li><a href="UploadFiles.html#event:upload">upload</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Mixins</h3><ul><li><a href="CustomInput.html">CustomInput</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CustomInput_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="CustomInput.html#.controlClass">controlClass</a></li><li><a href="CustomInput.html#.helpMessage">helpMessage</a></li><li><a href="CustomInput.html#.required">required</a></li><li><a href="CustomInput.html#.value">value</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="CustomInput.html#.checkValidity">checkValidity</a></li><li><a href="CustomInput.html#.hasErrorMessage">hasErrorMessage</a></li><li><a href="CustomInput.html#.reportValidity">reportValidity</a></li><li><a href="CustomInput.html#.setCustomValidity">setCustomValidity</a></li><li><a href="CustomInput.html#.validate">validate</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li class="hidden"><a href="global.html#Message">Message</a></li><li><a href="global.html#Severity">Severity</a></li></ul></div><h2>Testing</h2><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="JestHtmlElement.html">JestHtmlElement</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="JestHtmlElement_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="JestHtmlElement.html#.dispatch">dispatch</a></li><li><a href="JestHtmlElement.html#.listen">listen</a></li><li><a href="JestHtmlElement.html#.query">query</a></li><li><a href="JestHtmlElement.html#.queryAll">queryAll</a></li></ul></div></li><li><a href="SharedTestHelpers.html">SharedTestHelpers</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SharedTestHelpers_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="SharedTestHelpers.html#.staticData">staticData</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="SharedTestHelpers.html#.apexMock">apexMock</a></li><li><a href="SharedTestHelpers.html#.createComponent">createComponent</a></li><li><a href="SharedTestHelpers.html#.flushPromises">flushPromises</a></li><li><a href="SharedTestHelpers.html#.getMessages">getMessages</a></li></ul></div></li><li><a href="SharedTestHelpers.Timer.html">Timer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SharedTestHelpers.Timer_sub"></div></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+<section>
+    <header>
+        
+
+        <h2>Jest Tests</h2>
+    </header>
+
+    
+        <article class="readme">
+            <h1>Prerequisites</h1>
+<p>You should understand <a href="https://jestjs.io/docs/mock-functions">Mock Functions</a>.</p>
+<h1>Test Scope</h1>
+<h3>What should we cover <a name="what-should-we-cover"></a></h3>
+<ul>
+<li>Positive scenario.</li>
+<li>Negative/Errors scenario. Each error should be covered.</li>
+</ul>
+<h3>What should we call from outside</h3>
+<ul>
+<li>Life-cycle callbacks. The callbacks <em>connectedCallback</em> and <em>renderedCallback</em>
+are called automatically during the LWC component creation.</li>
+<li>Event handlers.</li>
+<li>Methods and fields with @api.</li>
+</ul>
+<h3>What should/can we assert</h3>
+<ul>
+<li>HTML - <strong>should</strong></li>
+<li>Fields with @api - <em>can</em></li>
+<li>External/shared data - <strong>should</strong></li>
+<li>Apex calls - <strong>should</strong>
+<ul>
+<li>How many times the apex method was called?</li>
+<li>What were the arguments for the apex call?</li>
+</ul>
+</li>
+<li>Dispatched events - <strong>should</strong>
+<ul>
+<li>How many times the event was dispatched?</li>
+<li>What were the arguments of the dispatch?</li>
+</ul>
+</li>
+<li>Messages (success, error, info, warning) - <strong>should</strong></li>
+</ul>
+<h1>Example</h1>
+<h3>Requirement</h3>
+<p>There is a LWC component which shows a text input element and a search button.
+The user can set some text to the input element and click the <em>Search</em> button.
+Once the button is clicked it will search for candidates in Salesforce database
+by the candidates' first name via Apex call.
+The Apex call returns a string with full names of the found candidates.</p>
+<p>If user clicked the button without setting any value for input field then:</p>
+<ul>
+<li>it should show an error message <em>Please enter some text.</em></li>
+</ul>
+<p>If user set the input field value, clicked the button and there is no any candidate found then:</p>
+<ul>
+<li>it should show an error message <em>No one candidate was found.</em></li>
+</ul>
+<p>If user set the input field value, clicked the button and any of the candidates are found then:</p>
+<ul>
+<li>it should show a success message <em>Candidates were found.</em></li>
+<li>send an onsuccess event with the list of the candidate full names</li>
+<li>show the list of the candidate full names on the component layout inside the <em>div</em> element</li>
+</ul>
+<p><em><strong>yourLwc.html</strong></em></p>
+<pre class="prettyprint source lang-html"><code>
+&lt;template>
+	&lt;c-messages messages={messagesGlobal} type=&quot;toast&quot;>&lt;/c-messages>
+	
+	&lt;lightning-input label=&quot;Text&quot; type=&quot;text&quot;>&lt;/lightning-input>
+	&lt;lightning-button label=&quot;Search&quot; onclick={handleSearchButtonClicked}>&lt;/lightning-button>
+	
+	&lt;div if:true={isFound}>{candidateNames}&lt;/div>
+&lt;/template>
+</code></pre>
+<p><em><strong>yourLwc.js</strong></em></p>
+<pre class="prettyprint source lang-javascript"><code>import CustomElement from 'c/customElement';
+import search from '@salesforce/apex/YourController.search';
+
+export default class YourLwc extends CustomElement {
+	candidateNames = ``;
+	isFound = false;
+	
+	async handleSearchButtonClicked() {
+		this.text = ``;
+		
+		let text = this.template.querySelector(`lightning-input`).value;
+		if (!text) {
+			this.addError(`Please enter some text.`);
+			return;
+		}
+		
+		const candidateNames = await this.apex(search, {text: text});
+		
+		this.isFound = !!candidateNames;
+		if (this.isFound) {
+			this.addSuccess(`Candidates were found.`);
+			this.text = candidateNames;
+			
+			this.dispatchEvent(
+				new CustomEvent('success', {detail: {candidateNames: candidateNames}}));
+		} else {
+			this.addError(`No one candidate was found.`);
+		}
+	}
+}
+</code></pre>
+<p><em><strong>yourLwc.test.js</strong></em> <a name="yourLwc-test-js"></a></p>
+<pre class="prettyprint source lang-javascript"><code>import {createComponent, apexMock, getMessages} from &quot;shared&quot;;
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	it('text-not-entered', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use <code>SharedTestHelpers#createComponent</code> to create an instance of the LWC component.
+		// NOTE: &quot;await&quot; before the function call.
+		let component = await createComponent('c-your-lwc', YourLwc);
+		
+		// The c-your-lwc component calls Apex action to do the search. 
+		// So, we should validate that the Apex action was called and the parameters of the call are correct.
+		// Mock apex action call with <code>SharedTestHelpers#apexMock</code> function. 
+		// This function returns a mock function, which will be called 
+		// when the apex action will be called by the component. 
+		// If the mock function was called it means the &quot;search&quot; Apex action was called.
+		// NOTE: it will work correctly if you use for Apex calls the <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> only.
+		let searchApexCall = apexMock(`search`);
+		
+		// The c-your-lwc component dispatches the onsuccess event. 
+		// Use <code>JestHtmlElement#listen</code> function to listen for events which are dispatched by the component. 
+		// This function returns a mock function, which will be called 
+		// when the event will be dispatched by the component.
+		// If the mock function was called it means the onsuccess event was dispatched.
+		// So, we should validate that for this unit test the event will not be dispatched. 
+		// We should assert that the mock function wasn't called.
+		let listenerSuccess = component.listen(`success`);
+		
+		// We would like to emulate a Search button click. 
+		// To achieve this we should query for the button element and then dispatch it's onclick event.
+		// Use <code>JestHtmlElement#query</code> or <code>JestHtmlElement#queryAll</code> to query child components of the current component.
+		// NOTE: &quot;await&quot; before the function call.
+		let buttonElement = await component.query('lightning-button');
+		// To call a handler function, use <code>JestHtmlElement#dispatch</code> function 
+		// to dispatch the onclick event which the handler is subscribed to.
+		// NOTE: &quot;await&quot; before the function call.
+		await buttonElement.dispatch('click');
+		
+		// Once the button's onclick event is dispatched and the handler function is called, we can validate:
+		// - Was &quot;onsuccess&quot; event dispatched? If yes, then what are the values of the parameters of the event?
+		// - Was &quot;search&quot; Apex action called? If yes, then what are the values of the parameters of the call?
+		// - Does the component shows the list of the found candidates to the user?
+		// - Does the component shows success/error messages?
+		
+		// We don't expect the &quot;search&quot; Apex action will be called.
+		expect(searchApexCall).not.toHaveBeenCalled();
+		
+		// We don't expect the &quot;onsuccess&quot; event will be called.
+		expect(listenerSuccess).not.toHaveBeenCalled();
+		
+		// We don't expect the &quot;div&quot; with candidate names will be shown.
+		// NOTE: &quot;await&quot; before the function call.
+		let divElement = await component.query('div');
+		expect(divElement).toBeNull();
+		
+		// We expect an error message &quot;Please enter some text.&quot; will be shown.
+		let errorMessages = getMessages();
+		// NOTE: we also validate that this is the only message to be shown.
+		expect(errorMessages.length).toBe(1);
+		expect(errorMessages[0].severity).toBe(`ERROR`);
+		expect(errorMessages[0].title).toBe(`Please enter some text.`);
+	});
+	
+	it('text-invalid', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use <code>SharedTestHelpers#createComponent</code> to create an instance of the LWC component. 
+		// NOTE: &quot;await&quot; before the function call.
+		let component = await createComponent('c-local-development', YourLwc);
+		
+		// The c-your-lwc component calls Apex action to do the search. 
+		// So, we should validate that the Apex action was called and the parameters of the call are correct.
+		// Mock apex action call with <code>SharedTestHelpers#apexMock</code> function. 
+		// This function returns a mock function, which will be called 
+		// when the apex action will be called by the component. 
+		// If the mock function was called it means the &quot;search&quot; Apex action was called.
+		// NOTE: it will work correctly if you use for Apex calls the <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> only.
+		let searchApexCall = apexMock(`search`, ``);
+		
+		// The c-your-lwc component dispatches the onsuccess event. 
+		// Use <code>JestHtmlElement#listen</code> function to listen for events which are dispatched by the component. 
+		// This function returns a mock function, which will be called 
+		// when the event will be dispatched by the component.
+		// If the mock function was called it means the onsuccess event was dispatched.
+		// So, we should validate that for this unit test the event will not be dispatched. 
+		// We should assert that the mock function wasn't called.
+		let listenerSuccess = component.listen(`success`);
+		
+		// We would like to emulate the text input element is set with some value.
+		// NOTE: &quot;await&quot; before the function call.
+		let textElement = await component.query('lightning-input');
+		textElement.value = `Some invalid text`;
+		
+		// We would like to emulate a Search button click. 
+		// To achieve this we should query for the button element and then dispatch it's onclick event.
+		// Use <code>JestHtmlElement#query</code> or <code>JestHtmlElement#queryAll</code> to query child components of the current component.
+		// NOTE: &quot;await&quot; before the function call.
+		let buttonElement = await component.query('lightning-button');
+		// To call a handler function, use <code>JestHtmlElement#dispatch</code> function 
+		// to dispatch the onclick event which the handler is subscribed to.
+		// NOTE: 2nd parameter `{detail: {}}` is not required.
+		// It is there just to show how we can pass additional details
+		// required for the functional code to the event.
+		// NOTE: &quot;await&quot; before the function call.
+		await buttonElement.dispatch('click', {detail: {}});
+		
+		// Once the button's onclick event is dispatched and the handler function is called, we can validate:
+		// - Was &quot;onsuccess&quot; event dispatched? If yes, then what are the values of the parameters of the event?
+		// - Was &quot;search&quot; Apex action called? If yes, then what are the values of the parameters of the call?
+		// - Does the component shows the list of the found candidates to the user?
+		// - Does the component shows success/error messages?
+		
+		// We expect the &quot;search&quot; Apex action will be called.
+		expect(searchApexCall).toHaveBeenCalled();
+		// We expect the first parameter of the Apex action call has a value &quot;Some invalid text&quot;
+		expect(searchApexCall.mock.calls[0][0].text).toBe(`Some invalid text`);
+		
+		// We don't expect the &quot;onsuccess&quot; event will be called.
+		expect(listenerSuccess).not.toHaveBeenCalled();
+		
+		// We don't expect the &quot;div&quot; with candidate names will be shown.
+		// NOTE: &quot;await&quot; before the function call.
+		let divElement = await component.query('div');
+		expect(divElement).toBeNull();
+		
+		// We expect an error message &quot;No one candidate was found.&quot; will be shown.
+		let errorMessages = getMessages();
+		// NOTE: we also validate that this is the only message to be shown.
+		expect(errorMessages.length).toBe(1);
+		expect(errorMessages[0].severity).toBe(`ERROR`);
+		expect(errorMessages[0].title).toBe(`No one candidate was found.`);
+	});
+	
+	it('text-valid', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use <code>SharedTestHelpers#createComponent</code> to create an instance of the LWC component.
+		// NOTE: &quot;await&quot; before the function call.
+		let component = await createComponent('c-local-development', YourLwc);
+		
+		// The c-your-lwc component calls Apex action to do the search. 
+		// So, we should validate that the Apex action was called and the parameters of the call are correct.
+		// Mock apex action call with <code>SharedTestHelpers#apexMock</code> function. 
+		// This function returns a mock function, which will be called 
+		// when the apex action will be called by the component. 
+		// If the mock function was called it means the &quot;search&quot; Apex action was called.
+		// NOTE: it will work correctly if you use for Apex calls the <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> only.
+		let searchApexCall = apexMock(`search`, `John Doe, John Tyson`);
+		
+		// The c-your-lwc component dispatches the onsuccess event. 
+		// Use <code>JestHtmlElement#listen</code> function to listen for events which are dispatched by the component. 
+		// This function returns a mock function, which will be called 
+		// when the event will be dispatched by the component.
+		// If the mock function was called it means the onsuccess event was dispatched.
+		// So, we should validate that for this unit test the event will be dispatched 
+		// and the parameters of the event are correct. 
+		// We should assert that the mock function was called with correct parameters.
+		let listenerSuccess = component.listen(`success`);
+		
+		// We would like to emulate the text input element is set with some value.
+		// NOTE: &quot;await&quot; before the function call.
+		let textElement = await component.query('lightning-input');
+		textElement.value = `John`;
+		
+		// We would like to emulate a Search button click. 
+		// To achieve this we should query for the button element and then dispatch it's onclick event.
+		// Use <code>JestHtmlElement#query</code> or <code>JestHtmlElement#queryAll</code> to query child components of the current component.
+		// NOTE: &quot;await&quot; before the function call.
+		let buttonElement = await component.query('lightning-button');
+		// To call a handler function, use <code>JestHtmlElement#dispatch</code> function 
+		// to dispatch the onclick event which the handler is subscribed to.
+		// NOTE: &quot;await&quot; before the function call.
+		await buttonElement.dispatch('click');
+		
+		// Once the button's onclick event is dispatched and the handler function is called, we can validate:
+		// - Was &quot;onsuccess&quot; event dispatched? If yes, then what are the values of the parameters of the event?
+		// - Was &quot;search&quot; Apex action called? If yes, then what are the values of the parameters of the call?
+		// - Does the component shows the list of the found candidates to the user?
+		// - Does the component shows success/error messages?
+		
+		// We expect the &quot;search&quot; Apex action will be called.
+		expect(searchApexCall).toHaveBeenCalled();
+		// We expect the first parameter of the Apex action call has a value &quot;John&quot;
+		expect(searchApexCall.mock.calls[0][0].text).toBe(`John`);
+		
+		// We expect the &quot;onsuccess&quot; event will be called.
+		expect(listenerSuccess).toHaveBeenCalled();
+		// We expect the first parameter of the event has a value &quot;John Doe, John Tyson&quot;
+		expect(listenerSuccess.mock.calls[0][0].detail.text).toBe(`John Doe, John Tyson`)
+		
+		// We expect the &quot;div&quot; will be shown.
+		// NOTE: &quot;await&quot; before the function call.
+		let divElement = await component.query('div');
+		expect(divElement).not.toBeNull();
+		// We expect the &quot;div&quot; has candidate names as it's content.
+		expect(divElement.textContent).toBe(`John Doe, John Tyson`);
+		
+		// We expect a success message &quot;Candidates were found.&quot; will be shown.
+		let errorMessages = getMessages();
+		// NOTE: we also validate that this is the only message to be shown.
+		expect(errorMessages.length).toBe(1);
+		expect(errorMessages[0].severity).toBe(`SUCCESS`);
+		expect(errorMessages[0].title).toBe(`Candidates were found.`);
+	});
+})
+</code></pre>
+<h3>Explanation</h3>
+<p>We should import helper functions from <a href="SharedTestHelpers.html"><code>SharedTestHelpers</code></a> library.
+We know that we should create a LWC component, so we need a <code>SharedTestHelpers#createComponent</code> function,
+which is a powerful wrapper
+for <a href="https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.unit_testing_using_jest_create_tests">createElement</a>
+function.
+Also, we know that the LWC will call Apex code, so we need an <code>SharedTestHelpers#apexMock</code>
+function.
+Also, we know that the LWC will show success/error messages, so we need an <code>SharedTestHelpers#getMessages</code> function.</p>
+<p><em><strong>yourLwc.test.js</strong></em></p>
+<pre class="prettyprint source lang-javascript"><code>import {createComponent, apexMock, getMessages} from &quot;shared&quot;;
+import YourLwc from 'c/your-lwc';
+</code></pre>
+<p>We should identify what are the scenarios we should test.
+According to <a href="#what-should-we-cover">What should we cover</a> section we should test positive scenarios
+as well as all possible errors.</p>
+<p>So, we will test 3 scenarios:</p>
+<ul>
+<li>User didn't set a text input value (<em>text-not-entered</em> test)</li>
+<li>User set the text input value but there is no search result (<em>text-invalid</em> test)</li>
+<li>User set the text input value and candidates were found (<em>text-valid</em> test)</li>
+</ul>
+<p>Please note, the test functions are <em><strong>async</strong></em>. This is not like in standard LWC documentation.</p>
+<p><em><strong>yourLwc.test.js</strong></em></p>
+<pre class="prettyprint source lang-javascript"><code>describe('c-your-lwc', () => {
+	it('text-not-entered', async () => {
+	
+	});
+	
+	it('text-invalid', async () => {
+	
+	});
+	
+	it('text-valid', async () => {
+	
+	});
+})
+</code></pre>
+<p>See the unit <a href="#yourLwc-test-js">tests content</a> comments above to get more details about the things
+which should be tested.</p>
+        </article>
+    
+</section>
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="https://targetrecruit.com/wp-content/uploads/2022/07/TargetRecruit_logo_purple.png" style="width: 80px; height: 13px">
+    <div class="footer-text">2022</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        showLnbExamples();
+    </script>
+
+</body>
+</html>

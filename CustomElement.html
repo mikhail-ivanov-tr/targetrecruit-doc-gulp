@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Class: CustomElement | Shared Code Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 80px; height: 13px">
+        
+            <a href="https://targetrecruit.com" rel="noopener noreferrer" target="_blank">
+                <img src="https://targetrecruit.com/wp-content/uploads/2022/07/TargetRecruit_logo_purple.png" width="100%" height="100%">
+            </a>
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Shared Code Documentation</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+        <ol class="lnb-tab">
+            <li id="api-tab">
+                <a href="#"><h4>API</h4></a>
+            </li>
+            <li id="examples-tab">
+                <a href="#"><h4>Examples</h4></a>
+            </li>
+        </ol>
+    
+    <h2>Main</h2><div class="lnb-examples hidden"><h3>Examples</h3><ul><li><a href="tutorial-jest-tests.html">Jest Tests</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="jest-tests_sub"></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="CustomElement.html">CustomElement</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CustomElement_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="CustomElement.html#initialError">initialError</a></li><li><a href="CustomElement.html#initialErrorLabel">initialErrorLabel</a></li><li><a href="CustomElement.html#initialLoading">initialLoading</a></li><li><a href="CustomElement.html#label">label</a></li><li><a href="CustomElement.html#loading">loading</a></li><li><a href="CustomElement.html#loadingGlobal">loadingGlobal</a></li><li><a href="CustomElement.html#messages">messages</a></li><li><a href="CustomElement.html#messagesGlobal">messagesGlobal</a></li><li><a href="CustomElement.html#ready">ready</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="CustomElement.html#addError">addError</a></li><li><a href="CustomElement.html#addInfo">addInfo</a></li><li><a href="CustomElement.html#addSuccess">addSuccess</a></li><li><a href="CustomElement.html#addWarning">addWarning</a></li><li><a href="CustomElement.html#apex">apex</a></li><li><a href="CustomElement.html#closeWindow">closeWindow</a></li><li><a href="CustomElement.html#renderedOnceCallback">renderedOnceCallback</a></li></ul></div></li><li><a href="Messages.html">Messages</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Messages_sub"></div></li><li><span class="icon green">LWC</span>&nbsp;<a href="UploadFiles.html">UploadFiles</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="UploadFiles_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="UploadFiles.html#extensions">extensions</a></li><li><a href="UploadFiles.html#helpText">helpText</a></li><li><a href="UploadFiles.html#label">label</a></li><li><a href="UploadFiles.html#multiple">multiple</a></li><li><a href="UploadFiles.html#required">required</a></li><li><a href="UploadFiles.html#type">type</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="UploadFiles.html#checkValidity">checkValidity</a></li><li><a href="UploadFiles.html#hasErrorMessage">hasErrorMessage</a></li><li><a href="UploadFiles.html#reportValidity">reportValidity</a></li><li><a href="UploadFiles.html#setCustomValidity">setCustomValidity</a></li></ul><div class="member-type">Events</div><ul class="inner"><li><a href="UploadFiles.html#event:upload">upload</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Mixins</h3><ul><li><a href="CustomInput.html">CustomInput</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CustomInput_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="CustomInput.html#.controlClass">controlClass</a></li><li><a href="CustomInput.html#.helpMessage">helpMessage</a></li><li><a href="CustomInput.html#.required">required</a></li><li><a href="CustomInput.html#.value">value</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="CustomInput.html#.checkValidity">checkValidity</a></li><li><a href="CustomInput.html#.hasErrorMessage">hasErrorMessage</a></li><li><a href="CustomInput.html#.reportValidity">reportValidity</a></li><li><a href="CustomInput.html#.setCustomValidity">setCustomValidity</a></li><li><a href="CustomInput.html#.validate">validate</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li class="hidden"><a href="global.html#Message">Message</a></li><li><a href="global.html#Severity">Severity</a></li></ul></div><h2>Testing</h2><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="JestHtmlElement.html">JestHtmlElement</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="JestHtmlElement_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="JestHtmlElement.html#.dispatch">dispatch</a></li><li><a href="JestHtmlElement.html#.listen">listen</a></li><li><a href="JestHtmlElement.html#.query">query</a></li><li><a href="JestHtmlElement.html#.queryAll">queryAll</a></li></ul></div></li><li><a href="SharedTestHelpers.html">SharedTestHelpers</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SharedTestHelpers_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="SharedTestHelpers.html#.staticData">staticData</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="SharedTestHelpers.html#.apexMock">apexMock</a></li><li><a href="SharedTestHelpers.html#.createComponent">createComponent</a></li><li><a href="SharedTestHelpers.html#.flushPromises">flushPromises</a></li><li><a href="SharedTestHelpers.html#.getMessages">getMessages</a></li></ul></div></li><li><a href="SharedTestHelpers.Timer.html">Timer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SharedTestHelpers.Timer_sub"></div></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>CustomElement</h2>
+        
+            <div class="class-description"><p>Base class for all TargetRecruit lightning web components.</p>
+<blockquote>
+<p>📝 <strong>Note:</strong>
+Any function of the class which extends the CustomElement class with a name
+prefixed with 'handle' will be automatically wrapped by try/catch/addError block.
+See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a> -&gt; parent.js -&gt; handleButtonClicked() function.</p>
+</blockquote></div>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+
+    <dt>
+        
+            <h4 class="name" id="CustomElement">
+                
+                
+                    CustomElement
+                
+                
+                <div class="container-source members">
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line18">line 18</a></code>
+                </div>
+                
+            </h4>
+
+            
+        
+    </dt>
+    <dd>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+    </dd>
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+
+
+
+    <dt>
+    <h4 class="name" id="initialError">
+        
+        <span class="type-signature"></span>initialError<span class="type-signature"> :Boolean</span>
+        
+        <div class="container-source members">
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line85">line 85</a></code>
+        </div>
+        
+    </h4>
+
+    
+    </dt>
+    <dd>
+        
+        <div class="description">
+            <p>Use this flag to show a block of error messages which happened
+inside <em>try</em> block of <em>connectedCallback()</em> function.
+It is <em>false</em> by default and will be set to <em>true</em> if <a href="CustomElement.html#addError"><code>CustomElement#addError</code></a>
+will be called inside of <em>connectedCallback()</em> function.</p>
+<h5>Example</h5>
+<p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
+        </div>
+        
+
+        <!--
+        
+            <h5>Type:</h5>
+            <ul>
+                <li>
+                    
+<span class="param-type">Boolean</span>
+
+
+                </li>
+            </ul>
+        
+        -->
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>false</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+        
+    </dd>
+
+
+        
+            
+
+
+
+    <dt>
+    <h4 class="name" id="initialErrorLabel">
+        
+        <span class="type-signature"></span>initialErrorLabel<span class="type-signature"> :String</span>
+        
+        <div class="container-source members">
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line101">line 101</a></code>
+        </div>
+        
+    </h4>
+
+    
+    </dt>
+    <dd>
+        
+        <div class="description">
+            <p>Use this property as a label for <em>Back/Close</em> button in conjunction
+with <a href="CustomElement.html#initialError"><code>CustomElement#initialError</code></a> and <a href="CustomElement.html#closeWindow"><code>CustomElement#closeWindow</code></a>.
+The value of the property can be
+<em>Back</em> (if <em>window.history</em> has previous URLs, usually it is true if the component
+is opened as a page in the same browser's tab or window) or
+<em>Close</em> (otherwise, usually it is true if the component is opened as a page in
+the new browser's tab or window).</p>
+<h5>Example</h5>
+<p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
+        </div>
+        
+
+        <!--
+        
+            <h5>Type:</h5>
+            <ul>
+                <li>
+                    
+<span class="param-type">String</span>
+
+
+                </li>
+            </ul>
+        
+        -->
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+        
+    </dd>
+
+
+        
+            
+
+
+
+    <dt>
+    <h4 class="name" id="initialLoading">
+        
+        <span class="type-signature"></span>initialLoading<span class="type-signature"> :Boolean</span>
+        
+        <div class="container-source members">
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line71">line 71</a></code>
+        </div>
+        
+    </h4>
+
+    
+    </dt>
+    <dd>
+        
+        <div class="description">
+            <p>Use this flag to show a spinner which should be shown
+only till the initial apex call is done.
+It is <em>true</em> till the first <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> call is done.
+After that the <em>initialLoading</em> property is always <em>false</em>.</p>
+<h5>Example</h5>
+<p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
+        </div>
+        
+
+        <!--
+        
+            <h5>Type:</h5>
+            <ul>
+                <li>
+                    
+<span class="param-type">Boolean</span>
+
+
+                </li>
+            </ul>
+        
+        -->
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>true</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+        
+    </dd>
+
+
+        
+            
+
+
+
+    <dt>
+    <h4 class="name" id="label">
+        
+        <span class="type-signature"></span>label<span class="type-signature"></span>
+        
+        <div class="container-source members">
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line331">line 331</a></code>
+        </div>
+        
+    </h4>
+
+    
+    </dt>
+    <dd>
+        
+        <div class="description">
+            <p>Contains a list of labels which can be accessed by modified property names.</p>
+<h5>Example</h5>
+<p><em><strong>yourLwc.js</strong></em></p>
+<pre class="prettyprint source lang-javascript"><code>import CustomElement from 'c/customElement';
+
+// Import labels. Use names equal to &quot;label&lt;Name of the labels in CustomLabels.labels-meta.xml file>&quot;
+import labelLabel_Name_One from '@salesforce/label/c.Label_Name_One';
+import labelLabel_Name_Two from '@salesforce/label/c.Label_Name_Two';
+
+export default class YourLwc extends CustomElement {
+  // Add a &quot;label&quot; property to your LWC class and include the imported labels.
+  label = {
+    labelLabel_Name_One,
+    labelLabel_Name_Two
+  };
+}
+</code></pre>
+<p><em><strong>yourLwc.html</strong></em></p>
+<pre class="prettyprint source lang-html"><code>&lt;!-- Now in your HTML markup you can access the labels with {label.Label_Name_One}.
+NOTE: Instead of {label.labelLabel_Name_One} you can use {label.Label_Name_One}.
+Actually, 3 options are available:
+  {label.labelLabel_Name_One},
+  {label.label_Name_One},
+  {label.Label_Name_One}.
+But the latter is preferred as it will be a clickable reference
+to the appropriate tag in CustomLabels.labels-meta.xml. -->
+&lt;p class=&quot;title&quot;>{label.Label_Name_One}&lt;/p>
+</code></pre>
+        </div>
+        
+
+        <!--
+        
+        -->
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+        
+    </dd>
+
+
+        
+            
+
+
+
+    <dt>
+    <h4 class="name" id="loading">
+        
+        <span class="type-signature"></span>loading<span class="type-signature"> :Boolean</span>
+        
+        <div class="container-source members">
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line299">line 299</a></code>
+        </div>
+        
+    </h4>
+
+    
+    </dt>
+    <dd>
+        
+        <div class="description">
+            <p>Use this flag identify whether the <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> call
+of current component is in progress or is done.</p>
+<h5>Example</h5>
+<p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
+        </div>
+        
+
+        <!--
+        
+            <h5>Type:</h5>
+            <ul>
+                <li>
+                    
+<span class="param-type">Boolean</span>
+
+
+                </li>
+            </ul>
+        
+        -->
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>false</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+        
+    </dd>
+
+
+        
+            
+
+
+
+    <dt>
+    <h4 class="name" id="loadingGlobal">
+        
+        <span class="type-signature"></span>loadingGlobal<span class="type-signature"> :Boolean</span>
+        
+        <div class="container-source members">
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line312">line 312</a></code>
+        </div>
+        
+    </h4>
+
+    
+    </dt>
+    <dd>
+        
+        <div class="description">
+            <p>Use this flag identify whether the <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> call
+of any component is in progress or is done.</p>
+<h5>Example</h5>
+<p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
+        </div>
+        
+
+        <!--
+        
+            <h5>Type:</h5>
+            <ul>
+                <li>
+                    
+<span class="param-type">Boolean</span>
+
+
+                </li>
+            </ul>
+        
+        -->
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>false</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+        
+    </dd>
+
+
+        
+            
+
+
+
+    <dt>
+    <h4 class="name" id="messages">
+        
+        <span class="type-signature"></span>messages<span class="type-signature"> :Array.&lt;<a href="global.html#Message">Message</a>></span>
+        
+        <div class="container-source members">
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line30">line 30</a></code>
+        </div>
+        
+    </h4>
+
+    
+    </dt>
+    <dd>
+        
+        <div class="description">
+            <p>Represents a list of messages of the current component.</p>
+<h5>Example</h5>
+<p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
+        </div>
+        
+
+        <!--
+        
+            <h5>Type:</h5>
+            <ul>
+                <li>
+                    
+<span class="param-type">Array.&lt;<a href="global.html#Message">Message</a>></span>
+
+
+                </li>
+            </ul>
+        
+        -->
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+        
+    </dd>
+
+
+        
+            
+
+
+
+    <dt>
+    <h4 class="name" id="messagesGlobal">
+        
+        <span class="type-signature"></span>messagesGlobal<span class="type-signature"> :Array.&lt;<a href="global.html#Message">Message</a>></span>
+        
+        <div class="container-source members">
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line56">line 56</a></code>
+        </div>
+        
+    </h4>
+
+    
+    </dt>
+    <dd>
+        
+        <div class="description">
+            <p>Represents a list of messages of all instantiated <a href="CustomElement.html"><code>CustomElement</code></a> components.</p>
+<h5>Example</h5>
+<p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
+        </div>
+        
+
+        <!--
+        
+            <h5>Type:</h5>
+            <ul>
+                <li>
+                    
+<span class="param-type">Array.&lt;<a href="global.html#Message">Message</a>></span>
+
+
+                </li>
+            </ul>
+        
+        -->
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+        
+    </dd>
+
+
+        
+            
+
+
+
+    <dt>
+    <h4 class="name" id="ready">
+        
+        <span class="type-signature"></span>ready<span class="type-signature"> :Boolean</span>
+        
+        <div class="container-source members">
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+            <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line286">line 286</a></code>
+        </div>
+        
+    </h4>
+
+    
+    </dt>
+    <dd>
+        
+        <div class="description">
+            <p>This flag is used to specify an initial loading state. By default it equals to <em>false</em>.
+Once initial call to an Apex method from <em>connectedCallback()</em> is successfully done
+via <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> it is set to <em>true</em>.
+If during the Apex method call some exception happened and caught/registered
+by <a href="CustomElement.html#addError"><code>CustomElement#addError</code></a> then this flag will be left as <em>false</em>.
+Use this flag to identify whether to show functional content of the component
+once the initial Apex method call is successfully done (<em>ready = true</em>).</p>
+<h5>Example</h5>
+<p>It shows the usage of all capabilities of <a href="CustomElement.html"><code>CustomElement</code></a>.
+There are 2 LWC components which extend <a href="CustomElement.html"><code>CustomElement</code></a>:
+Parent component and Child component. Both components have 2 buttons.
+First button is disabled if the component is making a call to Apex
+via <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a>.
+Second button is disabled if any of the components are making a call to Apex
+via <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a>.
+So, if user clicks any button on Parent component
+then 2 buttons on Parent and 'Global' button on Child will be disabled.
+If user clicks any button on Child component
+then 2 buttons on Child and 'Global' button on Parent will be disabled.</p>
+<p><strong>Messages</strong>:</p>
+<p>Parent component contains 2 <a href="Messages.html"><code>&lt;c-messages&gt;</code></a> LWCs.
+The first (type=&quot;alert&quot;) is to show the messages of the current (parent) LWC only.
+See <a href="CustomElement.html#messages"><code>CustomElement#messages</code></a>.
+The second LWC (type=&quot;toast&quot;) is to show all messages which will happen
+in the both parent and child components. See <a href="CustomElement.html#messagesGlobal"><code>CustomElement#messagesGlobal</code></a>.</p>
+<p><strong>Initial loading</strong>:</p>
+<p>When initial rendering happens and some database data is required
+use <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> inside of connectedCallback() to load it from Apex code.</p>
+<p>Use <a href="https://developer.salesforce.com/docs/component-library/bundle/lightning-spinner/example" target="_blank">
+&lt;lightning-spinner&gt;</a> with <a href="CustomElement.html#initialLoading"><code>CustomElement#initialLoading</code></a>
+as a rendering conditions to show the spinner before the functional content will be rendered
+and use <em>&lt;div&gt;</em> with <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a> to show the functional content.</p>
+<p>You can also add a block which uses
+<a href="CustomElement.html#initialError"><code>CustomElement#initialError</code></a>,
+<a href="CustomElement.html#initialErrorLabel"><code>CustomElement#initialErrorLabel</code></a> and
+<a href="CustomElement.html#closeWindow"><code>CustomElement#closeWindow</code></a> to show a <em>Back/Close</em> button
+in case some exception occurred and processed by <a href="CustomElement.html#addError"><code>CustomElement#addError</code></a>
+during connectedCallback() phase.</p>
+<p><strong>Apex calls</strong>:</p>
+<p>There are 2 additional properties/flags to identify whether the Apex call in progress or not.
+Use <a href="CustomElement.html#loading"><code>CustomElement#loading</code></a> to identify if the current component is doing the Apex call
+using <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a>.
+Use <a href="CustomElement.html#loadingGlobal"><code>CustomElement#loadingGlobal</code></a> to identify if any component is doing the Apex call
+using <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a>.</p>
+<p><em><strong>parent.html</strong></em></p>
+<pre class="prettyprint source lang-html"><code>&lt;template>
+	&lt;!-- Shows current component's messages. -->
+	&lt;c-messages messages={messages} type=&quot;alert&quot;>&lt;/c-messages>
+
+	&lt;!-- Shows messages of all <a href="CustomElement.html"><code>CustomElement</code></a> components. -->
+	&lt;c-messages messages={messagesGlobal} type=&quot;toast&quot;>&lt;/c-messages>
+
+	&lt;!-- Shows a spinner till initial call to Apex code is completed. -->
+	&lt;lightning-spinner size=&quot;large&quot; variant=&quot;brand&quot; if:true={initialLoading}>&lt;/lightning-spinner>
+
+	&lt;!-- Shows a Back/Close button in case an error occurred. -->
+	&lt;div if:true={initialError}>
+		&lt;lightning-button onclick={closeWindow} label={initialErrorLabel}>&lt;/lightning-button>
+	&lt;/div>
+
+	&lt;!-- Functional content is inside of the div
+		and its appearance is controlled by <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a> -->
+	&lt;div if:true={ready}>
+		&lt;!-- The button is disabled when <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> call
+			of the current component is in progress. -->
+		&lt;lightning-button label=&quot;Local&quot; disabled={loading}
+				onclick={handleButtonClicked}>&lt;/lightning-button>
+
+		&lt;!-- The button is disabled when <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> call
+			of any <a href="CustomElement.html"><code>CustomElement</code></a> component is in progress. -->
+		&lt;lightning-button label=&quot;Global&quot; disabled={loadingGlobal}
+				onclick={handleButtonClicked}>&lt;/lightning-button>
+
+		&lt;c-test-cache-child>&lt;/c-test-cache-child>
+	&lt;/div>
+&lt;/template>
+</code></pre>
+<p><em><strong>parent.js</strong></em></p>
+<pre class="prettyprint source lang-javascript"><code>import CustomElement from &quot;c/customElement&quot;;
+
+import getAccounts from '@salesforce/apex/testCacheController.getAccounts';
+import getAccountsWithApexInfoMessage
+	from '@salesforce/apex/testCacheController.getAccountsWithApexInfoMessage';
+
+export default class Parent extends CustomElement {
+	async connectedCallback() {
+		try {
+			// getAccounts Apex method returns Account[],
+			// so this is what will be assigned to the &quot;const accounts&quot; JS variable.
+			const accounts = await this.apex(getAccounts);
+
+			// Adds a value of accounts.length as a warning message
+			// to <a href="CustomElement.html#messages"><code>CustomElement#messages</code></a> and <a href="CustomElement.html#messagesGlobal"><code>CustomElement#messagesGlobal</code></a>.
+			this.addWarning(accounts.length);
+		} catch (e) {
+			this.addError(e);
+		}
+	}
+
+	// This callback will be called every time the component's DOM is changed.
+	renderedCallback() {
+		// You need the following statement only
+		// if you override renderedOnceCallback() also.
+		super.renderedCallback();
+
+		// This log message will be added to the console
+		// multiple times on the load of the component.
+		console.log(`Component rendered.`);
+	}
+
+	// This is a new <a href="CustomElement.html"><code>CustomElement</code></a> callback which will be called
+	// only one time when the component initially rendered.
+	renderedOnceCallback() {
+		// This log message will be added to the console
+		// just one time on the load of the component.
+		console.log(`Component rendered first time.`);
+	}
+
+	// No need for try/catch here as any &quot;handle...&quot; function of the class
+	// which extends <a href="CustomElement.html"><code>CustomElement</code></a> will be wrapped by the try/catch automatically.
+	async handleButtonClicked() {
+		// getAccountsWithApexInfoMessage Apex method returns Logger.AuraResult type,
+		// so &quot;const accounts&quot; JS variable will be assigned
+		// with the Logger.AuraResult.result value
+		// and the Logger.AuraResult.messages will be added automatically
+		// to <a href="CustomElement.html#messages"><code>CustomElement#messages</code></a> and <a href="CustomElement.html#messagesGlobal"><code>CustomElement#messagesGlobal</code></a>.
+		const accounts = await this.apex(getAccountsWithApexInfoMessage);
+
+		// Adds a value of accounts.length as a success message
+		// to <a href="CustomElement.html#messages"><code>CustomElement#messages</code></a> and <a href="CustomElement.html#messagesGlobal"><code>CustomElement#messagesGlobal</code></a>.
+		this.addSuccess(accounts.length);
+	}
+}
+</code></pre>
+<p><em><strong>child.html</strong></em></p>
+<pre class="prettyprint source lang-html"><code>&lt;template>
+	&lt;!-- The button is disabled when <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> call
+			of the current component is in progress. -->
+	&lt;lightning-button label=&quot;Child Local&quot; disabled={loading}
+			onclick={handleButtonClicked}>&lt;/lightning-button>
+
+	&lt;!-- The button is disabled when <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> call
+			of any <a href="CustomElement.html"><code>CustomElement</code></a> component is in progress. -->
+	&lt;lightning-button label=&quot;Child Global&quot; disabled={loadingGlobal}
+			onclick={handleButtonClicked}>&lt;/lightning-button>
+&lt;/template>
+</code></pre>
+<p><em><strong>child.js</strong></em></p>
+<pre class="prettyprint source lang-javascript"><code>import CustomElement from &quot;c/customElement&quot;;
+
+import getAccountsWithApexInfoMessage
+	from '@salesforce/apex/testCacheController.getAccountsWithApexInfoMessage';
+
+export default class Child extends CustomElement {
+	async handleButtonClicked() {
+		const accounts = await this.apex(getAccountsWithApexInfoMessage);
+		this.addError(accounts.length);
+	}
+}
+</code></pre>
+        </div>
+        
+
+        <!--
+        
+            <h5>Type:</h5>
+            <ul>
+                <li>
+                    
+<span class="param-type">Boolean</span>
+
+
+                </li>
+            </ul>
+        
+        -->
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>false</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+        
+    </dd>
+
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+
+    <dt>
+        
+            <h4 class="name" id="addError">
+                
+                
+                    <span class="type-signature"></span>addError<span class="signature">(error)</span><span class="type-signature"></span>
+                
+                
+                <div class="container-source members">
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line552">line 552</a></code>
+                </div>
+                
+            </h4>
+
+            
+        
+    </dt>
+    <dd>
+
+        
+        <div class="description">
+            <p>Adds an error message to the <a href="CustomElement.html#messages"><code>CustomElement#messages</code></a>
+and <a href="CustomElement.html#messagesGlobal"><code>CustomElement#messagesGlobal</code></a> arrays.
+Also, if the method is called from <em>connectedCallback()</em>
+then <a href="CustomElement.html#initialError"><code>CustomElement#initialError</code></a> is set to <em>true</em>
+and <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a> is set to <em>false</em>.</p>
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+        <div class="container-params">
+            <h5>Parameters:</h5>
+            
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Error</span>
+|
+
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Error message. If it is passed as an Error object
+then also the error message will be added to the Browser's console
+with an appropriate stack trace to easily debug the reason of the error.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+    </dd>
+
+
+            
+                
+
+
+    <dt>
+        
+            <h4 class="name" id="addInfo">
+                
+                
+                    <span class="type-signature"></span>addInfo<span class="signature">(message)</span><span class="type-signature"></span>
+                
+                
+                <div class="container-source members">
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line520">line 520</a></code>
+                </div>
+                
+            </h4>
+
+            
+        
+    </dt>
+    <dd>
+
+        
+        <div class="description">
+            <p>Adds an info message to the <a href="CustomElement.html#messages"><code>CustomElement#messages</code></a>
+and <a href="CustomElement.html#messagesGlobal"><code>CustomElement#messagesGlobal</code></a> arrays.</p>
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+        <div class="container-params">
+            <h5>Parameters:</h5>
+            
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Message to pass to the arrays.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+    </dd>
+
+
+            
+                
+
+
+    <dt>
+        
+            <h4 class="name" id="addSuccess">
+                
+                
+                    <span class="type-signature"></span>addSuccess<span class="signature">(message)</span><span class="type-signature"></span>
+                
+                
+                <div class="container-source members">
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line529">line 529</a></code>
+                </div>
+                
+            </h4>
+
+            
+        
+    </dt>
+    <dd>
+
+        
+        <div class="description">
+            <p>Adds a success message to the <a href="CustomElement.html#messages"><code>CustomElement#messages</code></a>
+and <a href="CustomElement.html#messagesGlobal"><code>CustomElement#messagesGlobal</code></a> arrays.</p>
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+        <div class="container-params">
+            <h5>Parameters:</h5>
+            
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Message to pass to the arrays.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+    </dd>
+
+
+            
+                
+
+
+    <dt>
+        
+            <h4 class="name" id="addWarning">
+                
+                
+                    <span class="type-signature"></span>addWarning<span class="signature">(message)</span><span class="type-signature"></span>
+                
+                
+                <div class="container-source members">
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line538">line 538</a></code>
+                </div>
+                
+            </h4>
+
+            
+        
+    </dt>
+    <dd>
+
+        
+        <div class="description">
+            <p>Adds a warning message to the <a href="CustomElement.html#messages"><code>CustomElement#messages</code></a>
+and <a href="CustomElement.html#messagesGlobal"><code>CustomElement#messagesGlobal</code></a> arrays.</p>
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+        <div class="container-params">
+            <h5>Parameters:</h5>
+            
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Message to pass to the arrays.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+    </dd>
+
+
+            
+                
+
+
+    <dt>
+        
+            <h4 class="name" id="apex">
+                
+                
+                    <span class="type-signature"><span class="icon green">async</span> </span>apex<span class="signature">(action, args<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;{Object}>}</span>
+                
+                
+                <div class="container-source members">
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line455">line 455</a></code>
+                </div>
+                
+            </h4>
+
+            
+        
+    </dt>
+    <dd>
+
+        
+        <div class="description">
+            <p>Calls an @AuraEnabled action method and manage different component states and messages.</p>
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+        <div class="container-params">
+            <h5>Parameters:</h5>
+            
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>@AuraEnabled action method imported into your LWC class
+with import action from '@salesforce/apex/controller.method' statement.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Parameters of the @AuraEnabled action method.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+        <div class="container-returns">
+            <h5>Returns:</h5>
+            
+                    
+
+
+
+<span class="param-type">Promise.&lt;{Object}></span>
+
+
+
+
+
+- <p>This is a return of the @AuraEnabled action method.
+It can be any type supported for @AuraEnabled methods.
+Also, it supports a specific type Logger.AuraResult which contains array of messages
+and the method return data. In case the Logger.AuraResult is returned
+by the @AuraEnabled action method this <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> method
+will add the messages from the Logger.AuraResult to the <a href="CustomElement.html#messages"><code>CustomElement#messages</code></a> array
+and will return data part of the Logger.AuraResult.
+See example of the AuraMessage type in
+AVTRRT project -&gt; classes/SendPayPackageController.cls -&gt; init(...) method.</p>
+
+
+
+
+                
+        </div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+    </dd>
+
+
+            
+                
+
+
+    <dt>
+        
+            <h4 class="name" id="closeWindow">
+                
+                
+                    <span class="type-signature"></span>closeWindow<span class="signature">(delay)</span><span class="type-signature"></span>
+                
+                
+                <div class="container-source members">
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line623">line 623</a></code>
+                </div>
+                
+            </h4>
+
+            
+        
+    </dt>
+    <dd>
+
+        
+        <div class="description">
+            <p>The function redirects to the previous page of the current window/tab
+(if <em>window.history</em> has previous URLs, usually it is true if the component
+is opened as a page in the same browser's tab or window) or
+closes current window/tab
+(otherwise, usually it is true if the component is opened as a page in
+the new browser's tab or window). If the current component is inside an IFRAME
+and <em>window.history</em> doesn't have the previous URL
+then the parent window/tab of the IFRAME will be closed.</p>
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+        <div class="container-params">
+            <h5>Parameters:</h5>
+            
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>delay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>If the attribute is set then the window/tab will be redirected
+back or closed after the milliseconds provided by the attribute.
+Otherwise, the action will happen immediately.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+    </dd>
+
+
+            
+                
+
+
+    <dt>
+        
+            <h4 class="name" id="renderedOnceCallback">
+                
+                
+                    <span class="type-signature"></span>renderedOnceCallback<span class="signature">()</span><span class="type-signature"></span>
+                
+                
+                <div class="container-source members">
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html">sfdx-source/TMS/main/default/lwc/customElement/customElement.js</a></code>,
+                    <code><a href="sfdx-source_TMS_main_default_lwc_customElement_customElement.js.html#line428">line 428</a></code>
+                </div>
+                
+            </h4>
+
+            
+        
+    </dt>
+    <dd>
+
+        
+        <div class="description">
+            <p>If overridden in extending class then it will be called
+when the component is rendered first time. If you need to override both renderedCallback()
+and renderedOnceCallback() then inside of renderedCallback() first statement
+should be <em>super.renderedCallback();</em>.</p>
+<h5>Example</h5>
+<p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+
+    </dd>
+
+
+            </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="https://targetrecruit.com/wp-content/uploads/2022/07/TargetRecruit_logo_purple.png" style="width: 80px; height: 13px">
+    <div class="footer-text">2022</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = 'CustomElement_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>
