@@ -11,25 +11,577 @@ You should understand [Mock Functions](https://jestjs.io/docs/mock-functions).
 
 ### What should we call from outside
 
-- Life-cycle callbacks. The callbacks _connectedCallback_ and _renderedCallback_
-  are called automatically during the LWC component creation.
-- Event handlers.
-- Methods and fields with @api.
+There are multiple entry points to your LWC component's code. There is the full list of the entries:
 
-### What should/can we assert
+- Life-cycle callbacks
+- Event handlers
+- Functions, properties and fields with @api
 
-- HTML - **should**
-- Fields with @api - *can*
-- External/shared data - **should**
-- Apex calls - **should**
-    - How many times the apex method was called?
-    - What were the arguments for the apex call?
-- Dispatched events - **should**
-    - How many times the event was dispatched?
-    - What were the arguments of the dispatch?
-- Messages (success, error, info, warning) - **should**
+Most of the entries you should call in your Jest test and validate the calls results.
+In this section you can find examples of how to call the entry points.
+How to validate the calls results will find out in next section.
 
-# Example
+#### Life-cycle callbacks
+
+The callbacks _connectedCallback_ and _renderedCallback_
+are called automatically during the LWC component creation.
+
+#### Event handlers
+
+***yourLwc.html***
+
+```html
+
+<template>
+	<lightning-button label="Button" onclick={handleButtonClicked}></lightning-button>
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import CustomElement from 'c/customElement';
+
+export default class YourLwc extends CustomElement {
+	handleButtonClicked() {
+		// Some logic here...
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+import {createComponent} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
+	it('call-button-clicked-handler', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
+		// NOTE: "await" before the function call.
+		let component = await createComponent('c-your-lwc', YourLwc);
+		
+		// We would like to emulate the button click. 
+		// To achieve this we should query for the button element and then dispatch it's onclick event.
+		// Use {@link JestHtmlElement#query} or {@link JestHtmlElement#queryAll} to query child components of the current component.
+		// NOTE: "await" before the function call.
+		let buttonElement = await component.query('lightning-button');
+		// To call the handler function, use {@link JestHtmlElement#dispatch} function 
+		// to dispatch the onclick event which the handler is subscribed to.
+		// NOTE: "await" before the function call.
+		await buttonElement.dispatch('click');
+		
+		// Validate the results of the handler call here...
+	});
+})
+```
+
+#### Functions and properties with @api
+
+***yourLwc.html***
+
+```html
+
+<template>
+	<!-- Some code here... -->
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import {api} from 'lwc';
+import CustomElement from 'c/customElement';
+
+export default class YourLwc extends CustomElement {
+	@api set attributeProperty(value) {
+		this.__attributeProperty = value;
+		
+		// Some logic here...
+	};
+	
+	get attributeProperty() {
+		// Some logic here...
+		
+		return this.__attributeProperty;
+	}
+	
+	@api doSomeStuff() {
+		// Some logic here...
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+import {createComponent} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
+	it('call-api-function-property', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
+		// NOTE: "await" before the function call.
+		let component = await createComponent('c-your-lwc', YourLwc);
+		
+		// The c-your-lwc component has the public @api property. 
+		// We should:
+		//   - set a value to the property
+		//   - validate the results of the assignment 
+		//   - get the value of the property and validate the value
+		component.attributeProperty = `some value`;
+		
+		// Validate the results of the property setter call here...
+		
+		const value = component.attributeProperty;
+		
+		// Validate the retrieved value of the property getter here...
+		
+		// The c-your-lwc component has the public @api function. 
+		// We should:
+		//   - call the function
+		//   - validate the results of the call
+		component.doSomeStuff();
+		
+		// Validate the results of doSomeStuff() call here...
+	});
+})
+```
+
+### What should we validate
+
+#### HTML
+
+- Is the expected element available and visible in HTML? We should validate it if the element can be
+  hidden in some cases.
+- Are the attributes of the element set with proper values?
+
+***yourLwc.html***
+
+```html
+
+<template>
+	<div if:true={showDiv}>
+		<lightning-input value={inputValue}></lightning-input>
+	</div>
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import CustomElement from 'c/customElement';
+
+export default class YourLwc extends CustomElement {
+	showDiv = false;
+	inputValue = ``;
+	
+	connectedCallback() {
+		try {
+			// Some logic here...
+			
+			this.showDiv = true;
+			this.inputValue = `Some value`;
+		} catch (e) {
+			this.addError(e);
+		}
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+import {createComponent} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
+	it('validate-div-is-shown-input-has-proper-value', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
+		// NOTE: "await" before the function call.
+		let component = await createComponent('c-your-lwc', YourLwc);
+		
+		// We can't access the "showDiv" field in the test code. 
+		// But instead we can validate the "div" is shown. 
+		// To achieve this we should query for the "div" element and validate it was queried.
+		
+		// Use {@link JestHtmlElement#query} or {@link JestHtmlElement#queryAll} to query child components of the current component.
+		// NOTE: "await" before the function call.
+		let divElement = await component.query('div');
+		// Validate the queried element isn't null.
+		expect(divElement).not.toBeNull();
+		
+		// We can't access the "inputValue" field in the test code. 
+		// But instead we can validate the "lightning-input"'s value attribute has an expected value. 
+		// To achieve this we should query for the "lightning-input" element and validate it's value attribute.
+		let inputElement = await component.query('lightning-input');
+		expect(inputElement.value).toBe(`Some value`);
+	});
+})
+```
+
+#### Fields/properties with @api
+
+***yourLwc.html***
+
+```html
+
+<template>
+	<!-- Some code here... -->
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import {api} from 'lwc';
+import CustomElement from 'c/customElement';
+
+export default class YourLwc extends CustomElement {
+	@api set attributeProperty(value) {
+		this.__attributeProperty = value;
+		
+		// Some logic here...
+	};
+	
+	get attributeProperty() {
+		// Some logic here...
+		
+		return this.__attributeProperty;
+	}
+	
+	@api attributeField;
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+import {createComponent} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
+	it('validate-property-and-field-values', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
+		// NOTE: "await" before the function call.
+		let component = await createComponent('c-your-lwc', YourLwc);
+		
+		// The c-your-lwc component has the public @api property. 
+		// If we expect the value of the property was modified then we should:
+		//   - get the value of the property and validate the value
+		const propertyValue = component.attributeProperty;
+		expect(propertyValue).toBe(`Expected value`);
+		
+		// The c-your-lwc component has the public @api field. 
+		// If we expect the value of the field was modified then we should:
+		//   - get the value of the field and validate the value
+		const fieldValue = component.attributeField;
+		expect(fieldValue).toBe(`Expected value`);
+	});
+})
+```
+
+#### Shared data
+
+LWC components, which extend _CustomElement_ class, can have a shared data.
+One of the components can set the data and another component will read the data.
+The data is accessible by {@link CustomElement#staticData}. To validate the data was set properly by
+your LWC component, in your Jest test you can use {@link SharedTestHelpers#staticData} object.
+
+***yourLwc.html***
+
+```html
+
+<template>
+	<!-- Some code here... -->
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import CustomElement from 'c/customElement';
+
+export default class YourLwc extends CustomElement {
+	connectedCallback() {
+		this.staticData.dataToShareForYourLwc = {value: `val`};
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+// Import staticData from "shared"
+import {createComponent, staticData} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
+	it('validate-shared-data', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
+		// NOTE: "await" before the function call.
+		let component = await createComponent('c-your-lwc', YourLwc);
+		
+		// Validate the staticData equals to the expected.
+		expect(staticData.dataToShareForYourLwc).toEqual({value: `val`});
+	});
+})
+```
+
+#### Dispatched events
+
+- How many times the event was dispatched?
+- What were the arguments of the dispatch?
+
+***yourLwc.html***
+
+```html
+
+<template>
+	<lightning-input label="Text" type="text"></lightning-input>
+	<lightning-button label="Button" onclick={handleButtonClicked}></lightning-button>
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import CustomElement from 'c/customElement';
+
+export default class YourLwc extends CustomElement {
+	async handleButtonClicked() {
+		const text = this.template.querySelector(`lightning-input`).value;
+		this.dispatchEvent(
+			new CustomEvent('buttonclicked', {detail: {text: text}}));
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+import {createComponent} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
+	it('validate-event-dispatchd', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
+		// NOTE: "await" before the function call.
+		let component = await createComponent('c-local-development', YourLwc);
+		
+		// The c-your-lwc component dispatches the onbuttonclicked event. 
+		// Use {@link JestHtmlElement#listen} function to listen for events which are dispatched by the component. 
+		// This function returns a mock function, which will be called 
+		// when the event will be dispatched by the component.
+		// If the mock function was called it means the onbuttonclicked event was dispatched.
+		// So, we should validate that for this unit test the event will be dispatched 
+		// and the parameters of the event are correct. 
+		// We should assert that the mock function was called with correct parameters.
+		let listenerSuccess = component.listen(`buttonclicked`);
+		
+		// We would like to emulate the text input element is set with some value.
+		// NOTE: "await" before the function call.
+		let textElement = await component.query('lightning-input');
+		textElement.value = `John`;
+		
+		// We would like to emulate the button click. 
+		// To achieve this we should query for the button element and then dispatch it's onclick event.
+		// Use {@link JestHtmlElement#query} or {@link JestHtmlElement#queryAll} to query child components of the current component.
+		// NOTE: "await" before the function call.
+		let buttonElement = await component.query('lightning-button');
+		// To call a handler function, use {@link JestHtmlElement#dispatch} function 
+		// to dispatch the onclick event which the handler is subscribed to.
+		// NOTE: "await" before the function call.
+		await buttonElement.dispatch('click');
+		
+		// We expect the "onbuttonclicked" event was called.
+		expect(listenerSuccess).toHaveBeenCalled();
+		// We expect the first parameter of the event has a detail.text field with a value "John"
+		expect(listenerSuccess.mock.calls[0][0].detail.text).toBe(`John`);
+	});
+})
+```
+
+#### Apex calls
+
+- How many times the apex method was called?
+- What were the arguments for the apex call?
+
+To mock and validate Apex calls properly, your LWC component should call Apex action method
+using {@link CustomElement#apex} like in the example below.
+
+In your Jest test you should import {@link SharedTestHelpers#apexMock} function
+and use it to mock the Apex method call.
+
+***yourLwc.html***
+
+```html
+
+<template>
+	<lightning-input label="Text" type="text"></lightning-input>
+	<lightning-button label="Search" onclick={handleSearchButtonClicked}></lightning-button>
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import CustomElement from 'c/customElement';
+import search from '@salesforce/apex/YourController.search';
+
+export default class YourLwc extends CustomElement {
+	async handleSearchButtonClicked() {
+		let text = this.template.querySelector(`lightning-input`).value;
+		const candidateNames = await this.apex(search, {searchText: text});
+		
+		// Other code here...
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+// Import apexMock from "shared"
+import {createComponent, apexMock} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
+	it('validate-apex-call', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
+		// NOTE: "await" before the function call.
+		let component = await createComponent('c-your-lwc', YourLwc);
+		
+		// The c-your-lwc component calls Apex action to do the search. 
+		// So, we should validate that the Apex action was called and the parameters of the call are correct.
+		// Mock apex action call with {@link SharedTestHelpers#apexMock} function. 
+		// This function returns a mock function, which will be called 
+		// when the apex action will be called by the LWC component. 
+		// If the mock function was called it means the "search" Apex action was called.
+		// NOTE: it will work correctly if you use for Apex calls the {@link CustomElement#apex} only.
+		let searchApexCall = apexMock(`search`);
+		
+		// We would like to emulate the text input element is set with some value.
+		// NOTE: "await" before the function call.
+		let textElement = await component.query('lightning-input');
+		textElement.value = `John`;
+		
+		// We would like to emulate the button click. 
+		// To achieve this we should query for the button element and then dispatch it's onclick event.
+		// Use {@link JestHtmlElement#query} or {@link JestHtmlElement#queryAll} to query child components of the current component.
+		// NOTE: "await" before the function call.
+		let buttonElement = await component.query('lightning-button');
+		// To call a handler function, use {@link JestHtmlElement#dispatch} function 
+		// to dispatch the onclick event which the handler is subscribed to.
+		// NOTE: "await" before the function call.
+		await buttonElement.dispatch('click');
+		
+		// We expect the "search" Apex action was called.
+		expect(searchApexCall).toHaveBeenCalled();
+		// We expect the first parameter of the Apex action call has a searchText field with a value "John".
+		expect(searchApexCall.mock.calls[0][0].searchText).toBe(`John`);
+	});
+})
+```
+
+#### Messages (success, error, info, warning)
+
+You can validate the messages which were shown using 
+{@link CustomElement#addError}, 
+{@link CustomElement#addSuccess}, 
+{@link CustomElement#addWarning}, 
+{@link CustomElement#addInfo} functions.
+
+To validate the messages in your Jest test you should import from "shared" the {@link SharedTestHelpers#getMessages} function. 
+Then use it to retrieve a list of all messages sent by the LWC component life-cycle.
+Then you can assert the retrieved messages.
+
+***yourLwc.html***
+
+```html
+
+<template>
+	<c-messages messages={messagesGlobal} type="toast"></c-messages>
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import CustomElement from 'c/customElement';
+
+export default class YourLwc extends CustomElement {
+	connectedCallback() {
+		this.addError(`Error message.`);
+		this.addSuccess(`Success message.`);
+		this.addWarning(`Warning message.`);
+		this.addInfo(`Info message.`);
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+// Import getMessages from "shared"
+import {createComponent, getMessages} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
+	it('validate-messages', async () => {
+		// We'd like to test our c-your-lwc component. 
+		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
+		// NOTE: "await" before the function call.
+		let component = await createComponent('c-your-lwc', YourLwc);
+		
+		// We expect:
+		// - 1 error message with text "Error message."
+		// - 1 success message with text "Success message."
+		// - 1 warning message with text "Warning message."
+		// - 1 info message with text "Info message."
+		
+		// Use getMessages function imported from "shared" to get a list of all messages 
+		// sent by the LWC component life-cycle. 
+		let messages = getMessages();
+		
+		// We expect 4 messages to be shown by now.
+		expect(messages.length).toBe(1);
+		
+		// 1st message has a severity "ERROR" and a text "Error message."
+		expect(messages[0].severity).toBe(`ERROR`);
+		expect(messages[0].title).toBe(`Error message.`);
+		
+		// 2nd message has a severity "SUCCESS" and a text "Success message."
+		expect(messages[1].severity).toBe(`SUCCESS`);
+		expect(messages[1].title).toBe(`Success message.`);
+		
+		// 3rd message has a severity "WARNING" and a text "Warning message."
+		expect(messages[2].severity).toBe(`WARNING`);
+		expect(messages[2].title).toBe(`Warning message.`);
+		
+		// 4th message has a severity "INFO" and a text "Info message."
+		expect(messages[3].severity).toBe(`INFO`);
+		expect(messages[3].title).toBe(`Info message.`);
+	});
+})
+```
+
+# Full Example
 
 ### Requirement
 
@@ -86,15 +638,15 @@ export default class YourLwc extends CustomElement {
 			return;
 		}
 		
-		const candidateNames = await this.apex(search, {text: text});
+		this.candidateNames = await this.apex(search, {text: text});
 		
-		this.isFound = !!candidateNames;
+		this.isFound = !!this.candidateNames;
 		if (this.isFound) {
 			this.addSuccess(`Candidates were found.`);
-			this.text = candidateNames;
+			this.text = this.candidateNames;
 			
 			this.dispatchEvent(
-				new CustomEvent('success', {detail: {candidateNames: candidateNames}}));
+				new CustomEvent('success', {detail: {candidateNames: this.candidateNames}}));
 		} else {
 			this.addError(`No one candidate was found.`);
 		}
@@ -109,6 +661,7 @@ import {createComponent, apexMock, getMessages} from "shared";
 import YourLwc from 'c/your-lwc';
 
 describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
 	it('text-not-entered', async () => {
 		// We'd like to test our c-your-lwc component. 
 		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
@@ -168,6 +721,7 @@ describe('c-your-lwc', () => {
 		expect(errorMessages[0].title).toBe(`Please enter some text.`);
 	});
 	
+	// NOTE: The test function is "async".
 	it('text-invalid', async () => {
 		// We'd like to test our c-your-lwc component. 
 		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component. 
@@ -218,7 +772,7 @@ describe('c-your-lwc', () => {
 		
 		// We expect the "search" Apex action will be called.
 		expect(searchApexCall).toHaveBeenCalled();
-		// We expect the first parameter of the Apex action call has a value "Some invalid text"
+		// We expect the first parameter of the Apex action call has a text field with a value "Some invalid text"
 		expect(searchApexCall.mock.calls[0][0].text).toBe(`Some invalid text`);
 		
 		// We don't expect the "onsuccess" event will be called.
@@ -237,6 +791,7 @@ describe('c-your-lwc', () => {
 		expect(errorMessages[0].title).toBe(`No one candidate was found.`);
 	});
 	
+	// NOTE: The test function is "async".
 	it('text-valid', async () => {
 		// We'd like to test our c-your-lwc component. 
 		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
@@ -285,13 +840,13 @@ describe('c-your-lwc', () => {
 		
 		// We expect the "search" Apex action will be called.
 		expect(searchApexCall).toHaveBeenCalled();
-		// We expect the first parameter of the Apex action call has a value "John"
+		// We expect the first parameter of the Apex action call has a text field with a value "John"
 		expect(searchApexCall.mock.calls[0][0].text).toBe(`John`);
 		
 		// We expect the "onsuccess" event will be called.
 		expect(listenerSuccess).toHaveBeenCalled();
-		// We expect the first parameter of the event has a value "John Doe, John Tyson"
-		expect(listenerSuccess.mock.calls[0][0].detail.text).toBe(`John Doe, John Tyson`)
+		// We expect the first parameter of the event has a detail.text field with a value "John Doe, John Tyson"
+		expect(listenerSuccess.mock.calls[0][0].detail.text).toBe(`John Doe, John Tyson`);
 		
 		// We expect the "div" will be shown.
 		// NOTE: "await" before the function call.
