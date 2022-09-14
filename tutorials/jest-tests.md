@@ -1,15 +1,35 @@
-# Prerequisites
+# Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Test Scope](#test-scope)
+    + [What should we cover](#what-should-we-cover)
+    + [What should we call from outside](#call)
+        - [Life-cycle callbacks](#call-callbacks)
+        - [Event handlers](#call-handlers)
+        - [Functions and properties with @api](#call-api)
+    + [What should we validate](#validate)
+        - [HTML](#validate-html)
+        - [Fields/properties with @api](#validate-api)
+        - [Shared data](#validate-shared-data)
+        - [Dispatched events](#validate-events)
+        - [Apex calls](#validate-apex-calls)
+        - [Messages (success, error, info, warning)](#validate-messages)
+- [Full Example](#example)
+    + [Requirement](#example-requirement)
+    + [Explanation](#example-explanation)
+
+# Prerequisites <a name="prerequisites"></a>
 
 You should understand [Mock Functions](https://jestjs.io/docs/mock-functions).
 
-# Test Scope
+# Test Scope <a name="test-scope"></a>
 
 ### What should we cover <a name="what-should-we-cover"></a>
 
 - Positive scenario.
 - Negative/Errors scenario. Each error should be covered.
 
-### What should we call from outside
+### What should we call from outside <a name="call"></a>
 
 There are multiple entry points to your LWC component's code. There is the full list of the entries:
 
@@ -21,12 +41,12 @@ Most of the entries you should call in your Jest test and validate the calls res
 In this section you can find examples of how to call the entry points.
 How to validate the calls results will find out in next section.
 
-#### Life-cycle callbacks
+#### Life-cycle callbacks <a name="call-callbacks"></a>
 
 The callbacks _connectedCallback_ and _renderedCallback_
 are called automatically during the LWC component creation.
 
-#### Event handlers
+#### Event handlers <a name="call-handlers"></a>
 
 ***yourLwc.html***
 
@@ -78,7 +98,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Functions and properties with @api
+#### Functions and properties with @api <a name="call-api"></a>
 
 ***yourLwc.html***
 
@@ -152,9 +172,9 @@ describe('c-your-lwc', () => {
 })
 ```
 
-### What should we validate
+### What should we validate <a name="validate"></a>
 
-#### HTML
+#### HTML <a name="validate-html"></a>
 
 - Is the expected element available and visible in HTML? We should validate it if the element can be
   hidden in some cases.
@@ -226,7 +246,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Fields/properties with @api
+#### Fields/properties with @api <a name="validate-api"></a>
 
 ***yourLwc.html***
 
@@ -289,7 +309,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Shared data
+#### Shared data <a name="validate-shared-data"></a>
 
 LWC components, which extend _CustomElement_ class, can have a shared data.
 One of the components can set the data and another component will read the data.
@@ -338,7 +358,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Dispatched events
+#### Dispatched events <a name="validate-events"></a>
 
 - How many times the event was dispatched?
 - What were the arguments of the dispatch?
@@ -414,7 +434,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Apex calls
+#### Apex calls <a name="validate-apex-calls"></a>
 
 - How many times the apex method was called?
 - What were the arguments for the apex call?
@@ -498,15 +518,16 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Messages (success, error, info, warning)
+#### Messages (success, error, info, warning) <a name="validate-messages"></a>
 
-You can validate the messages which were shown using 
-{@link CustomElement#addError}, 
-{@link CustomElement#addSuccess}, 
-{@link CustomElement#addWarning}, 
+You can validate the messages which were shown using
+{@link CustomElement#addError},
+{@link CustomElement#addSuccess},
+{@link CustomElement#addWarning},
 {@link CustomElement#addInfo} functions.
 
-To validate the messages in your Jest test you should import from "shared" the {@link SharedTestHelpers#getMessages} function. 
+To validate the messages in your Jest test you should import from "shared" the {@link
+SharedTestHelpers#getMessages} function.
 Then use it to retrieve a list of all messages sent by the LWC component life-cycle.
 Then you can assert the retrieved messages.
 
@@ -581,9 +602,9 @@ describe('c-your-lwc', () => {
 })
 ```
 
-# Full Example
+# Full Example <a name="example"></a>
 
-### Requirement
+### Requirement <a name="example-requirement"></a>
 
 There is a LWC component which shows a text input element and a search button.
 The user can set some text to the input element and click the *Search* button.
@@ -865,7 +886,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-### Explanation
+### Explanation <a name="example-explanation"></a>
 
 We should import helper functions from {@link SharedTestHelpers} library.
 We know that we should create a LWC component, so we need a {@link
