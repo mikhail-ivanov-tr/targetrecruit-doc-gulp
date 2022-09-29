@@ -1,35 +1,35 @@
 # Table of Contents
 
-- [Prerequisites](#prerequisites)
-- [Test Scope](#test-scope)
-    + [What should we cover](#what-should-we-cover)
-    + [What should we call from outside](#call)
-        - [Life-cycle callbacks](#call-callbacks)
-        - [Event handlers](#call-handlers)
-        - [Functions and properties with @api](#call-api)
-    + [What should we validate](#validate)
-        - [HTML](#validate-html)
-        - [Fields/properties with @api](#validate-api)
-        - [Shared data](#validate-shared-data)
-        - [Dispatched events](#validate-events)
-        - [Apex calls](#validate-apex-calls)
-        - [Messages (success, error, info, warning)](#validate-messages)
-- [Full Example](#example)
-    + [Requirement](#example-requirement)
-    + [Explanation](#example-explanation)
+- [1. Prerequisites](#prerequisites)
+- [2. Test Scope](#test-scope)
+    + [2.1. What should we cover](#what-should-we-cover)
+    + [2.2. What should we call from outside](#call)
+        - [2.2.1. Life-cycle callbacks](#call-callbacks)
+        - [2.2.2. Event handlers](#call-handlers)
+        - [2.2.3. Functions and properties with @api](#call-api)
+    + [2.3. What should we validate](#validate)
+        - [2.3.1. HTML](#validate-html)
+        - [2.3.2. Fields/properties with @api](#validate-api)
+        - [2.3.3. Shared data](#validate-shared-data)
+        - [2.3.4. Dispatched events](#validate-events)
+        - [2.3.5. Apex calls](#validate-apex-calls)
+        - [2.3.6. Messages (success, error, info, warning)](#validate-messages)
+- [3. Full Example](#example)
+    + [3.1. Requirement](#example-requirement)
+    + [3.2. Explanation](#example-explanation)
 
-# Prerequisites <a name="prerequisites"></a>
+# 1. Prerequisites <a name="prerequisites"></a>
 
 You should understand [Mock Functions](https://jestjs.io/docs/mock-functions).
 
-# Test Scope <a name="test-scope"></a>
+# 2. Test Scope <a name="test-scope"></a>
 
-### What should we cover <a name="what-should-we-cover"></a>
+### 2.1. What should we cover <a name="what-should-we-cover"></a>
 
 - Positive scenario.
 - Negative/Errors scenario. Each error should be covered.
 
-### What should we call from outside <a name="call"></a>
+### 2.2. What should we call from outside <a name="call"></a>
 
 There are multiple entry points to your LWC component's code. There is the full list of the entries:
 
@@ -41,12 +41,12 @@ Most of the entries you should call in your Jest test and validate the calls res
 In this section you can find examples of how to call the entry points.
 How to validate the calls results will find out in next section.
 
-#### Life-cycle callbacks <a name="call-callbacks"></a>
+#### 2.2.1. Life-cycle callbacks <a name="call-callbacks"></a>
 
 The callbacks _connectedCallback_ and _renderedCallback_
 are called automatically during the LWC component creation.
 
-#### Event handlers <a name="call-handlers"></a>
+#### 2.2.2. Event handlers <a name="call-handlers"></a>
 
 ***yourLwc.html***
 
@@ -98,7 +98,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Functions and properties with @api <a name="call-api"></a>
+#### 2.2.3. Functions and properties with @api <a name="call-api"></a>
 
 ***yourLwc.html***
 
@@ -172,9 +172,9 @@ describe('c-your-lwc', () => {
 })
 ```
 
-### What should we validate <a name="validate"></a>
+### 2.3. What should we validate <a name="validate"></a>
 
-#### HTML <a name="validate-html"></a>
+#### 2.3.1. HTML <a name="validate-html"></a>
 
 - Is the expected element available and visible in HTML? We should validate it if the element can be
   hidden in some cases.
@@ -246,7 +246,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Fields/properties with @api <a name="validate-api"></a>
+#### 2.3.2. Fields/properties with @api <a name="validate-api"></a>
 
 ***yourLwc.html***
 
@@ -309,7 +309,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Shared data <a name="validate-shared-data"></a>
+#### 2.3.3. Shared data <a name="validate-shared-data"></a>
 
 LWC components, which extend _CustomElement_ class, can have a shared data.
 One of the components can set the data and another component will read the data.
@@ -358,7 +358,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Dispatched events <a name="validate-events"></a>
+#### 2.3.4. Dispatched events <a name="validate-events"></a>
 
 - How many times the event was dispatched?
 - What were the arguments of the dispatch?
@@ -434,7 +434,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Apex calls <a name="validate-apex-calls"></a>
+#### 2.3.5. Apex calls <a name="validate-apex-calls"></a>
 
 - How many times the apex method was called?
 - What were the arguments for the apex call?
@@ -518,7 +518,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-#### Messages (success, error, info, warning) <a name="validate-messages"></a>
+#### 2.3.6. Messages (success, error, info, warning) <a name="validate-messages"></a>
 
 You can validate the messages which were shown using
 {@link CustomElement#addError},
@@ -602,9 +602,9 @@ describe('c-your-lwc', () => {
 })
 ```
 
-# Full Example <a name="example"></a>
+# 3. Full Example <a name="example"></a>
 
-### Requirement <a name="example-requirement"></a>
+### 3.1. Requirement <a name="example-requirement"></a>
 
 There is a LWC component which shows a text input element and a search button.
 The user can set some text to the input element and click the *Search* button.
@@ -886,7 +886,7 @@ describe('c-your-lwc', () => {
 })
 ```
 
-### Explanation <a name="example-explanation"></a>
+### 3.2. Explanation <a name="example-explanation"></a>
 
 We should import helper functions from {@link SharedTestHelpers} library.
 We know that we should create a LWC component, so we need a {@link
