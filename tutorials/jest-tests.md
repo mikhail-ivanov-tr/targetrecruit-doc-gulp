@@ -466,7 +466,7 @@ describe('c-your-lwc', () => {
 		
 		// We would like to emulate the button click. 
 		// NOTE: "await" before the function call.
-		await component.dispatch('click', null, '[lightning-button]');
+		await component.dispatch('click', null, 'lightning-button');
 		
 		// We expect the "onbuttonclicked" event was called 
 		// and detail.text field has the value "John"
@@ -594,7 +594,7 @@ describe('c-your-lwc', () => {
 		
 		// We would like to emulate the button click. 
 		// NOTE: "await" before the function call.
-		await component.dispatch('click', null, '[lightning-button]');
+		await component.dispatch('click', null, 'lightning-button');
 		
 		// We expect the "search" Apex action was called 
 		// and there is an argument "searchText" with the value "John".
