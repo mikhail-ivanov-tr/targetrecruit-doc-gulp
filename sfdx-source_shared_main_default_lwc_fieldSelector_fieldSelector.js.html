@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: test/shared.js | Shared Code Documentation</title>
+    <title>Source: sfdx-source/shared/main/default/lwc/fieldSelector/fieldSelector.js | Shared Code Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -61,331 +61,216 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * The module to be used for [Jest]{@link https://jestjs.io/docs/getting-started} tests. Use it to test Lightning Web Components.
- * */
+            <pre class="prettyprint source linenums"><code>import {api} from 'lwc';
+import CustomElement from "c/customElement";
+import CustomInput from "c/customInput";
 
-import {createElement} from 'lwc';
-import CustomElement from 'c/customElement';
+import getFields from '@salesforce/apex/FieldSelectorController.getFields';
 
-/**
- * @section Testing
- * @class JestHtmlElement
- * @hideconstructor
- * @extends HTMLElement
- */
-
-/**
- *
- * @name apexMock
- * @function
- * @memberOf JestHtmlElement
- * @param actionName Name of the action we are adding a call result.
- * @param apexCallResult
- */
-HTMLElement.prototype.apexMock = function (actionName, apexCallResult) {
-	const mock = CustomElement.apexMock(actionName, null, this.componentClass);
-	mock.mockResolvedValue(apexCallResult);
-};
-
-/**
- * Validates an Apex action was called.
- * @name isApexCalled
- * @function
- * @memberOf JestHtmlElement
- * @param actionName Name of the action we check the call of.
- * @param expectedArguments expectedArguments An object of all the arguments we expect the action was called with. Default value is null. If no argument is expected, we can set null as a value of the parameter.
- * @param occurrenceOfCall Occurrence of the call to test. Default value is 1. If the occurrenceOfCall = 0, then it means a developer doesn't expect there were any call of the Apex action.
- */
-HTMLElement.prototype.isApexCalled = function (
-	actionName, expectedArguments = null, occurrenceOfCall = 1) {
+export default class FieldSelector extends CustomInput(CustomElement) {
+	@api label = ``;
+	@api required = false;
 	
-	let key = this.componentClass.name + ' - ' + actionName;
-	
-	let jestJn = this.actionNameToJestFn[key];
-	
-	if (!jestJn &amp;&amp; occurrenceOfCall) {
-		throw new Error(`Apex method "${actionName}" hasn't been called yet.`);
-	}
-	
-	if (jestJn &amp;&amp; !occurrenceOfCall) {
-		throw new Error(`No one call of "${actionName}" Apex method is expected.`);
-	}
-	
-	if (occurrenceOfCall) {
-		expect(jestJn).toHaveBeenCalledTimes(occurrenceOfCall);
+	@api set objectType(val) {
+		this.__objectType = val;
 		
-		if (expectedArguments) {
-			expect(jestJn.mock.calls[occurrenceOfCall - 1][0]).toMatchObject(expectedArguments);
+		if (this.__connected) {
+			this.loadingAll = true;
+			
+			// noinspection JSIgnoredPromiseFromCall
+			this.initFieldGroups();
+			
+			this.loadingAll = false;
 		}
-	}
-};
-
-/**
- * Validates an event was dispatched.
- * @name isEventDispatched
- * @function
- * @memberOf JestHtmlElement
- * @param eventName Name of the event we check the dispatch of.
- * @param expectedArguments expectedArguments An object of all the arguments we expect the event was dispatched with. Default value is null. If no argument is expected, we can set null as a value of the parameter.
- * @param occurrenceOfCall Occurrence of the call to test. Default value is 1. If the occurrenceOfCall = 0, then it means a developer doesn't expect the event was dispatched.
- */
-HTMLElement.prototype.isEventDispatched = function (
-	eventName, expectedArguments = null, occurrenceOfCall = 1) {
+	};
 	
-	let jestJn = this.listenerNameToJestFn[eventName];
-	
-	if (!jestJn &amp;&amp; occurrenceOfCall) {
-		throw new Error(`Event "${eventName}" hasn't been dispatched yet.`);
+	get objectType() {
+		return this.__objectType;
 	}
 	
-	if (jestJn &amp;&amp; !occurrenceOfCall) {
-		throw new Error(`No one call of "${eventName}" event is expected.`);
-	}
+	/**
+	 * Comma-separated list of field types available for selection. Possible values:
+	 *    Boolean, Currency, Date, DateTime, Double, Email, ID, Integer, Long, MultiPicklist,
+	 *    Percent, Phone, Picklist, Reference(Account;Contact;&lt;ObjectType1>), String, TextArea, URL.
+	 * @type {string}
+	 */
+	@api fieldTypes = ``;
 	
-	if (occurrenceOfCall) {
-		expect(jestJn).toHaveBeenCalledTimes(occurrenceOfCall);
+	@api set value(val) {
+		this.__value = val;
 		
-		if (expectedArguments) {
-			expect(jestJn.mock.calls[occurrenceOfCall - 1][0].detail).toMatchObject(
-				expectedArguments);
+		if (this.__connected) {
+			this.loadingAll = true;
+			
+			// noinspection JSIgnoredPromiseFromCall
+			this.selectFields(val);
+			
+			this.loadingAll = false;
 		}
-	}
-};
-
-/**
- * Throws a Jest exception if the element of the component is not generated in HTML.
- * @name isGenerated
- * @function
- * @memberOf JestHtmlElement
- * @param selector Selector of an element.
- */
-HTMLElement.prototype.isGenerated = async function (selector) {
-	let element = await this.query(selector);
-	expect(element).not.toBe(null);
-};
-
-/**
- * Throws a Jest exception if the element of the component is generated in HTML.
- * @name isNotGenerated
- * @function
- * @memberOf JestHtmlElement
- * @param selector Selector of an element.
- */
-HTMLElement.prototype.isNotGenerated = async function (selector) {
-	let element = await this.query(selector);
-	expect(element).toBe(null);
-};
-
-/**
- * Queries an element
- * @name query
- * @function
- * @memberOf JestHtmlElement
- * @param selector Selector of the element to be queried.
- * @returns {Promise&lt;JestHtmlElement>} Queried element. If the element doesn't exist, then null is returned.
- */
-HTMLElement.prototype.query = async function (selector) {
-	await flushAllPromises();
+	};
 	
-	let container = this.shadowRoot || this;
-
-	return container.querySelector(selector);
-};
-
-/**
- * Queries an element and, with the same function, validates that the element exists.
- * @name queryUnique
- * @function
- * @memberOf JestHtmlElement
- * @param selector Selector of the element to be queried.
- * @returns {Promise&lt;JestHtmlElement>} Queried element.
- */
-HTMLElement.prototype.queryUnique = async function (selector) {
-	let elements = await this.queryAll(selector);
-	
-	expect(elements).toHaveLength(1);
-	
-	return elements[0];
-};
-
-/**
- * Queries elements by selector.
- * @name queryAll
- * @function
- * @memberOf JestHtmlElement
- * @param selector Selector of the elements to be queried.
- * @returns {Promise&lt;JestHtmlElement[]>} Queried elements. If no one element is found, then it returns an empty array.
- */
-HTMLElement.prototype.queryAll = async function (selector) {
-	await flushAllPromises();
-	
-	let container = this.shadowRoot || this;
-	return Array.from(container.querySelectorAll(selector));
-};
-
-/**
- * @name listen
- * @function
- * @memberOf JestHtmlElement
- * @param eventName
- * @returns {Mock}
- */
-HTMLElement.prototype.listen = function (eventName) {
-	const mockFunction = jest.fn();
-	this.addEventListener(eventName, mockFunction);
-	return mockFunction;
-};
-
-/**
- * Sends an Event to the object, (synchronously) invoking the affected EventListeners
- * in the appropriate order. This is a wrapper of EventTarget.dispatchEvent()
- * designed for Jest tests which combines an event creation and dispatch operation.
- * @name dispatch
- * @function
- * @memberOf JestHtmlElement
- * @param type A string with the name of the event. It is case-sensitive.
- * @param options An object that can have the following properties: "bubbles", "cancelable",
- * "composed", "detail". Also, it can contain additional properties, like "dataTransfer"
- * for "drop" event, which will be available in the event object in the listeners.
- * There is also a special option "flushPromisesTimes" which can be used to set
- * how many times the flushPromises() method will be called
- * after the EventTarget.dispatchEvent() call. Default value of the "flushPromisesTimes" is 2.
- * @param selector Selector of a child element the event should be fired on. This parameter is optional. If it is not set, then the event will be dispatched for the current element.
- * @returns {Promise&lt;boolean>} Returns "false" if event.preventDefault(); was called.
- * Otherwise returns "true".
- */
-HTMLElement.prototype.dispatch = async function (type, options = {}, selector) {
-	options ||= {};
-	
-	const initOptions = [`bubbles`, `cancelable`, `composed`, `detail`];
-	
-	let init = {};
-	for (const initOption of initOptions) {
-		init[initOption] = options[initOption];
+	get value() {
+		const selectedNames = [];
+		let groupsWithSelectedFields = this.getSelectedGroups();
+		for (let i = 0; i &lt; groupsWithSelectedFields.length; i++) {
+			const fieldGroup = groupsWithSelectedFields[i];
+			
+			if (fieldGroup.selectedField) {
+				let selectedField = fieldGroup.selectedField;
+				
+				if (i === groupsWithSelectedFields.length - 1 &amp;&amp; !selectedField.isSelectable) {
+					return '';
+				}
+				
+				selectedNames.push(i &lt; groupsWithSelectedFields.length - 1
+					? selectedField.relationshipName
+					: selectedField.name);
+			}
+		}
+		
+		return selectedNames.join(`.`);
 	}
 	
-	let event = new CustomEvent(type, init);
-	for (let [name, value] of Object.entries(options)) {
-		if (!initOptions.includes(name) &amp;&amp; name !== `flushPromisesTimes`) {
-			event[name] = value;
+	fieldGroups = [];
+	
+	get groupsWithSelectedFields() {
+		return this.value ? this.getSelectedGroups() : [];
+	}
+	
+	getSelectedGroups() {
+		return this.fieldGroups.filter(fieldGroup => fieldGroup.selectedField);
+	}
+	
+	loadingAll = true;
+	
+	async connectedCallback() {
+		try {
+			this.__key = 1;
+			
+			const fieldTypes =
+				this.fieldTypes.split(`,`).map(fieldType => fieldType.trim().toUpperCase());
+			
+			this.__fieldTypesFinal = [];
+			for (const fieldType of fieldTypes) {
+				if (fieldType.startsWith(`REFERENCE(`)) {
+					const objectTypes = /^REFERENCE\((.+)\)$/
+						.exec(fieldType)[1]
+						.split(`;`)
+						.map(fieldType => fieldType.trim());
+					
+					for (const objectType of objectTypes) {
+						this.__fieldTypesFinal.push(`REFERENCE(${objectType})`);
+					}
+				} else {
+					this.__fieldTypesFinal.push(fieldType);
+				}
+			}
+			
+			this.__connected = true;
+			
+			this.loadingAll = true;
+			
+			await this.initFieldGroups();
+			
+			if (this.__value) {
+				await this.selectFields(this.__value);
+			}
+			
+			this.loadingAll = false;
+		} catch (e) {
+			this.addError(e);
 		}
 	}
 	
-	let element = this;
-	if (selector) {
-		element = await this.queryUnique(selector);
+	async initFieldGroups() {
+		try {
+			this.fieldGroups = [await this.retrieveFieldGroup(this.objectType)];
+		} catch (e) {
+			this.addError(e);
+		}
 	}
 	
-	const status = element.dispatchEvent(event);
-	
-	await flushAllPromises(options.flushPromisesTimes);
-	
-	return status;
-};
-
-async function flushAllPromises(flushPromisesTimes) {
-	flushPromisesTimes ||= 2;
-	
-	for (let i = 0; i &lt; flushPromisesTimes; i++) {
-		await flushPromises();
-	}
-}
-
-/**
- * @section Testing
- * @class SharedTestHelpers
- * @hideconstructor
- */
-
-/**
- * Creates a LWC component to be tested.
- * @memberOf SharedTestHelpers
- * @param componentName LWC component name.
- * @param componentClass Class of the LWC component.
- * @param attributes Object of values of the attributes for the LWC component's instance.
- * @returns {Promise&lt;JestHtmlElement>} Returns the generated LWC component's instance.
- * */
-async function createComponent(componentName, componentClass, attributes = null) {
-	const element = createElement(componentName, {
-		is: componentClass
-	});
-	
-	if (attributes) {
-		Object.assign(element, attributes);
+	async selectFields(val) {
+		try {
+			let selectedFields = val.split(`.`);
+			
+			let fieldGroup = this.fieldGroups[0];
+			
+			for (let i = 0; i &lt; selectedFields.length; i++) {
+				const fieldNameOrRelationshipName = selectedFields[i];
+				
+				let fields = fieldGroup.fields;
+				let selectedField = i &lt; selectedFields.length - 1
+					? fields.find(field => field.relationshipName === fieldNameOrRelationshipName)
+					: fields.find(field => field.name === fieldNameOrRelationshipName);
+				
+				await this.selectNextField(fieldGroup, selectedField);
+				
+				fieldGroup = this.fieldGroups[this.fieldGroups.length - 1];
+			}
+			
+			this.setCustomValidity(``);
+			this.reportValidity();
+		} catch (e) {
+			this.addError(e);
+		}
 	}
 	
-	document.body.appendChild(element);
-	
-	await flushAllPromises();
-	
-	element.componentClass = componentClass;
-	
-	return element;
-}
-
-/**
- * NOTE: This function will work correctly only if you use for Apex calls
- * the CustomElement#apex function.
- *
- * @memberOf SharedTestHelpers
- * @param action
- * @param apexCallResult
- * @param emulateAsync
- * @param componentClass
- * @returns {Mock}
- */
-function apexMock(action, apexCallResult = {}, emulateAsync, componentClass) {
-	const mock = CustomElement.apexMock(action, emulateAsync, componentClass);
-	mock.mockResolvedValue(apexCallResult);
-	return mock;
-}
-
-/**
- * @memberOf SharedTestHelpers
- * @param {Severity} severity
- * @returns {Message[]}
- */
-function getMessages(severity = null) {
-	return CustomElement.getMessages(severity);
-}
-
-/**
- * @memberOf SharedTestHelpers
- * @type {Object}
- */
-const staticData = CustomElement.staticData;
-
-/**
- * @section Testing
- * @memberOf SharedTestHelpers
- */
-class Timer {
-	constructor() {
-		this.startTime = Math.trunc(performance.now());
+	async retrieveFieldGroup(objectType) {
+		const fieldGroup = {
+			key: `` + this.__key++,
+			fields: await this.apex(
+				getFields, {objectType: objectType, fieldTypes: this.__fieldTypesFinal})
+		};
+		
+		for (const field of fieldGroup.fields) {
+			field.key = `` + this.__key++;
+			
+			field.selectLabel = field.label;
+			if (field.type === `REFERENCE`) {
+				field.selectLabel += ` >`;
+			}
+		}
+		
+		return fieldGroup;
 	}
 	
-	getMilliseconds() {
-		return Math.trunc(performance.now()) - this.startTime;
+	async handleSelectOptionChanged(event) {
+		let selectedSelect = event.currentTarget;
+		
+		let fieldGroup =
+			this.fieldGroups.find(fieldGroup => fieldGroup.key === selectedSelect.dataset.key);
+		
+		const selectedValue = selectedSelect.options[selectedSelect.selectedIndex].value;
+		
+		let selectedField = fieldGroup.fields.find(field => field.name === selectedValue);
+		
+		await this.selectNextField(fieldGroup, selectedField);
+		
+		this.setCustomValidity(``);
+		this.reportValidity();
+	}
+	
+	async selectNextField(fieldGroup, selectedField) {
+		fieldGroup.selectedField = selectedField;
+		
+		this.fieldGroups = this.fieldGroups.slice(0, this.fieldGroups.indexOf(fieldGroup) + 1);
+		
+		if (selectedField.type === `REFERENCE`) {
+			this.fieldGroups.push(await this.retrieveFieldGroup(selectedField.objectType));
+		}
+		
+		for (const field of fieldGroup.fields) {
+			field.isSelected = false;
+		}
+		
+		selectedField.isSelected = true;
+		
+		this.fieldGroups = [...this.fieldGroups];
 	}
 }
 
-/**
- * @memberOf SharedTestHelpers
- * @returns {Promise}
- */
-const flushPromises = () => new Promise(resolve => {
-	(typeof setImmediate === 'function' ? setImmediate : setTimeout)(resolve);
-});
-
-export {
-	createComponent,
-	Timer,
-	apexMock,
-	staticData,
-	getMessages,
-	flushPromises
-};
+//# sourceURL=fieldSelector.js
 </code></pre>
         </article>
     </section>

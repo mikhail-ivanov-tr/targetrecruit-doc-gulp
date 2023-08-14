@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: sfdx-source/TMS/main/default/lwc/customElement/customElement.js | Shared Code Documentation</title>
+    <title>Source: sfdx-source/shared/main/default/lwc/customElement/customElement.js | Shared Code Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -16,6 +16,10 @@
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
 
+    
+        
+            <link type="text/css" rel="stylesheet" href="styles/custom.css">
+        
     
 </head>
 <body>
@@ -45,7 +49,7 @@
             </li>
         </ol>
     
-    <h2>Main</h2><div class="lnb-examples hidden"><h3>Tutorials</h3><ul><li><a href="tutorial-jest-tests.html">Jest Tests</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="jest-tests_sub"></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="CustomElement.html">CustomElement</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CustomElement_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="CustomElement.html#initialError">initialError</a></li><li><a href="CustomElement.html#initialErrorLabel">initialErrorLabel</a></li><li><a href="CustomElement.html#initialLoading">initialLoading</a></li><li><a href="CustomElement.html#label">label</a></li><li><a href="CustomElement.html#loading">loading</a></li><li><a href="CustomElement.html#loadingGlobal">loadingGlobal</a></li><li><a href="CustomElement.html#messages">messages</a></li><li><a href="CustomElement.html#messagesGlobal">messagesGlobal</a></li><li><a href="CustomElement.html#ready">ready</a></li><li><a href="CustomElement.html#staticData">staticData</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="CustomElement.html#addError">addError</a></li><li><a href="CustomElement.html#addInfo">addInfo</a></li><li><a href="CustomElement.html#addSuccess">addSuccess</a></li><li><a href="CustomElement.html#addWarning">addWarning</a></li><li><a href="CustomElement.html#apex">apex</a></li><li><a href="CustomElement.html#closeWindow">closeWindow</a></li><li><a href="CustomElement.html#renderedOnceCallback">renderedOnceCallback</a></li></ul></div></li><li><a href="Messages.html">Messages</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Messages_sub"></div></li><li><span class="icon green">LWC</span>&nbsp;<a href="UploadFiles.html">UploadFiles</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="UploadFiles_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="UploadFiles.html#extensions">extensions</a></li><li><a href="UploadFiles.html#helpText">helpText</a></li><li><a href="UploadFiles.html#label">label</a></li><li><a href="UploadFiles.html#multiple">multiple</a></li><li><a href="UploadFiles.html#required">required</a></li><li><a href="UploadFiles.html#type">type</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="UploadFiles.html#checkValidity">checkValidity</a></li><li><a href="UploadFiles.html#getErrorMessage">getErrorMessage</a></li><li><a href="UploadFiles.html#hasErrorMessage">hasErrorMessage</a></li><li><a href="UploadFiles.html#reportValidity">reportValidity</a></li><li><a href="UploadFiles.html#setCustomValidity">setCustomValidity</a></li></ul><div class="member-type">Events</div><ul class="inner"><li><a href="UploadFiles.html#event:upload">upload</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Mixins</h3><ul><li><a href="CustomInput.html">CustomInput</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CustomInput_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="CustomInput.html#.controlClass">controlClass</a></li><li><a href="CustomInput.html#.helpMessage">helpMessage</a></li><li><a href="CustomInput.html#.required">required</a></li><li><a href="CustomInput.html#.value">value</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="CustomInput.html#.checkValidity">checkValidity</a></li><li><a href="CustomInput.html#.getErrorMessage">getErrorMessage</a></li><li><a href="CustomInput.html#.hasErrorMessage">hasErrorMessage</a></li><li><a href="CustomInput.html#.reportValidity">reportValidity</a></li><li><a href="CustomInput.html#.setCustomValidity">setCustomValidity</a></li><li><a href="CustomInput.html#.validate">validate</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li class="hidden"><a href="global.html#Message">Message</a></li><li><a href="global.html#Severity">Severity</a></li></ul></div><h2>Testing</h2><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="JestHtmlElement.html">JestHtmlElement</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="JestHtmlElement_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="JestHtmlElement.html#.dispatch">dispatch</a></li><li><a href="JestHtmlElement.html#.listen">listen</a></li><li><a href="JestHtmlElement.html#.query">query</a></li><li><a href="JestHtmlElement.html#.queryAll">queryAll</a></li></ul></div></li><li><a href="SharedTestHelpers.html">SharedTestHelpers</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SharedTestHelpers_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="SharedTestHelpers.html#.staticData">staticData</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="SharedTestHelpers.html#.apexMock">apexMock</a></li><li><a href="SharedTestHelpers.html#.createComponent">createComponent</a></li><li><a href="SharedTestHelpers.html#.flushPromises">flushPromises</a></li><li><a href="SharedTestHelpers.html#.getMessages">getMessages</a></li></ul></div></li><li><a href="SharedTestHelpers.Timer.html">Timer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SharedTestHelpers.Timer_sub"></div></li></ul></div>
+    <h2>Main</h2><div class="lnb-examples hidden"><h3>Tutorials</h3><ul><li><a href="tutorial-jest-tests.html">Jest Tests</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="jest-tests_sub"></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="CustomElement.html">CustomElement</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CustomElement_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="CustomElement.html#initialError">initialError</a></li><li><a href="CustomElement.html#initialErrorLabel">initialErrorLabel</a></li><li><a href="CustomElement.html#initialLoading">initialLoading</a></li><li><a href="CustomElement.html#label">label</a></li><li><a href="CustomElement.html#loading">loading</a></li><li><a href="CustomElement.html#loadingGlobal">loadingGlobal</a></li><li><a href="CustomElement.html#messages">messages</a></li><li><a href="CustomElement.html#messagesGlobal">messagesGlobal</a></li><li><a href="CustomElement.html#ready">ready</a></li><li><a href="CustomElement.html#staticData">staticData</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="CustomElement.html#addError">addError</a></li><li><a href="CustomElement.html#addInfo">addInfo</a></li><li><a href="CustomElement.html#addSuccess">addSuccess</a></li><li><a href="CustomElement.html#addWarning">addWarning</a></li><li><a href="CustomElement.html#apex">apex</a></li><li><a href="CustomElement.html#closeWindow">closeWindow</a></li><li><a href="CustomElement.html#connectedOnceCallback">connectedOnceCallback</a></li><li><a href="CustomElement.html#dispatchAsync">dispatchAsync</a></li><li><a href="CustomElement.html#renderedOnceCallback">renderedOnceCallback</a></li></ul></div></li><li><a href="Messages.html">Messages</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Messages_sub"></div></li><li><span class="icon green">LWC</span>&nbsp;<a href="UploadFiles.html">UploadFiles</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="UploadFiles_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="UploadFiles.html#audioFileSize">audioFileSize</a></li><li><a href="UploadFiles.html#baseFileSize">baseFileSize</a></li><li><a href="UploadFiles.html#contentType">contentType</a></li><li><a href="UploadFiles.html#documentFileSize">documentFileSize</a></li><li><a href="UploadFiles.html#fileTypes">fileTypes</a></li><li><a href="UploadFiles.html#helpText">helpText</a></li><li><a href="UploadFiles.html#imageFileSize">imageFileSize</a></li><li><a href="UploadFiles.html#multiple">multiple</a></li><li><a href="UploadFiles.html#noZip">noZip</a></li><li><a href="UploadFiles.html#parentId">parentId</a></li><li><a href="UploadFiles.html#required">required</a></li><li><a href="UploadFiles.html#selectFileLabel">selectFileLabel</a></li><li><a href="UploadFiles.html#size">size</a></li><li><a href="UploadFiles.html#uploadFileLabel">uploadFileLabel</a></li><li><a href="UploadFiles.html#videoFileSize">videoFileSize</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="UploadFiles.html#checkValidity">checkValidity</a></li><li><a href="UploadFiles.html#getErrorMessage">getErrorMessage</a></li><li><a href="UploadFiles.html#hasErrorMessage">hasErrorMessage</a></li><li><a href="UploadFiles.html#reportValidity">reportValidity</a></li><li><a href="UploadFiles.html#setCustomValidity">setCustomValidity</a></li></ul><div class="member-type">Events</div><ul class="inner"><li><a href="UploadFiles.html#event:upload">upload</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Mixins</h3><ul><li><a href="CustomInput.html">CustomInput</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CustomInput_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="CustomInput.html#.controlClass">controlClass</a></li><li><a href="CustomInput.html#.helpMessage">helpMessage</a></li><li><a href="CustomInput.html#.required">required</a></li><li><a href="CustomInput.html#.value">value</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="CustomInput.html#.checkValidity">checkValidity</a></li><li><a href="CustomInput.html#.getErrorMessage">getErrorMessage</a></li><li><a href="CustomInput.html#.hasErrorMessage">hasErrorMessage</a></li><li><a href="CustomInput.html#.reportValidity">reportValidity</a></li><li><a href="CustomInput.html#.setCustomValidity">setCustomValidity</a></li><li><a href="CustomInput.html#.validate">validate</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li class="hidden"><a href="global.html#Message">Message</a></li><li><a href="global.html#Severity">Severity</a></li></ul></div><h2>Testing</h2><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="JestHtmlElement.html">JestHtmlElement</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="JestHtmlElement_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="JestHtmlElement.html#.apexMock">apexMock</a></li><li><a href="JestHtmlElement.html#.dispatch">dispatch</a></li><li><a href="JestHtmlElement.html#.isApexCalled">isApexCalled</a></li><li><a href="JestHtmlElement.html#.isEventDispatched">isEventDispatched</a></li><li><a href="JestHtmlElement.html#.isGenerated">isGenerated</a></li><li><a href="JestHtmlElement.html#.isNotGenerated">isNotGenerated</a></li><li><a href="JestHtmlElement.html#.listen">listen</a></li><li><a href="JestHtmlElement.html#.query">query</a></li><li><a href="JestHtmlElement.html#.queryAll">queryAll</a></li><li><a href="JestHtmlElement.html#.queryUnique">queryUnique</a></li></ul></div></li><li><a href="SharedTestHelpers.html">SharedTestHelpers</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SharedTestHelpers_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="SharedTestHelpers.html#.staticData">staticData</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="SharedTestHelpers.html#.apexMock">apexMock</a></li><li><a href="SharedTestHelpers.html#.createComponent">createComponent</a></li><li><a href="SharedTestHelpers.html#.flushPromises">flushPromises</a></li><li><a href="SharedTestHelpers.html#.getMessages">getMessages</a></li></ul></div></li><li><a href="SharedTestHelpers.Timer.html">Timer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SharedTestHelpers.Timer_sub"></div></li></ul></div>
 </nav>
 <div id="resizer"></div>
 
@@ -61,14 +65,17 @@
 import {NavigationMixin} from 'lightning/navigation';
 import {LightningElement, track, api} from 'lwc';
 
+import {loadScript, loadStyle} from 'lightning/platformResourceLoader';
+
 import {fireEvent, registerListener, unregisterListener} from 'c/publishSubscribe';
 
-import Messages from "c/messages";
-import {Copy} from "c/utils";
+import Messages from 'c/messages';
+import {Copy} from 'c/utils';
 
 /**
  * Base class for all TargetRecruit lightning web components.
  * > 📝 **Note:**
+ *
  * > Any function of the class which extends the CustomElement class with a name
  * prefixed with 'handle' will be automatically wrapped by try/catch/addError block.
  * See example in {@link CustomElement#ready} -> parent.js -> handleButtonClicked() function.
@@ -379,10 +386,15 @@ export default class Child extends CustomElement {
 		
 		let methodNames = getClassMethodNames(this);
 		for (const methodName of methodNames) {
-			if (/*methodName === 'connectedCallback' || */methodName.startsWith('handle')) {
+			if (methodName.startsWith('handle')) {
 				Object.defineProperty(this, methodName, {
-					value: tryCatchDecorator(
-						this[methodName], this, false/*methodName === 'connectedCallback'*/),
+					value: handleDecorator(this[methodName], this),
+				});
+			}
+			
+			if (methodName.startsWith('asyncHandle')) {
+				Object.defineProperty(this, methodName, {
+					value: asyncHandleDecorator(this[methodName], this),
 				});
 			}
 		}
@@ -464,11 +476,34 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 		});
 	}
 	
-	renderedCallback() {
-		if (!this.__renderedOnce) {
-			this.renderedOnceCallback();
+	async connectedCallback() {
+		try {
+			if (!this.connectedOnce) {
+				this.connectedOnce = true;
+				
+				await this.connectedOnceCallback();
+			}
+		} catch (e) {
+			this.addError(e);
 			
-			this.__renderedOnce = true;
+			this.initialError = true;
+			this.ready = false;
+			this.initialLoading = false;
+			this.loading = false;
+		}
+	}
+	
+	/**
+	 * If overridden in extending class then it will be called
+	 * when the component is connected.
+	 */
+	connectedOnceCallback() {}
+	
+	renderedCallback() {
+		if (!this.renderedOnce) {
+			this.renderedOnce = true;
+			
+			this.renderedOnceCallback();
 		}
 	}
 	
@@ -482,7 +517,41 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 	 *
 	 * See example in {@link CustomElement#ready}.
 	 */
-	renderedOnceCallback() {
+	renderedOnceCallback() {}
+	
+	async apexWithResources(action, args, scripts, styles) {
+		try {
+			let promises = (scripts || []).map(script => {
+				return loadScript(this, script);
+			});
+			promises = promises.concat((styles || []).map(style => {
+				return loadStyle(this, style);
+			}));
+			
+			promises.push(this.apex(action, args));
+			
+			let results = await Promise.all(promises);
+			
+			return results[promises.length - 1];
+		} catch (e) {
+			let message = e.message;
+			if (!message) {
+				message = e.body.message;
+			}
+			
+			return Promise.reject(Error(message));
+		}
+	}
+	
+	async loadResources(scripts, styles) {
+		let promises = (scripts || []).map(script => {
+			return loadScript(this, script);
+		});
+		promises = promises.concat((styles || []).map(style => {
+			return loadStyle(this, style);
+		}));
+		
+		await Promise.all(promises);
 	}
 	
 	disconnectedCallback() {
@@ -511,15 +580,22 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 	 */
 	async apex(action, args) {
 		if (typeof describe !== 'undefined') { // if in Jest context
-			let jestFn =
-				this.constructor.actionNameToJestFn[this.constructor.name + ' - ' + action.name];
-			if (!jestFn) {
-				jestFn = this.constructor.actionNameToJestFn[action.name];
+			let key = this.constructor.name + ' - ' + action.name;
+			
+			let jestJn = this.actionNameToJestFn[key];
+			if (!jestJn) {
+				jestJn = this.actionNameToJestFn[action.name];
+				if (!jestJn) {
+					jestJn = jest.fn();
+					this.actionNameToJestFn[key] = jestJn;
+				}
 			}
 			
-			if (jestFn) {
-				action = jestFn;
+			if (jestJn instanceof Array) {
+				jestJn = jestJn[0];
 			}
+			
+			action = jestJn;
 		}
 		
 		this.loading = true;
@@ -531,8 +607,6 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 			if (result) {
 				result = Copy.deep(result);
 			}
-			
-			this.messages = [];
 			
 			if (result &amp;&amp; result.messages) {
 				// The result in apex code's Logger.AuraResult format.
@@ -573,27 +647,33 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 	 * Adds an info message to the {@link CustomElement#messages}
 	 * and {@link CustomElement#messagesGlobal} arrays.
 	 * @param {String} message Message to pass to the arrays.
+	 * @param {Number} duration Duration in milliseconds the message will be visible.
+	 * If set to null then the message will not be closed automatically. Default value is 5000.
 	 */
-	addInfo(message) {
-		this.__addMessage(message, 'INFO');
+	addInfo(message, duration = 5000) {
+		this.__addMessage(message, 'INFO', duration);
 	}
 	
 	/**
 	 * Adds a success message to the {@link CustomElement#messages}
 	 * and {@link CustomElement#messagesGlobal} arrays.
 	 * @param {String} message Message to pass to the arrays.
+	 * @param {Number} duration Duration in milliseconds the message will be visible.
+	 * If set to null then the message will not be closed automatically. Default value is 5000.
 	 */
-	addSuccess(message) {
-		this.__addMessage(message, 'SUCCESS');
+	addSuccess(message, duration = 5000) {
+		this.__addMessage(message, 'SUCCESS', duration);
 	}
 	
 	/**
 	 * Adds a warning message to the {@link CustomElement#messages}
 	 * and {@link CustomElement#messagesGlobal} arrays.
 	 * @param {String} message Message to pass to the arrays.
+	 * @param {Number} duration Duration in milliseconds the message will be visible.
+	 * If set to null then the message will not be closed automatically. Default value is 5000.
 	 */
-	addWarning(message) {
-		this.__addMessage(message, 'WARNING');
+	addWarning(message, duration = 5000) {
+		this.__addMessage(message, 'WARNING', duration);
 	}
 	
 	/**
@@ -602,31 +682,39 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 	 * Also, if the method is called from *connectedCallback()*
 	 * then {@link CustomElement#initialError} is set to *true*
 	 * and {@link CustomElement#ready} is set to *false*.
-	 * @param {Error|String} error Error message. If it is passed as an Error object
+	 * @param {Error|String} e Error message. If it is passed as an Error object
 	 * then also the error message will be added to the Browser's console
 	 * with an appropriate stack trace to easily debug the reason of the error.
+	 * @param {Number} duration Duration in milliseconds the message will be visible.
+	 * If set to null then the message will not be closed automatically. Default value is 5000.
 	 */
-	addError(error) {
-		let errorMessage = error;
+	addError(e, duration = 5000) {
+		let errorMessage = e;
 		
-		if (error instanceof Error) {
-			console.error(error);
+		if (e instanceof Error) {
+			console.error(e.stack);
 			
 			if (typeof describe !== 'undefined') { // if in Jest context
-				throw error;
+				throw e;
 			}
 			
-			errorMessage = error.message;
+			errorMessage = e.message;
 		}
 		
+		this.__addMessage(errorMessage, 'ERROR', duration);
+		
+		// TBD: Mikhail - Get rid of the code below.
+		//  For that purpose replace connectedCallback to connectedOnceCallback
+		//  in all LWC which extend CustomElement in all our packages.
+		//  NOTE: try/catch should be removed from connectedOnceCallback.
 		let errorForStackTrace;
 		try {
 			throw new Error();
-		} catch (error) {
-			errorForStackTrace = error;
+		} catch (e) {
+			errorForStackTrace = e;
 		}
 		
-		const stackRows = errorForStackTrace.stack.split("\n");
+		const stackRows = errorForStackTrace.stack.split('\n');
 		for (let i = 0; i &lt; stackRows.length; i++) {
 			const stackRow = stackRows[i];
 			const exec = /(.*(^|\W))addError(\W|$)/.exec(stackRow);
@@ -638,13 +726,13 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 					
 					this.initialError = true;
 					this.ready = false;
+					this.initialLoading = false;
+					this.loading = false;
 				}
 				
 				break;
 			}
 		}
-		
-		this.__addMessage(errorMessage, 'ERROR');
 	}
 	
 	addErrors(errors) {
@@ -653,8 +741,12 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 		}
 	}
 	
-	__addMessage(message, severity) {
-		const messageToAdd = {title: message, severity: severity, duration: 5000};
+	__addMessage(message, severity, duration = 5000) {
+		if (!message) {
+			return;
+		}
+		
+		const messageToAdd = {title: message, severity: severity, duration: duration};
 		
 		Messages.setMessageKey(messageToAdd);
 		
@@ -706,8 +798,7 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 		let isValid = true;
 		let inputFields = this.template.querySelectorAll(selector);
 		for (const inputField of inputFields) {
-			if (!inputField.checkValidity()) {
-				inputField.reportValidity();
+			if (!inputField.reportValidity()) {
 				isValid = false;
 			}
 		}
@@ -718,16 +809,62 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 		const rect = element.getBoundingClientRect();
 		const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-		return {top: rect.top + scrollTop, left: rect.left + scrollLeft}
+		return {top: rect.top + scrollTop, left: rect.left + scrollLeft};
 	}
 	
-	static actionNameToJestFn = {};
+	dispatch(eventName, detail) {
+		if (typeof describe !== 'undefined') { // if in Jest context
+			let jestJn = this.listenerNameToJestFn[eventName];
+			if (!jestJn) {
+				jestJn = jest.fn();
+				this.listenerNameToJestFn[eventName] = jestJn;
+				
+				this.addEventListener(eventName, jestJn);
+			}
+		}
+		
+		return this.dispatchEvent(new CustomEvent(eventName, {
+			cancelable: true,
+			detail: detail
+		}));
+	}
 	
-	static apexMock(actionName, componentClass) {
+	/** Allows to send events, wait till async handlers completed and capable to cancel the events from async handlers.
+	 * @property {object} detail
+	 * @property {Promise[]} detail.asyncHandlers An empty list of Promises. If a listener of the event has some asynchronous process then the listener code body must be wrapped with a Promise and pushed to the {@link asyncHandlers} list. If the Promise's resolve function will be called with `true` value of the parameter then it will be considered as success. Otherwise, the event will be canceled.
+	 * #### Example of async listener.
+	 * ```javascript
+handleFilesUpload(event) {
+	event.detail.asyncHandlers.push(new Promise(resolve => {
+		setTimeout(() => {
+			// Approves the upload if the uploaded file's name is `valid.txt`.
+			// Otherwise, cancels the event.
+			resolve(event.detail.files[0].name === `valid.txt`);
+		}, 1000);
+	}));
+}
+	 * ```
+	 */
+	async dispatchAsync(eventName, detail = {}) {
+		let asyncHandlers = [];
+		
+		detail.asyncHandlers = {
+			push: asyncHandler => asyncHandlers.push(asyncHandler)
+		};
+		
+		let canceled = !this.dispatchEvent(new CustomEvent(eventName, {
+			cancelable: true,
+			detail: detail
+		}));
+		
+		return canceled || (await Promise.all(asyncHandlers)).some(result => result === false);
+	}
+	
+	static apexMock(actionName, emulateAsync, componentClass) {
 		const key = componentClass ? (componentClass.name + ' - ' + actionName) : actionName;
 		
 		let jestFn = jest.fn();
-		this.actionNameToJestFn[key] = jestFn;
+		this.actionNameToJestFn[key] = [jestFn, emulateAsync];
 		
 		return jestFn;
 	}
@@ -749,6 +886,10 @@ to the appropriate tag in CustomLabels.labels-meta.xml. -->
 	@api get staticData() {
 		return CustomElement.staticData;
 	}
+	
+	// Next 2 @api variables are used by Jest tests.
+	@api actionNameToJestFn = {};
+	@api listenerNameToJestFn = {};
 }
 
 export default CustomElement;
@@ -769,18 +910,33 @@ function getClassMethodNames(klass) {
 	const distinctDeepFunctions = klass => Array.from(new Set(deepFunctions(klass)));
 	
 	const allMethods = distinctDeepFunctions(klass);
-	return allMethods.filter(name => name !== 'constructor' &amp;&amp; !name.startsWith('__'))
+	return allMethods.filter(name => name !== 'constructor' &amp;&amp; !name.startsWith('__'));
 }
 
-function tryCatchDecorator(method, self, isInit) {
+function handleDecorator(method, self) {
 	return async function (...args) {
 		try {
 			await method.call(self, ...args);
 		} catch (e) {
 			self.loading = false;
-			self.addError(e, isInit);
+			self.addError(e);
 		}
 	}
+}
+
+function asyncHandleDecorator(method, self) {
+	return async function (...args) {
+		try {
+			const event = args[0];
+			
+			event.detail.asyncHandlers.push((async () => {
+				await method.call(self, ...args);
+			})());
+		} catch (e) {
+			self.loading = false;
+			self.addError(e);
+		}
+	};
 }
 </code></pre>
         </article>
@@ -793,7 +949,7 @@ function tryCatchDecorator(method, self, isInit) {
 
 <footer>
     <img class="logo" src="https://targetrecruit.com/wp-content/uploads/2022/07/TargetRecruit_logo_purple.png" style="width: 80px; height: 13px">
-    <div class="footer-text">2022</div>
+    <div class="footer-text">2023</div>
 </footer>
 <script>prettyPrint();</script>
 <script src="scripts/jquery.min.js"></script>

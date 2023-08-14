@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: test/shared.js | Shared Code Documentation</title>
+    <title>Source: sfdx-source/shared/main/default/lwc/customInput/customInput.js | Shared Code Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -61,331 +61,133 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * The module to be used for [Jest]{@link https://jestjs.io/docs/getting-started} tests. Use it to test Lightning Web Components.
- * */
+            <pre class="prettyprint source linenums"><code>import {api} from "lwc";
 
-import {createElement} from 'lwc';
-import CustomElement from 'c/customElement';
+import labelComplete_this_field from '@salesforce/label/c.Complete_this_field';
 
 /**
- * @section Testing
- * @class JestHtmlElement
- * @hideconstructor
- * @extends HTMLElement
+ * Adds the [Constraint Validation API]{@link https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation} support to custom input elements.
+ * @mixin CustomInput
  */
-
-/**
- *
- * @name apexMock
- * @function
- * @memberOf JestHtmlElement
- * @param actionName Name of the action we are adding a call result.
- * @param apexCallResult
- */
-HTMLElement.prototype.apexMock = function (actionName, apexCallResult) {
-	const mock = CustomElement.apexMock(actionName, null, this.componentClass);
-	mock.mockResolvedValue(apexCallResult);
-};
-
-/**
- * Validates an Apex action was called.
- * @name isApexCalled
- * @function
- * @memberOf JestHtmlElement
- * @param actionName Name of the action we check the call of.
- * @param expectedArguments expectedArguments An object of all the arguments we expect the action was called with. Default value is null. If no argument is expected, we can set null as a value of the parameter.
- * @param occurrenceOfCall Occurrence of the call to test. Default value is 1. If the occurrenceOfCall = 0, then it means a developer doesn't expect there were any call of the Apex action.
- */
-HTMLElement.prototype.isApexCalled = function (
-	actionName, expectedArguments = null, occurrenceOfCall = 1) {
+const CustomInput = (elementClass) => class extends elementClass {
+	hasErrorClass = `slds-has-error`;
 	
-	let key = this.componentClass.name + ' - ' + actionName;
+	/**
+	 * @name value
+	 * @type {String}
+	 * @memberOf CustomInput
+	 */
 	
-	let jestJn = this.actionNameToJestFn[key];
+	/**
+	 * @name required
+	 * @type {String}
+	 * @memberOf CustomInput
+	 */
 	
-	if (!jestJn &amp;&amp; occurrenceOfCall) {
-		throw new Error(`Apex method "${actionName}" hasn't been called yet.`);
+	/**
+	 *
+	 * @type {String}
+	 * @memberOf CustomInput
+	 */
+	controlClass = `slds-form-element`;
+	
+	/**
+	 *
+	 * @type {String}
+	 * @memberOf CustomInput
+	 */
+	helpMessage;
+	
+	/**
+	 * Sets a custom validity message for the element.
+	 * @param message The message to use for validity errors.
+	 * @memberOf CustomInput
+	 */
+	@api setCustomValidity(message) {
+		this.__customMessage = message;
 	}
 	
-	if (jestJn &amp;&amp; !occurrenceOfCall) {
-		throw new Error(`No one call of "${actionName}" Apex method is expected.`);
-	}
-	
-	if (occurrenceOfCall) {
-		expect(jestJn).toHaveBeenCalledTimes(occurrenceOfCall);
+	/**
+	 * Returns true if the element's child controls satisfy their validation constraints.
+	 * When false is returned, cancelable invalid events are fired for each
+	 * invalid child (!!!Not implemented yet) and validation problems are reported to the user.
+	 * @returns {Boolean} Returns true if the value of the element has no validity problems;
+	 * otherwise returns false.
+	 * @memberOf CustomInput
+	 */
+	@api reportValidity() {
+		let errorMessage = this.validate();
 		
-		if (expectedArguments) {
-			expect(jestJn.mock.calls[occurrenceOfCall - 1][0]).toMatchObject(expectedArguments);
+		let isError = typeof errorMessage === `string` ? errorMessage : !errorMessage;
+		if (isError) {
+			this.showErrorMessage(errorMessage);
+		} else {
+			this.removeErrorMessage();
 		}
-	}
-};
-
-/**
- * Validates an event was dispatched.
- * @name isEventDispatched
- * @function
- * @memberOf JestHtmlElement
- * @param eventName Name of the event we check the dispatch of.
- * @param expectedArguments expectedArguments An object of all the arguments we expect the event was dispatched with. Default value is null. If no argument is expected, we can set null as a value of the parameter.
- * @param occurrenceOfCall Occurrence of the call to test. Default value is 1. If the occurrenceOfCall = 0, then it means a developer doesn't expect the event was dispatched.
- */
-HTMLElement.prototype.isEventDispatched = function (
-	eventName, expectedArguments = null, occurrenceOfCall = 1) {
-	
-	let jestJn = this.listenerNameToJestFn[eventName];
-	
-	if (!jestJn &amp;&amp; occurrenceOfCall) {
-		throw new Error(`Event "${eventName}" hasn't been dispatched yet.`);
-	}
-	
-	if (jestJn &amp;&amp; !occurrenceOfCall) {
-		throw new Error(`No one call of "${eventName}" event is expected.`);
-	}
-	
-	if (occurrenceOfCall) {
-		expect(jestJn).toHaveBeenCalledTimes(occurrenceOfCall);
 		
-		if (expectedArguments) {
-			expect(jestJn.mock.calls[occurrenceOfCall - 1][0].detail).toMatchObject(
-				expectedArguments);
+		return !isError;
+	}
+	
+	/**
+	 * Returns a boolean value which indicates validity of the value of the element.
+	 * If the value is invalid, this method also fires the invalid (!!!Not implemented yet) event
+	 * on the element.
+	 * @returns {Boolean} Returns true if the value of the element has no validity problems;
+	 * otherwise returns false.
+	 * @memberOf CustomInput
+	 */
+	@api checkValidity() {
+		return !this.validate();
+	}
+	
+	/**
+	 *
+	 * @returns {Boolean}
+	 * @memberOf CustomInput
+	 */
+	@api hasErrorMessage() {
+		return !!this.helpMessage;
+	}
+	
+	/**
+	 *
+	 * @returns {String}
+	 * @memberOf CustomInput
+	 */
+	@api getErrorMessage() {
+		return this.helpMessage;
+	}
+	
+	/**
+	 * @returns {String}
+	 * @memberOf CustomInput
+	 */
+	validate() {
+		if (this.__customMessage) {
+			return this.__customMessage;
 		}
-	}
-};
-
-/**
- * Throws a Jest exception if the element of the component is not generated in HTML.
- * @name isGenerated
- * @function
- * @memberOf JestHtmlElement
- * @param selector Selector of an element.
- */
-HTMLElement.prototype.isGenerated = async function (selector) {
-	let element = await this.query(selector);
-	expect(element).not.toBe(null);
-};
-
-/**
- * Throws a Jest exception if the element of the component is generated in HTML.
- * @name isNotGenerated
- * @function
- * @memberOf JestHtmlElement
- * @param selector Selector of an element.
- */
-HTMLElement.prototype.isNotGenerated = async function (selector) {
-	let element = await this.query(selector);
-	expect(element).toBe(null);
-};
-
-/**
- * Queries an element
- * @name query
- * @function
- * @memberOf JestHtmlElement
- * @param selector Selector of the element to be queried.
- * @returns {Promise&lt;JestHtmlElement>} Queried element. If the element doesn't exist, then null is returned.
- */
-HTMLElement.prototype.query = async function (selector) {
-	await flushAllPromises();
-	
-	let container = this.shadowRoot || this;
-
-	return container.querySelector(selector);
-};
-
-/**
- * Queries an element and, with the same function, validates that the element exists.
- * @name queryUnique
- * @function
- * @memberOf JestHtmlElement
- * @param selector Selector of the element to be queried.
- * @returns {Promise&lt;JestHtmlElement>} Queried element.
- */
-HTMLElement.prototype.queryUnique = async function (selector) {
-	let elements = await this.queryAll(selector);
-	
-	expect(elements).toHaveLength(1);
-	
-	return elements[0];
-};
-
-/**
- * Queries elements by selector.
- * @name queryAll
- * @function
- * @memberOf JestHtmlElement
- * @param selector Selector of the elements to be queried.
- * @returns {Promise&lt;JestHtmlElement[]>} Queried elements. If no one element is found, then it returns an empty array.
- */
-HTMLElement.prototype.queryAll = async function (selector) {
-	await flushAllPromises();
-	
-	let container = this.shadowRoot || this;
-	return Array.from(container.querySelectorAll(selector));
-};
-
-/**
- * @name listen
- * @function
- * @memberOf JestHtmlElement
- * @param eventName
- * @returns {Mock}
- */
-HTMLElement.prototype.listen = function (eventName) {
-	const mockFunction = jest.fn();
-	this.addEventListener(eventName, mockFunction);
-	return mockFunction;
-};
-
-/**
- * Sends an Event to the object, (synchronously) invoking the affected EventListeners
- * in the appropriate order. This is a wrapper of EventTarget.dispatchEvent()
- * designed for Jest tests which combines an event creation and dispatch operation.
- * @name dispatch
- * @function
- * @memberOf JestHtmlElement
- * @param type A string with the name of the event. It is case-sensitive.
- * @param options An object that can have the following properties: "bubbles", "cancelable",
- * "composed", "detail". Also, it can contain additional properties, like "dataTransfer"
- * for "drop" event, which will be available in the event object in the listeners.
- * There is also a special option "flushPromisesTimes" which can be used to set
- * how many times the flushPromises() method will be called
- * after the EventTarget.dispatchEvent() call. Default value of the "flushPromisesTimes" is 2.
- * @param selector Selector of a child element the event should be fired on. This parameter is optional. If it is not set, then the event will be dispatched for the current element.
- * @returns {Promise&lt;boolean>} Returns "false" if event.preventDefault(); was called.
- * Otherwise returns "true".
- */
-HTMLElement.prototype.dispatch = async function (type, options = {}, selector) {
-	options ||= {};
-	
-	const initOptions = [`bubbles`, `cancelable`, `composed`, `detail`];
-	
-	let init = {};
-	for (const initOption of initOptions) {
-		init[initOption] = options[initOption];
-	}
-	
-	let event = new CustomEvent(type, init);
-	for (let [name, value] of Object.entries(options)) {
-		if (!initOptions.includes(name) &amp;&amp; name !== `flushPromisesTimes`) {
-			event[name] = value;
+		
+		if (!this.value &amp;&amp; this.required) {
+			return labelComplete_this_field;
 		}
+		
+		return ``;
 	}
 	
-	let element = this;
-	if (selector) {
-		element = await this.queryUnique(selector);
+	showErrorMessage(errorMessage) {
+		if (!this.controlClass.includes(` ${this.hasErrorClass}`)) {
+			this.controlClass += ` ${this.hasErrorClass}`;
+		}
+		this.helpMessage = typeof errorMessage === `string` ? errorMessage : ``;
 	}
 	
-	const status = element.dispatchEvent(event);
-	
-	await flushAllPromises(options.flushPromisesTimes);
-	
-	return status;
+	@api removeErrorMessage() {
+		this.controlClass = this.controlClass.replace(` ${this.hasErrorClass}`, ``);
+		this.helpMessage = ``;
+	}
 };
 
-async function flushAllPromises(flushPromisesTimes) {
-	flushPromisesTimes ||= 2;
-	
-	for (let i = 0; i &lt; flushPromisesTimes; i++) {
-		await flushPromises();
-	}
-}
-
-/**
- * @section Testing
- * @class SharedTestHelpers
- * @hideconstructor
- */
-
-/**
- * Creates a LWC component to be tested.
- * @memberOf SharedTestHelpers
- * @param componentName LWC component name.
- * @param componentClass Class of the LWC component.
- * @param attributes Object of values of the attributes for the LWC component's instance.
- * @returns {Promise&lt;JestHtmlElement>} Returns the generated LWC component's instance.
- * */
-async function createComponent(componentName, componentClass, attributes = null) {
-	const element = createElement(componentName, {
-		is: componentClass
-	});
-	
-	if (attributes) {
-		Object.assign(element, attributes);
-	}
-	
-	document.body.appendChild(element);
-	
-	await flushAllPromises();
-	
-	element.componentClass = componentClass;
-	
-	return element;
-}
-
-/**
- * NOTE: This function will work correctly only if you use for Apex calls
- * the CustomElement#apex function.
- *
- * @memberOf SharedTestHelpers
- * @param action
- * @param apexCallResult
- * @param emulateAsync
- * @param componentClass
- * @returns {Mock}
- */
-function apexMock(action, apexCallResult = {}, emulateAsync, componentClass) {
-	const mock = CustomElement.apexMock(action, emulateAsync, componentClass);
-	mock.mockResolvedValue(apexCallResult);
-	return mock;
-}
-
-/**
- * @memberOf SharedTestHelpers
- * @param {Severity} severity
- * @returns {Message[]}
- */
-function getMessages(severity = null) {
-	return CustomElement.getMessages(severity);
-}
-
-/**
- * @memberOf SharedTestHelpers
- * @type {Object}
- */
-const staticData = CustomElement.staticData;
-
-/**
- * @section Testing
- * @memberOf SharedTestHelpers
- */
-class Timer {
-	constructor() {
-		this.startTime = Math.trunc(performance.now());
-	}
-	
-	getMilliseconds() {
-		return Math.trunc(performance.now()) - this.startTime;
-	}
-}
-
-/**
- * @memberOf SharedTestHelpers
- * @returns {Promise}
- */
-const flushPromises = () => new Promise(resolve => {
-	(typeof setImmediate === 'function' ? setImmediate : setTimeout)(resolve);
-});
-
-export {
-	createComponent,
-	Timer,
-	apexMock,
-	staticData,
-	getMessages,
-	flushPromises
-};
+export default CustomInput;
 </code></pre>
         </article>
     </section>
