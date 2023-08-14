@@ -471,7 +471,7 @@ describe('c-your-lwc', () => {
 		// We expect the "onbuttonclicked" event was called 
 		// and detail.text field has the value "John"
 		// Use the function {@link JestHtmlElement#isEventDispatched}
-		component.isEventDispatched('onbuttonclicked', {text: `John`});
+		component.isEventDispatched('buttonclicked', {text: `John`});
 	});
 })
 ```
