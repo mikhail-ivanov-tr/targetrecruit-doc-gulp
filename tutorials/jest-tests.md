@@ -884,7 +884,7 @@ describe('c-your-lwc', () => {
 			'c-your-lwc', YourLwc, {inputLabel: `input label text`, buttonLabel: `button label text`});
 		
 		// We would like to emulate a Search button click.
-		await buttonElement.dispatch('click', null, 'lightning-button');
+		await component.dispatch('click', null, 'lightning-button');
 		
 		// Once the button's onclick event is dispatched and the handler function is called, we can validate:
 		// - Was "onsuccess" event dispatched? If yes, then what are the values of the parameters of the event?
