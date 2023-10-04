@@ -930,7 +930,7 @@ describe('c-your-lwc', () => {
 		// It is there just to show how we can pass additional details
 		// required for the functional code to the event.
 		// NOTE: "await" before the function call.
-		await buttonElement.dispatch('click', {detail: {}}, 'lightning-button');
+		await component.dispatch('click', {detail: {}}, 'lightning-button');
 		
 		// Once the button's onclick event is dispatched and the handler function is called, we can validate:
 		// - Was "onsuccess" event dispatched? If yes, then what are the values of the parameters of the event?
@@ -973,7 +973,7 @@ describe('c-your-lwc', () => {
 		// To call a handler function, use {@link JestHtmlElement#dispatch} function 
 		// to dispatch the onclick event which the handler is subscribed to.
 		// NOTE: "await" before the function call.
-		await buttonElement.dispatch('click', null, 'lightning-button');
+		await component.dispatch('click', null, 'lightning-button');
 		
 		// Once the button's onclick event is dispatched and the handler function is called, we can validate:
 		// - Was "onsuccess" event dispatched? If yes, then what are the values of the parameters of the event?

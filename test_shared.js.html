@@ -102,13 +102,20 @@ HTMLElement.prototype.isApexCalled = function (
 	
 	let key = this.componentClass.name + ' - ' + actionName;
 	
-	let jestJn = this.actionNameToJestFn[key];
+	let jestJn = CustomElement.actionNameToJestFn[key];
+	if (!jestJn) {
+		jestJn = CustomElement.actionNameToJestFn[actionName];
+	}
 	
-	if (!jestJn &amp;&amp; occurrenceOfCall) {
+	if (jestJn instanceof Array) {
+		jestJn = jestJn[0];
+	}
+	
+	if ((!jestJn || jestJn.mock.calls.length === 0) &amp;&amp; occurrenceOfCall) {
 		throw new Error(`Apex method "${actionName}" hasn't been called yet.`);
 	}
 	
-	if (jestJn &amp;&amp; !occurrenceOfCall) {
+	if (jestJn &amp;&amp; jestJn.mock.calls.length > 0 &amp;&amp; !occurrenceOfCall) {
 		throw new Error(`No one call of "${actionName}" Apex method is expected.`);
 	}
 	

@@ -601,12 +601,12 @@ class CustomElement extends NavigationMixin(LightningElement) {
 		if (typeof describe !== 'undefined') { // if in Jest context
 			let key = this.constructor.name + ' - ' + action.name;
 			
-			let jestJn = this.actionNameToJestFn[key];
+			let jestJn = CustomElement.actionNameToJestFn[key];
 			if (!jestJn) {
-				jestJn = this.actionNameToJestFn[action.name];
+				jestJn = CustomElement.actionNameToJestFn[action.name];
 				if (!jestJn) {
 					jestJn = jest.fn();
-					this.actionNameToJestFn[key] = jestJn;
+					CustomElement.actionNameToJestFn[key] = jestJn;
 				}
 			}
 			
@@ -885,7 +885,7 @@ class CustomElement extends NavigationMixin(LightningElement) {
 		const key = componentClass ? (componentClass.name + ' - ' + actionName) : actionName;
 		
 		let jestFn = jest.fn();
-		this.actionNameToJestFn[key] = [jestFn, emulateAsync];
+		CustomElement.actionNameToJestFn[key] = [jestFn, emulateAsync];
 		
 		return jestFn;
 	}
@@ -909,7 +909,8 @@ class CustomElement extends NavigationMixin(LightningElement) {
 	}
 	
 	// Next 2 @api variables are used by Jest tests.
-	@api actionNameToJestFn = {};
+	static actionNameToJestFn = {};
+	
 	@api listenerNameToJestFn = {};
 }
 
