@@ -63,41 +63,44 @@
 
     
         <article class="readme">
-            <!-- TOC -->
+            <!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 <ul>
-<li><a href="#1-prerequisites">1 Prerequisites</a></li>
+<li><a href="#1-prerequisites">1. Prerequisites</a></li>
 <li><a href="#2-what-should-we-cover">2. What should we cover</a></li>
 <li><a href="#3-what-should-we-call-from-the-jest-test">3. What should we call from the Jest test</a>
 <ul>
-<li><a href="#31-life-cycle-callbacks-a-namecall-callbacksa">3.1. Life-cycle callbacks <a name="call-callbacks"></a></a></li>
-<li><a href="#32-event-handlers-a-namecall-handlersa">3.2. Event handlers <a name="call-handlers"></a></a></li>
-<li><a href="#33-functions-and-properties-with-api-a-namecall-apia">3.3. Functions and properties with @api <a name="call-api"></a></a></li>
+<li><a href="#31-life-cycle-callbacks">3.1. Life-cycle callbacks <a name="call-callbacks"></a></a></li>
+<li><a href="#32-event-handlers">3.2. Event handlers <a name="call-handlers"></a></a></li>
+<li><a href="#33-functions-and-properties-with-api">3.3. Functions and properties with @api <a name="call-api"></a></a></li>
 </ul>
 </li>
 <li><a href="#4-what-should-we-validate">4. What should we validate</a>
 <ul>
 <li><a href="#41-html">4.1. HTML</a></li>
-<li><a href="#42-fieldsproperties-with-api-a-namevalidate-apia">4.2. Fields/properties with @api <a name="validate-api"></a></a></li>
-<li><a href="#43-shared-data-a-namevalidate-shared-dataa">4.3. Shared data <a name="validate-shared-data"></a></a></li>
-<li><a href="#44-dispatched-events-a-namevalidate-eventsa">4.4. Dispatched events <a name="validate-events"></a></a></li>
-<li><a href="#45-apex-calls-a-namevalidate-apex-callsa">4.5. Apex calls <a name="validate-apex-calls"></a></a></li>
-<li><a href="#46-messages-success-error-info-warning-a-namevalidate-messagesa">4.6. Messages (success, error, info, warning) <a name="validate-messages"></a></a></li>
+<li><a href="#42-fieldsproperties-with-api">4.2. Fields/properties with @api <a name="validate-api"></a></a></li>
+<li><a href="#43-shared-data">4.3. Shared data <a name="validate-shared-data"></a></a></li>
+<li><a href="#44-dispatched-events">4.4. Dispatched events <a name="validate-events"></a></a></li>
+<li><a href="#45-apex-calls">4.5. Apex calls <a name="validate-apex-calls"></a></a></li>
+<li><a href="#46-messages-success-error-info-warning">4.6. Messages (success, error, info, warning) <a name="validate-messages"></a></a></li>
 </ul>
 </li>
-<li><a href="#5-full-example-a-nameexamplea">5. Full Example <a name="example"></a></a>
+<li><a href="#5-full-example">5. Full Example <a name="example"></a></a>
 <ul>
-<li><a href="#51-explanation-a-nameexample-explanationa">5.1. Explanation <a name="example-explanation"></a></a></li>
-<li><a href="#52-requirements-and-solution-a-nameexample-requirements-and-solutiona">5.2. Requirements and Solution <a name="example-requirements-and-solution"></a></a></li>
+<li><a href="#51-explanation">5.1. Explanation <a name="example-explanation"></a></a></li>
+<li><a href="#52-requirements-and-solution">5.2. Requirements and Solution <a name="example-requirements-and-solution"></a></a></li>
 </ul>
 </li>
 </ul>
-<!-- TOC -->
-<h1 id="1-prerequisites">1 Prerequisites</h1>
+<!-- TOC end -->
+<!-- TOC --><a name="1-prerequisites"></a>
+<h1 id="1.-prerequisites">1. Prerequisites</h1>
 <p>You should understand <a href="https://jestjs.io/docs/mock-functions">Mock Functions</a>.</p>
+<!-- TOC --><a name="2-what-should-we-cover"></a>
 <h1 id="2.-what-should-we-cover">2. What should we cover</h1>
 <ul>
 <li>Positive scenario.</li>
 </ul>
+<!-- TOC --><a name="3-what-should-we-call-from-the-jest-test"></a>
 <h1 id="3.-what-should-we-call-from-the-jest-test">3. What should we call from the Jest test</h1>
 <p>There are multiple entry points to your LWC component's code. There is the full list of the entries:</p>
 <ul>
@@ -108,10 +111,12 @@
 <p>You should call most of the entries in your Jest test and validate the calls' results.
 In this section you can find examples of how to call the entry points.
 In the next section you can find out how to validate the calls' results.</p>
+<!-- TOC --><a name="31-life-cycle-callbacks"></a>
 <h2 id="3.1.-life-cycle-callbacks">3.1. Life-cycle callbacks <a name="call-callbacks"></a></h2>
 <p>The callbacks <em>connectedCallback</em> and <em>renderedCallback</em>
 are called automatically during the LWC component creation.
 No need to call it explicitly.</p>
+<!-- TOC --><a name="32-event-handlers"></a>
 <h2 id="3.2.-event-handlers">3.2. Event handlers <a name="call-handlers"></a></h2>
 <p><em><strong>yourLwc.html</strong></em></p>
 <pre class="prettyprint source lang-html"><code>
@@ -169,6 +174,7 @@ describe('c-your-lwc', () => {
 })
 
 </code></pre>
+<!-- TOC --><a name="33-functions-and-properties-with-api"></a>
 <h2 id="3.3.-functions-and-properties-with-%40api">3.3. Functions and properties with @api <a name="call-api"></a></h2>
 <p><em><strong>yourLwc.html</strong></em></p>
 <pre class="prettyprint source lang-html"><code>
@@ -236,7 +242,9 @@ describe('c-your-lwc', () => {
 	});
 })
 </code></pre>
+<!-- TOC --><a name="4-what-should-we-validate"></a>
 <h1 id="4.-what-should-we-validate">4. What should we validate</h1>
+<!-- TOC --><a name="41-html"></a>
 <h2 id="4.1.-html">4.1. HTML</h2>
 <ul>
 <li>Is an HTML element always available and visible? If no, then we should validate it is hidden or visible.</li>
@@ -324,6 +332,7 @@ describe('c-your-lwc', () => {
 	});
 })
 </code></pre>
+<!-- TOC --><a name="42-fieldsproperties-with-api"></a>
 <h2 id="4.2.-fields%2Fproperties-with-%40api">4.2. Fields/properties with @api <a name="validate-api"></a></h2>
 <p><em><strong>yourLwc.html</strong></em></p>
 <pre class="prettyprint source lang-html"><code>
@@ -377,6 +386,7 @@ describe('c-your-lwc', () => {
 	});
 })
 </code></pre>
+<!-- TOC --><a name="43-shared-data"></a>
 <h2 id="4.3.-shared-data">4.3. Shared data <a name="validate-shared-data"></a></h2>
 <p>LWC components, which extend <em>CustomElement</em> class, can have a shared data.
 One of the components can set the data and another component will read the data.
@@ -415,6 +425,7 @@ describe('c-your-lwc', () => {
 	});
 })
 </code></pre>
+<!-- TOC --><a name="44-dispatched-events"></a>
 <h2 id="4.4.-dispatched-events">4.4. Dispatched events <a name="validate-events"></a></h2>
 <p>We should validate:</p>
 <ul>
@@ -525,6 +536,7 @@ describe('c-your-lwc', () => {
 	});
 })
 </code></pre>
+<!-- TOC --><a name="45-apex-calls"></a>
 <h2 id="4.5.-apex-calls">4.5. Apex calls <a name="validate-apex-calls"></a></h2>
 <p>We should validate:</p>
 <ul>
@@ -640,6 +652,7 @@ describe('c-your-lwc', () => {
 	});
 })
 </code></pre>
+<!-- TOC --><a name="46-messages-success-error-info-warning"></a>
 <h2 id="4.6.-messages-(success%2C-error%2C-info%2C-warning)">4.6. Messages (success, error, info, warning) <a name="validate-messages"></a></h2>
 <p>You can validate the messages which were shown using
 <a href="CustomElement.html#addError"><code>CustomElement#addError</code></a>,
@@ -711,7 +724,9 @@ describe('c-your-lwc', () => {
 	});
 })
 </code></pre>
+<!-- TOC --><a name="5-full-example"></a>
 <h1 id="5.-full-example">5. Full Example <a name="example"></a></h1>
+<!-- TOC --><a name="51-explanation"></a>
 <h2 id="5.1.-explanation">5.1. Explanation <a name="example-explanation"></a></h2>
 <p>We should import helper functions from <a href="SharedTestHelpers.html"><code>SharedTestHelpers</code></a> library.
 We know that we should create a LWC component, so we need a <code>SharedTestHelpers#createComponent</code> function,
@@ -749,6 +764,7 @@ According to <a href="#what-should-we-cover">What should we cover</a> section we
 </code></pre>
 <p>See the unit <a href="#yourLwc-test-js">tests content</a> comments below to get more details about the things
 which should be tested.</p>
+<!-- TOC --><a name="52-requirements-and-solution"></a>
 <h2 id="5.2.-requirements-and-solution">5.2. Requirements and Solution <a name="example-requirements-and-solution"></a></h2>
 <p>There is a LWC component with 2 attributes: input-label and button-label.
 The labels should be set by a developer.
