@@ -1,31 +1,31 @@
 <!-- TOC -->
-* [1. Prerequisites <a name="prerequisites"></a>](#1-prerequisites-a-nameprerequisitesa)
-* [2. What should we cover <a name="cover"></a>](#2-what-should-we-cover-a-namecovera)
-* [3. What should we call from the Jest test <a name="call"></a>](#3-what-should-we-call-from-the-jest-test-a-namecalla)
+* [1. Prerequisites](#1-prerequisites)
+* [2. What should we cover](#2-what-should-we-cover)
+* [3. What should we call from the Jest test](#3-what-should-we-call-from-the-jest-test)
   * [3.1. Life-cycle callbacks <a name="call-callbacks"></a>](#31-life-cycle-callbacks-a-namecall-callbacksa)
   * [3.2. Event handlers <a name="call-handlers"></a>](#32-event-handlers-a-namecall-handlersa)
   * [3.3. Functions and properties with @api <a name="call-api"></a>](#33-functions-and-properties-with-api-a-namecall-apia)
 * [4. What should we validate](#4-what-should-we-validate)
-  * [4.1. HTML <a name="validate-html"></a>](#41-html-a-namevalidate-htmla)
+  * [4.1. HTML](#41-html)
   * [4.2. Fields/properties with @api <a name="validate-api"></a>](#42-fieldsproperties-with-api-a-namevalidate-apia)
   * [4.3. Shared data <a name="validate-shared-data"></a>](#43-shared-data-a-namevalidate-shared-dataa)
   * [4.4. Dispatched events <a name="validate-events"></a>](#44-dispatched-events-a-namevalidate-eventsa)
   * [4.5. Apex calls <a name="validate-apex-calls"></a>](#45-apex-calls-a-namevalidate-apex-callsa)
   * [4.6. Messages (success, error, info, warning) <a name="validate-messages"></a>](#46-messages-success-error-info-warning-a-namevalidate-messagesa)
 * [5. Full Example <a name="example"></a>](#5-full-example-a-nameexamplea)
-* [5.1. Explanation <a name="example-explanation"></a>](#51-explanation-a-nameexample-explanationa)
-* [5.2. Requirements and Solution <a name="example-requirements-and-solution"></a>](#52-requirements-and-solution-a-nameexample-requirements-and-solutiona)
+  * [5.1. Explanation <a name="example-explanation"></a>](#51-explanation-a-nameexample-explanationa)
+  * [5.2. Requirements and Solution <a name="example-requirements-and-solution"></a>](#52-requirements-and-solution-a-nameexample-requirements-and-solutiona)
 <!-- TOC -->
 
-# 1. Prerequisites <a name="prerequisites"></a>
+# 1. Prerequisites
 
 You should understand [Mock Functions](https://jestjs.io/docs/mock-functions).
 
-# 2. What should we cover <a name="cover"></a>
+# 2. What should we cover
 
 - Positive scenario.
 
-# 3. What should we call from the Jest test <a name="call"></a>
+# 3. What should we call from the Jest test
 
 There are multiple entry points to your LWC component's code. There is the full list of the entries:
 
@@ -189,7 +189,7 @@ describe('c-your-lwc', () => {
 
 # 4. What should we validate
 
-## 4.1. HTML <a name="validate-html"></a>
+## 4.1. HTML
 
 - Is an HTML element always available and visible? If no, then we should validate it is hidden or visible.
 - Some attributes of an HTML element are set with values of fields of JS controller? If yes, then we should validate the attributes of the HTML element are set with expected values?

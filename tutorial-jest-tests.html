@@ -65,9 +65,9 @@
         <article class="readme">
             <!-- TOC -->
 <ul>
-<li><a href="#1-prerequisites-a-nameprerequisitesa">1. Prerequisites <a name="prerequisites"></a></a></li>
-<li><a href="#2-what-should-we-cover-a-namecovera">2. What should we cover <a name="cover"></a></a></li>
-<li><a href="#3-what-should-we-call-from-the-jest-test-a-namecalla">3. What should we call from the Jest test <a name="call"></a></a>
+<li><a href="#1-prerequisites">1. Prerequisites</a></li>
+<li><a href="#2-what-should-we-cover">2. What should we cover</a></li>
+<li><a href="#3-what-should-we-call-from-the-jest-test">3. What should we call from the Jest test</a>
 <ul>
 <li><a href="#31-life-cycle-callbacks-a-namecall-callbacksa">3.1. Life-cycle callbacks <a name="call-callbacks"></a></a></li>
 <li><a href="#32-event-handlers-a-namecall-handlersa">3.2. Event handlers <a name="call-handlers"></a></a></li>
@@ -76,7 +76,7 @@
 </li>
 <li><a href="#4-what-should-we-validate">4. What should we validate</a>
 <ul>
-<li><a href="#41-html-a-namevalidate-htmla">4.1. HTML <a name="validate-html"></a></a></li>
+<li><a href="#41-html">4.1. HTML</a></li>
 <li><a href="#42-fieldsproperties-with-api-a-namevalidate-apia">4.2. Fields/properties with @api <a name="validate-api"></a></a></li>
 <li><a href="#43-shared-data-a-namevalidate-shared-dataa">4.3. Shared data <a name="validate-shared-data"></a></a></li>
 <li><a href="#44-dispatched-events-a-namevalidate-eventsa">4.4. Dispatched events <a name="validate-events"></a></a></li>
@@ -84,18 +84,21 @@
 <li><a href="#46-messages-success-error-info-warning-a-namevalidate-messagesa">4.6. Messages (success, error, info, warning) <a name="validate-messages"></a></a></li>
 </ul>
 </li>
-<li><a href="#5-full-example-a-nameexamplea">5. Full Example <a name="example"></a></a></li>
+<li><a href="#5-full-example-a-nameexamplea">5. Full Example <a name="example"></a></a>
+<ul>
 <li><a href="#51-explanation-a-nameexample-explanationa">5.1. Explanation <a name="example-explanation"></a></a></li>
 <li><a href="#52-requirements-and-solution-a-nameexample-requirements-and-solutiona">5.2. Requirements and Solution <a name="example-requirements-and-solution"></a></a></li>
 </ul>
+</li>
+</ul>
 <!-- TOC -->
-<h1>1. Prerequisites <a name="prerequisites"></a></h1>
+<h1>1. Prerequisites</h1>
 <p>You should understand <a href="https://jestjs.io/docs/mock-functions">Mock Functions</a>.</p>
-<h1>2. What should we cover <a name="cover"></a></h1>
+<h1>2. What should we cover</h1>
 <ul>
 <li>Positive scenario.</li>
 </ul>
-<h1>3. What should we call from the Jest test <a name="call"></a></h1>
+<h1>3. What should we call from the Jest test</h1>
 <p>There are multiple entry points to your LWC component's code. There is the full list of the entries:</p>
 <ul>
 <li>Life-cycle callbacks</li>
@@ -234,7 +237,7 @@ describe('c-your-lwc', () => {
 })
 </code></pre>
 <h1>4. What should we validate</h1>
-<h2>4.1. HTML <a name="validate-html"></a></h2>
+<h2>4.1. HTML</h2>
 <ul>
 <li>Is an HTML element always available and visible? If no, then we should validate it is hidden or visible.</li>
 <li>Some attributes of an HTML element are set with values of fields of JS controller? If yes, then we should validate the attributes of the HTML element are set with expected values?</li>
