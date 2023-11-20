@@ -1,5 +1,5 @@
 <!-- TOC -->
-* [1. Prerequisites](#1.-prerequisites)
+* [1 Prerequisites](#1-prerequisites)
 * [2. What should we cover](#2-what-should-we-cover)
 * [3. What should we call from the Jest test](#3-what-should-we-call-from-the-jest-test)
   * [3.1. Life-cycle callbacks <a name="call-callbacks"></a>](#31-life-cycle-callbacks-a-namecall-callbacksa)
@@ -17,7 +17,7 @@
   * [5.2. Requirements and Solution <a name="example-requirements-and-solution"></a>](#52-requirements-and-solution-a-nameexample-requirements-and-solutiona)
 <!-- TOC -->
 
-# 1. Prerequisites
+# 1 Prerequisites
 
 You should understand [Mock Functions](https://jestjs.io/docs/mock-functions).
 
