@@ -2238,7 +2238,7 @@ otherwise returns false.</p>
             
 
             <td class="description last"><p>An empty list of Promises. If a listener of the event has some asynchronous process then the listener code body must be wrapped with a Promise and pushed to the <code>asyncHandlers</code> list. If the Promise's resolve function will be called with <code>true</code> value of the parameter then it will be considered as success. Otherwise, the event will be canceled. By canceled event it means the file will not be considered as uploaded and the file name will not be shown on the component's UI.</p>
-<h4>Example</h4>
+<h4 id="example">Example</h4>
 <pre class="prettyprint source lang-javascript"><code>handleFilesUpload(event) {
 	event.detail.asyncHandlers.push(new Promise(resolve => {
 		setTimeout(() => {
