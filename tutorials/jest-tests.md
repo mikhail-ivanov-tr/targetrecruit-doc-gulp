@@ -2,20 +2,22 @@
 
 - [1. Prerequisites](#1-prerequisites)
 - [2. What should we cover](#2-what-should-we-cover)
+    * [2.1. New story or enhancement](#21-new-story-or-enhancement)
+    * [2.2. Bug or defect](#22-bug-or-defect)
 - [3. What should we call from the Jest test](#3-what-should-we-call-from-the-jest-test)
-    * [3.1. Life-cycle callbacks <a name="call-callbacks"></a>](#31-life-cycle-callbacks)
-    * [3.2. Event handlers <a name="call-handlers"></a>](#32-event-handlers)
-    * [3.3. Functions and properties with @api <a name="call-api"></a>](#33-functions-and-properties-with-api)
+    * [3.1. Life-cycle callbacks](#31-life-cycle-callbacks)
+    * [3.2. Event handlers](#32-event-handlers)
+    * [3.3. Functions and properties with @api](#33-functions-and-properties-with-api)
 - [4. What should we validate](#4-what-should-we-validate)
     * [4.1. HTML](#41-html)
-    * [4.2. Fields/properties with @api <a name="validate-api"></a>](#42-fieldsproperties-with-api)
-    * [4.3. Shared data <a name="validate-shared-data"></a>](#43-shared-data)
-    * [4.4. Dispatched events <a name="validate-events"></a>](#44-dispatched-events)
-    * [4.5. Apex calls <a name="validate-apex-calls"></a>](#45-apex-calls)
-    * [4.6. Messages (success, error, info, warning) <a name="validate-messages"></a>](#46-messages-success-error-info-warning)
-- [5. Full Example <a name="example"></a>](#5-full-example)
-    * [5.1. Explanation <a name="example-explanation"></a>](#51-explanation)
-    * [5.2. Requirements and Solution <a name="example-requirements-and-solution"></a>](#52-requirements-and-solution)
+    * [4.2. Fields/properties with @api](#42-fieldsproperties-with-api)
+    * [4.3. Shared data](#43-shared-data)
+    * [4.4. Dispatched events](#44-dispatched-events)
+    * [4.5. Apex calls](#45-apex-calls)
+    * [4.6. Messages (success, error, info, warning)](#46-messages-success-error-info-warning)
+- [5. Full Example](#5-full-example)
+    * [5.1. Explanation](#51-explanation)
+    * [5.2. Requirements and Solution](#52-requirements-and-solution)
 
 <!-- TOC end -->
 
@@ -27,7 +29,13 @@ You should understand [Mock Functions](https://jestjs.io/docs/mock-functions).
 <!-- TOC --><a name="2-what-should-we-cover"></a>
 # 2. What should we cover
 
-- Positive scenario.
+<!-- TOC --><a name="21-new-story-or-enhancement"></a>
+## 2.1. New story or enhancement
+We should write a test with a basic ***positive*** scenario of the new functionality.
+
+<!-- TOC --><a name="22-bug-or-defect"></a>
+## 2.2. Bug or defect
+We should write a new test or update an existing one to reproduce the reported issue.
 
 <!-- TOC --><a name="3-what-should-we-call-from-the-jest-test"></a>
 # 3. What should we call from the Jest test
@@ -43,14 +51,14 @@ In this section you can find examples of how to call the entry points.
 In the next section you can find out how to validate the calls' results.
 
 <!-- TOC --><a name="31-life-cycle-callbacks"></a>
-## 3.1. Life-cycle callbacks <a name="call-callbacks"></a>
+## 3.1. Life-cycle callbacks
 
 The callbacks _connectedCallback_ and _renderedCallback_
 are called automatically during the LWC component creation.
 No need to call it explicitly.
 
 <!-- TOC --><a name="32-event-handlers"></a>
-## 3.2. Event handlers <a name="call-handlers"></a>
+## 3.2. Event handlers
 
 ***yourLwc.html***
 
@@ -118,7 +126,7 @@ describe('c-your-lwc', () => {
 ```
 
 <!-- TOC --><a name="33-functions-and-properties-with-api"></a>
-## 3.3. Functions and properties with @api <a name="call-api"></a>
+## 3.3. Functions and properties with @api
 
 ***yourLwc.html***
 
@@ -296,7 +304,7 @@ describe('c-your-lwc', () => {
 ```
 
 <!-- TOC --><a name="42-fieldsproperties-with-api"></a>
-## 4.2. Fields/properties with @api <a name="validate-api"></a>
+## 4.2. Fields/properties with @api
 
 ***yourLwc.html***
 
@@ -360,7 +368,7 @@ describe('c-your-lwc', () => {
 ```
 
 <!-- TOC --><a name="43-shared-data"></a>
-## 4.3. Shared data <a name="validate-shared-data"></a>
+## 4.3. Shared data
 
 LWC components, which extend _CustomElement_ class, can have a shared data.
 One of the components can set the data and another component will read the data.
@@ -410,7 +418,7 @@ describe('c-your-lwc', () => {
 ```
 
 <!-- TOC --><a name="44-dispatched-events"></a>
-## 4.4. Dispatched events <a name="validate-events"></a>
+## 4.4. Dispatched events
 
 We should validate:
 - How many times the event was dispatched?
@@ -536,7 +544,7 @@ describe('c-your-lwc', () => {
 ```
 
 <!-- TOC --><a name="45-apex-calls"></a>
-## 4.5. Apex calls <a name="validate-apex-calls"></a>
+## 4.5. Apex calls
 
 We should validate:
 - How many times the apex method was called?
@@ -668,7 +676,7 @@ describe('c-your-lwc', () => {
 ```
 
 <!-- TOC --><a name="46-messages-success-error-info-warning"></a>
-## 4.6. Messages (success, error, info, warning) <a name="validate-messages"></a>
+## 4.6. Messages (success, error, info, warning)
 
 You can validate the messages which were shown using
 {@link CustomElement#addError},
@@ -753,10 +761,10 @@ describe('c-your-lwc', () => {
 ```
 
 <!-- TOC --><a name="5-full-example"></a>
-# 5. Full Example <a name="example"></a>
+# 5. Full Example
 
 <!-- TOC --><a name="51-explanation"></a>
-## 5.1. Explanation <a name="example-explanation"></a>
+## 5.1. Explanation
 
 We should import helper functions from {@link SharedTestHelpers} library.
 We know that we should create a LWC component, so we need a {@link
@@ -807,7 +815,7 @@ See the unit [tests content](#yourLwc-test-js) comments below to get more detail
 which should be tested.
 
 <!-- TOC --><a name="52-requirements-and-solution"></a>
-## 5.2. Requirements and Solution <a name="example-requirements-and-solution"></a>
+## 5.2. Requirements and Solution
 
 There is a LWC component with 2 attributes: input-label and button-label.
 The labels should be set by a developer.
