@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: sfdx-source/shared/main/default/lwc/messages/messages.js | Shared Code Documentation</title>
+    <title>Source: sfdx-source/shared/main/default/lwc/pill/pill.js | Shared Code Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -61,133 +61,58 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {LightningElement, api, track} from 'lwc';
-import {Copy} from "c/utils";
+            <pre class="prettyprint source linenums"><code>import {api} from 'lwc';
+import CustomElement from 'c/customElement';
 
-/**
- * Enum for ApexPages.Severity values to represent in JavaScript.
- * @readonly
- * @enum
- */
-const Severity = {
-	/** @type String */
-	SUCCESS: `SUCCESS`,
-	/** @type String */
-	INFO: `INFO`,
-	/** @type String */
-	WARNING: `WARNING`,
-	/** @type String */
-	ERROR: `ERROR`
-};
-Object.freeze(Severity);
-
-/**
- *
- */
-class Messages extends LightningElement {
+export default class Pill extends CustomElement {
+	@api name = ``;
+	
+	@api label = ``;
+	
+	@api title = ``;
+	
+	@api icon = ``;
+	
 	/**
-	 * @typedef Message
-	 * @property {String} title
-	 * @property {Severity} severity
-	 * @property {Number} duration
+	 * Supported variants: base, listbox. Default: listbox.
+	 * @type {string}
 	 */
+	@api variant = `listbox`;
 	
+	@api disabled = false;
 	
-	@api
-	get messages() {
-		if (!this.__messages) {
-			this.__messages = [];
-		}
-		return this.__messages;
-	};
+	@api hasError = false;
 	
-	set messages(value) {
-		if (!value) {
-			this.__messages = [];
-			return;
-		}
-		
-		this.__messages = Copy.deep(value);
-		
-		this.prepareMessages();
+	get titleFinal() {
+		return this.title || this.label;
 	}
 	
-	prepareMessages() {
-		this.__messages.forEach(message => {
-			Messages.setMessageKey(message);
-			
-			message.classes =
-				`slds-notify slds-notify_${this.type} slds-theme_${this.type}-texture `;
-			if (message.severity === Severity.SUCCESS) {
-				message.classes += `slds-theme_success`;
-				message.icon = 'utility:success';
-				message.variant = 'inverse';
-				message.buttonVariant = 'border-inverse';
-			} else if (message.severity === Severity.INFO) {
-				message.classes += `slds-theme_info`;
-				message.icon = 'utility:info';
-				message.variant = 'inverse';
-				message.buttonVariant = 'border-inverse';
-			} else if (message.severity === Severity.WARNING) {
-				message.classes += `slds-theme_warning`;
-				message.icon = 'utility:warning';
-				message.variant = 'warning';
-				message.buttonVariant = 'warning';
-			} else if (message.severity === Severity.ERROR) {
-				message.classes += `slds-theme_error`;
-				message.icon = 'utility:error';
-				message.variant = 'inverse';
-				message.buttonVariant = 'border-inverse';
-			}
-			
-			if (message.duration) {
-				setTimeout(() => this.closeMessage(message.key), message.duration);
-			}
-		});
-		
-		this.hasMessages = this.__messages.length > 0;
-		
-		this.containerClass = this.type === 'alert' ? '' : 'message-toasts slds-notify_container';
+	get pillClass() {
+		return `slds-pill slds-pill_link ${this.hasError ? 'slds-has-error' : ''}`;
 	}
 	
-	static setMessageKey(message) {
-		message.key = message.key ?? Messages.__counter++;
+	get iconClass() {
+		return `slds-pill__icon_container ${this.disabled ? 'disabled' : ''}`;
 	}
 	
-	@api
-	get type() {
-		return this.__type || 'alert';
+	get linkClass() {
+		return `slds-pill__action ` +
+			`${this.disabled ? 'disabled' : ''} ` +
+			`${!this.disabled &amp;&amp; this.isListboxVariant ? 'list-box' : ''}`;
 	}
 	
-	set type(value) {
-		this.__type = value;
-		
-		this.prepareMessages();
+	get isListboxVariant() {
+		return !this.variant || this.variant === 'listbox';
 	}
 	
-	@track hasMessages = false;
-	@track __messages = [];
-	
-	static __counter = 0;
-	
-	@track containerClass = '';
-	
-	close(event) {
-		let messageKey = parseInt(event.target.dataset.messageKey);
-		this.closeMessage(messageKey);
+	handleLabelClicked() {
+		this.dispatch(`labelclick`, {name: this.name});
 	}
 	
-	closeMessage(messageKey) {
-		const message = this.__messages.find(message => message.key === messageKey);
-		if (message) {
-			this.dispatchEvent(new CustomEvent('closemessage', {detail: message, bubbles: true}));
-			
-			this.__messages = this.__messages.filter(message => message.key !== messageKey);
-		}
+	handleRemoveIconClicked() {
+		this.dispatch(`remove`, {name: this.name});
 	}
 }
-
-export default Messages;
 </code></pre>
         </article>
     </section>
