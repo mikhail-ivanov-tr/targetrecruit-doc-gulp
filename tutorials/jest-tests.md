@@ -31,7 +31,7 @@ You should understand [Mock Functions](https://jestjs.io/docs/mock-functions).
 
 <!-- TOC --><a name="21-new-story-or-enhancement"></a>
 ## 2.1. New story or enhancement
-We should write a test with a basic ***positive*** scenario of the new functionality.
+We should write a test with a basic ***positive*** scenario of the new functionality. No need to test wrong behaviour of the end-user.
 
 <!-- TOC --><a name="22-bug-or-defect"></a>
 ## 2.2. Bug or defect
