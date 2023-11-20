@@ -210,7 +210,7 @@ describe('c-your-lwc', () => {
 ## 4.1. HTML
 
 - Is an HTML element always available and visible? If no, then we should validate it is hidden or visible.
-- Some attributes of an HTML element are set with values of fields of JS controller? If yes, then we should validate the attributes of the HTML element are set with expected values?
+- Some attributes of an HTML element are set with values of fields of JS controller? The values are not static/hardcoded but generated from database data or from user input? If answer is yes for both questions, then we should validate the attributes of the HTML element are set with expected values?
 
 ***yourLwc.html***
 
