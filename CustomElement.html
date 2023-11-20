@@ -210,7 +210,7 @@ See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</cod
         <div class="description">
             <p>Use this flag to identify whether any handler function (which starts with 'handle' prefix)
 of current component is in progress ('true' value) or is done ('false' value).</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
         </div>
         
@@ -303,7 +303,7 @@ of current component is in progress ('true' value) or is done ('false' value).</
 inside <em>try</em> block of <em>connectedCallback()</em> function.
 It is <em>false</em> by default and will be set to <em>true</em> if <a href="CustomElement.html#addError"><code>CustomElement#addError</code></a>
 will be called inside of <em>connectedCallback()</em> function.</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
         </div>
         
@@ -399,7 +399,7 @@ The value of the property can be
 is opened as a page in the same browser's tab or window) or
 <em>Close</em> (otherwise, usually it is true if the component is opened as a page in
 the new browser's tab or window).</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
         </div>
         
@@ -487,7 +487,7 @@ the new browser's tab or window).</p>
 only till the initial apex call is done.
 It is <em>true</em> till the first <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> call is done.
 After that the <em>initialLoading</em> property is always <em>false</em>.</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
         </div>
         
@@ -577,7 +577,7 @@ After that the <em>initialLoading</em> property is always <em>false</em>.</p>
         
         <div class="description">
             <p>Contains a list of labels which can be accessed by modified property names.</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p><em><strong>yourLwc.js</strong></em></p>
 <pre class="prettyprint source lang-javascript"><code>import CustomElement from 'c/customElement';
 
@@ -678,7 +678,7 @@ After that the <em>initialLoading</em> property is always <em>false</em>.</p>
         <div class="description">
             <p>Use this flag to identify whether the <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> call
 of current component is in progress or is done.</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
         </div>
         
@@ -769,7 +769,7 @@ of current component is in progress or is done.</p>
         <div class="description">
             <p>Use this flag to identify whether the <a href="CustomElement.html#apex"><code>CustomElement#apex</code></a> call
 of any component is in progress or is done.</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
         </div>
         
@@ -859,7 +859,7 @@ of any component is in progress or is done.</p>
         
         <div class="description">
             <p>Represents a list of messages of the current component.</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
         </div>
         
@@ -944,7 +944,7 @@ of any component is in progress or is done.</p>
         
         <div class="description">
             <p>Represents a list of messages of all instantiated <a href="CustomElement.html"><code>CustomElement</code></a> components.</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
         </div>
         
@@ -1035,7 +1035,7 @@ If during the Apex method call some exception happened and caught/registered
 by <a href="CustomElement.html#addError"><code>CustomElement#addError</code></a> then this flag will be left as <em>false</em>.
 Use this flag to identify whether to show functional content of the component
 once the initial Apex method call is successfully done (<em>ready = true</em>).</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p>It shows the usage of all capabilities of <a href="CustomElement.html"><code>CustomElement</code></a>.
 There are 2 LWC components which extend <a href="CustomElement.html"><code>CustomElement</code></a>:
 Parent component and Child component. Both components have 2 buttons.
@@ -2658,7 +2658,7 @@ when the component is connected.</p>
             
 
             <td class="description last"><p>An empty list of Promises. If a listener of the event has some asynchronous process then the listener code body must be wrapped with a Promise and pushed to the <code>asyncHandlers</code> list. If the Promise's resolve function will be called with <code>true</code> value of the parameter then it will be considered as success. Otherwise, the event will be canceled.</p>
-<h4 id="example-of-async-listener.">Example of async listener.</h4>
+<h4>Example of async listener.</h4>
 <pre class="prettyprint source lang-javascript"><code>     handleFilesUpload(event) {
      event.detail.asyncHandlers.push(new Promise(resolve => {
      setTimeout(() => {
@@ -2754,7 +2754,7 @@ when the component is connected.</p>
 when the component is rendered first time. If you need to override both renderedCallback()
 and renderedOnceCallback() then inside of renderedCallback() first statement
 should be <em>super.renderedCallback();</em>.</p>
-<h5 id="example">Example</h5>
+<h5>Example</h5>
 <p>See example in <a href="CustomElement.html#ready"><code>CustomElement#ready</code></a>.</p>
         </div>
         
