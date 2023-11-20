@@ -739,7 +739,7 @@ describe('c-your-lwc', () => {
 
 # 5. Full Example <a name="example"></a>
 
-# 5.1. Explanation <a name="example-explanation"></a>
+## 5.1. Explanation <a name="example-explanation"></a>
 
 We should import helper functions from {@link SharedTestHelpers} library.
 We know that we should create a LWC component, so we need a {@link
@@ -789,7 +789,7 @@ describe('c-your-lwc', () => {
 See the unit [tests content](#yourLwc-test-js) comments below to get more details about the things
 which should be tested.
 
-# 5.2. Requirements and Solution <a name="example-requirements-and-solution"></a>
+## 5.2. Requirements and Solution <a name="example-requirements-and-solution"></a>
 
 There is a LWC component with 2 attributes: input-label and button-label. 
 The labels should be set by a developer. 
