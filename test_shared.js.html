@@ -196,7 +196,7 @@ HTMLElement.prototype.query = async function (selector) {
 	await flushAllPromises();
 	
 	let container = this.shadowRoot || this;
-
+	
 	return container.querySelector(selector);
 };
 
@@ -311,15 +311,23 @@ async function flushAllPromises(flushPromisesTimes) {
  * @param componentName LWC component name.
  * @param componentClass Class of the LWC component.
  * @param attributes Object of values of the attributes for the LWC component's instance.
+ * @param actionToResponse
  * @returns {Promise&lt;JestHtmlElement>} Returns the generated LWC component's instance.
  * */
-async function createComponent(componentName, componentClass, attributes = null) {
+async function createComponent(componentName, componentClass,
+                               attributes = null, actionToResponse = null) {
 	const element = createElement(componentName, {
 		is: componentClass
 	});
 	
 	if (attributes) {
 		Object.assign(element, attributes);
+	}
+	
+	if (actionToResponse) {
+		for (const [actionName, response] of Object.entries(actionToResponse)) {
+			apexMock(actionName, response);
+		}
 	}
 	
 	document.body.appendChild(element);
@@ -344,7 +352,10 @@ async function createComponent(componentName, componentClass, attributes = null)
  */
 function apexMock(action, apexCallResult = {}, emulateAsync, componentClass) {
 	const mock = CustomElement.apexMock(action, emulateAsync, componentClass);
-	mock.mockResolvedValue(apexCallResult);
+	
+	typeof apexCallResult === 'function'
+		? mock.mockImplementation(apexCallResult) : mock.mockResolvedValue(apexCallResult);
+	
 	return mock;
 }
 

@@ -4,7 +4,7 @@
 - [2. What should we cover](#2-what-should-we-cover)
     * [2.1. New story or enhancement](#21-new-story-or-enhancement)
     * [2.2. Bug or defect](#22-bug-or-defect)
-- [3. What should we call from the Jest test](#3-what-should-we-call-from-the-jest-test)
+- [3. What should we call](#3-what-should-we-call)
     * [3.1. Life-cycle callbacks](#31-life-cycle-callbacks)
     * [3.2. Event handlers](#32-event-handlers)
     * [3.3. Functions and properties with @api](#33-functions-and-properties-with-api)
@@ -37,8 +37,8 @@ We should write a test with a basic ***positive*** scenario of the new functiona
 ## 2.2. Bug or defect
 We should write a new test or update an existing one to reproduce the reported issue.
 
-<!-- TOC --><a name="3-what-should-we-call-from-the-jest-test"></a>
-# 3. What should we call from the Jest test
+<!-- TOC --><a name="3-what-should-we-call"></a>
+# 3. What should we call
 
 There are multiple entry points to your LWC component's code. There is the full list of the entries:
 
