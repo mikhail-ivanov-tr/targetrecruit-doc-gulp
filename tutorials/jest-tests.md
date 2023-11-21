@@ -1,6 +1,8 @@
 <!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 
-- [1. Prerequisites](#1-prerequisites)
+- [1. Mock objects and data](#1-mock-objects-and-data)
+    * [1.1. Apex calls](#11-apex-calls)
+    * [1.2. @api functions of child elements](#12-api-functions-of-child-elements)
 - [2. What should we cover](#2-what-should-we-cover)
     * [2.1. New story or enhancement](#21-new-story-or-enhancement)
     * [2.2. Bug or defect](#22-bug-or-defect)
@@ -21,10 +23,166 @@
 
 <!-- TOC end -->
 
-<!-- TOC --><a name="1-prerequisites"></a>
-# 1. Prerequisites
+<!-- TOC --><a name="1-mock-objects-and-data"></a>
+# 1. Mock objects and data
 
-You should understand [Mock Functions](https://jestjs.io/docs/mock-functions).
+There are a few entities you can mock in your Jest tests. We use a few helper functions to easily mock the entities. More details about how you can mock in Jest you can read [here](https://jestjs.io/docs/mock-functions).
+
+<!-- TOC --><a name="11-apex-calls"></a>
+## 1.1. Apex calls
+
+***yourLwc.html***
+
+```html
+<template>
+	<lightning-input label="User Name" value={userName}></lightning-input>
+	<lightning-button label="Search" onclick={handleSearchButtonClicked}></lightning-button>
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import CustomElement from 'c/customElement';
+
+import init from '@salesforce/apex/YourController.init';
+import search from '@salesforce/apex/YourController.search';
+
+export default class YourLwc extends CustomElement {
+	userName = ``;
+	
+	async connectedOnceCallback() {
+		this.userName = await this.apex(init);
+	}
+	
+	async handleSearchButtonClicked() {
+		this.userName = await this.apex(search, {text: this.query(`lightning-input`).value});
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+import {createComponent} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
+	it('call-apex', async () => {
+		// We'd like to test our c-your-lwc component.
+		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
+		// 4th parameter of the function is used to mock returns of the Apex methods.
+		// It is an object with keys as Apex action names and values as the return values.
+		// The mock return value can be an array, object, a simple type like string or number, or a function.
+		// NOTE: "await" before the function call.
+		let component = await createComponent('c-your-lwc', YourLwc, null, {
+			init: `Current User Name`,
+			search: args => {
+				if (args.text === `1`) {
+					return `Search result 1`;
+				} else {
+					return `Search result 2`;
+				}
+			}
+		});
+		
+		// Validate the value of the text input equals to the value
+		// which came from `init` mock of Apex action.
+		const textElement = await component.query(`lightning-input`);
+		expect(textElement.value).toBe(`Current User Name`);
+		
+		// Set value of the text element to `1`.
+		textElement.value = `1`;
+		
+		// We emulate the click of the button.
+		await component.dispatch('click', null, 'lightning-button');
+		
+		// Validate the value of the text input equals to the value
+		// which came from `search` mock of Apex action.
+		// As text element value was equal to `1` before we clicked the button,
+		// we expect the new value of the text element to be equal to `Search result 1`,
+		// because the mock function for search Apex action
+		// returns `Search result 1` if args.text == '1'.
+		expect(textElement.value).toBe(`Search result 1`);
+		
+		// Set value of the text element to `2`.
+		textElement.value = `2`;
+		
+		// We emulate the click of the button.
+		await component.dispatch('click', null, 'lightning-button');
+		
+		// Validate the value of the text input equals to the value
+		// which came from `search` mock of Apex action.
+		// As text element value was equal to `2` before we clicked the button,
+		// we expect the new value of the text element to be equal to `Search result 2`,
+		// because the mock function for search Apex action
+		// returns `Search result 2` if args.text != '1'.
+		expect(textElement.value).toBe(`Search result 2`);
+	});
+})
+```
+
+<!-- TOC --><a name="12-api-functions-of-child-elements"></a>
+## 1.2. @api functions of child elements
+
+***yourLwc.html***
+
+```html
+<template>
+	<lightning-datatable data={records} key-field="Id" columns={columns}></lightning-datatable>
+	<lightning-button label="Send" onclick={handleSendButtonClicked}></lightning-button>
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import CustomElement from 'c/customElement';
+
+export default class YourLwc extends CustomElement {
+	records = [{Id: `id1`}, {Id: `id2`}];
+	columns = [{label: `ID`, fieldName: 'Id'}];
+	
+	async handleSendButtonClicked() {
+		const ids = this.query('lightning-datatable').getSelectedRows().map(record => record.Id);
+		
+		this.dispatch('send', {ids: ids});
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+import {createComponent} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	// NOTE: The test function is "async".
+	it('call-apex', async () => {
+		// We'd like to test our c-your-lwc component.
+		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
+		// NOTE: "await" before the function call.
+		let component = await createComponent(`c-your-lwc`, YourLwc);
+		
+		// We mock `getSelectedRows` function of `lightning-datatable` element 
+		// to always return [{Id: `idTest1`}].
+		// NOTE: "await" before the function call.
+		await component.mock(`lightning-datatable`, `getSelectedRows`, () => [{Id: `idTest1`}])
+		
+		// We would like to emulate the button click.
+		// NOTE: "await" before the function call.
+		await component.dispatch(`click`, null, `lightning-button`);
+		
+		// We expect the "send" event was called
+		// and detail.ids field contains IDs from mocked `getSelectedRows` function 
+		// of the datatable element.
+		// Use the function {@link JestHtmlElement#isEventDispatched}
+		component.isEventDispatched(`send`, {ids: [`idTest1`]});
+	});
+})
+```
 
 <!-- TOC --><a name="2-what-should-we-cover"></a>
 # 2. What should we cover
@@ -53,7 +211,7 @@ In the next section you can find out how to validate the calls' results.
 <!-- TOC --><a name="31-life-cycle-callbacks"></a>
 ## 3.1. Life-cycle callbacks
 
-The callbacks _connectedCallback_ and _renderedCallback_
+The callbacks _connectedCallback_ / _connectedOnceCallback_ and _renderedCallback_ / _renderedOnceCallback_
 are called automatically during the LWC component creation.
 No need to call it explicitly.
 
@@ -1010,7 +1168,7 @@ describe('c-your-lwc', () => {
 		
 		// We expect the "onsuccess" event was dispatched,
 		// and the text argument of the event is set to a value "John Doe, John Tyson"
-		component.isEventDispatched(`success`, {text: `John Doe, John Tyson`});
+		component.isEventDispatched(`success`, {candidateNames: `John Doe, John Tyson`});
 		
 		// We expect the "div" will be shown.
 		// We can use a single function to query an element 
