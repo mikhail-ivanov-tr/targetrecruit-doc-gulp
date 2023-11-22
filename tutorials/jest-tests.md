@@ -17,9 +17,12 @@
     * [4.4. Dispatched events](#44-dispatched-events)
     * [4.5. Apex calls](#45-apex-calls)
     * [4.6. Messages (success, error, info, warning)](#46-messages-success-error-info-warning)
-- [5. Full Example](#5-full-example)
-    * [5.1. Explanation](#51-explanation)
-    * [5.2. Requirements and Solution](#52-requirements-and-solution)
+- [5. Best Practices](#5-best-practices)
+    * [5.1. Existence validation and further usage](#51-existence-validation-and-further-usage)
+    * [5.2. Difficult validation logic](#52-difficult-validation-logic)
+- [6. Full Example](#6-full-example)
+    * [6.1. Explanation](#61-explanation)
+    * [6.2. Requirements and Solution](#62-requirements-and-solution)
 
 <!-- TOC end -->
 
@@ -160,7 +163,7 @@ import YourLwc from 'c/your-lwc';
 
 describe('c-your-lwc', () => {
 	// NOTE: The test function is "async".
-	it('call-apex', async () => {
+	it('mock-child-function', async () => {
 		// We'd like to test our c-your-lwc component.
 		// Use {@link SharedTestHelpers#createComponent} to create an instance of the LWC component.
 		// NOTE: "await" before the function call.
@@ -918,11 +921,128 @@ describe('c-your-lwc', () => {
 })
 ```
 
-<!-- TOC --><a name="5-full-example"></a>
-# 5. Full Example
+<!-- TOC --><a name="5-best-practices"></a>
+# 5. Best Practices
 
-<!-- TOC --><a name="51-explanation"></a>
-## 5.1. Explanation
+<!-- TOC --><a name="51-existence-validation-and-further-usage"></a>
+## 5.1. Existence validation and further usage
+
+No need to check the existence of an element if you will operate with the element in the code later. E.g. you click a button in the Jest test to validate the event handler of the button. So, no need to validate the button exists. You will get an exception if you click a button which does not exist.
+
+***yourLwc.html***
+
+```html
+<template>
+	<lightning-button lwc:if={show} label="Button" onclick={handleButtonClicked}></lightning-button>
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import CustomElement from 'c/customElement';
+
+export default class YourLwc extends CustomElement {
+	show = false;
+	
+	connectedOnceCallback() {
+		this.show = true;
+	}
+	
+	async handleButtonClicked() {
+		// Some logic here...
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+import {createComponent} from "shared";
+import YourLwc from 'c/your-lwc';
+
+describe('c-your-lwc', () => {
+	it('no-validation-when-usage', async () => {
+		let component = await createComponent(`c-your-lwc`, YourLwc);
+		
+		// NO NEED to check the existence of the button.
+		// With the following command (await component.dispatch) we click the button
+		// and exception will be thrown if the button does not exist. 
+		// So, the next command (await component.isGenerated) should be removed.
+		await component.isGenerated(`lightning-button`);
+		
+		// Click the button.
+		await component.dispatch(`click`, null, `lightning-button`);
+		
+		// Validate a result of the button click here ...
+	});
+})
+```
+
+<!-- TOC --><a name="52-difficult-validation-logic"></a>
+## 5.2. Difficult validation logic
+
+Try to avoid loops and "if"s for validations.
+
+No need for difficult validation logic. As an author of your test you know your test data. You know records of the data you have.
+
+***yourLwc.html***
+
+```html
+<template>
+	<div for:each={contacts} for:item="contact" key={contact.name}>{contact.name}</div>
+</template>
+```
+
+***yourLwc.js***
+
+```javascript
+import CustomElement from 'c/customElement';
+
+import init from '@salesforce/apex/YourController.init';
+
+export default class YourLwc extends CustomElement {
+	contacts = [];
+	
+	async connectedOnceCallback() {
+		this.contacts = await this.apex(init);
+	}
+}
+```
+
+***yourLwc.test.js***
+
+```javascript
+import {createComponent} from "shared";
+import YourLwc from 'c/your-lwc';
+
+const TEST_DATA = [{name: `John`}, {name: `Adam`}];
+
+describe(`c-your-lwc`, () => {
+	it(`difficult-validation-logic`, async () => {
+		// TEST_DATA is a response from "init" Apex call.
+		let component = await createComponent(`c-your-lwc`, YourLwc, null, {init: TEST_DATA});
+		
+		const divElements = await component.queryAll(`div`);
+		
+		// This is a difficult to understand logic. We should AVOID doing so.
+		for (let i = 0; i < TEST_DATA.length; i++) {
+			expect(divElements[i].textContent).toBe(TEST_DATA[i].name);
+		}
+		
+		// This approach is much easier to understand of what we expect in the HTML.
+		// Let's USE this approach.
+		expect(divElements[0].textContent).toBe(`John`);
+		expect(divElements[1].textContent).toBe(`Adam`);
+	});
+})
+```
+
+<!-- TOC --><a name="6-full-example"></a>
+# 6. Full Example
+
+<!-- TOC --><a name="61-explanation"></a>
+## 6.1. Explanation
 
 We should import helper functions from {@link SharedTestHelpers} library.
 We know that we should create a LWC component, so we need a {@link
@@ -972,8 +1092,8 @@ describe('c-your-lwc', () => {
 See the unit [tests content](#yourLwc-test-js) comments below to get more details about the things
 which should be tested.
 
-<!-- TOC --><a name="52-requirements-and-solution"></a>
-## 5.2. Requirements and Solution
+<!-- TOC --><a name="62-requirements-and-solution"></a>
+## 6.2. Requirements and Solution
 
 There is a LWC component with 2 attributes: input-label and button-label.
 The labels should be set by a developer.
