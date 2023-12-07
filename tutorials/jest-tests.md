@@ -99,7 +99,7 @@ describe('c-your-lwc', () => {
 		textElement.value = `1`;
 		
 		// We emulate the click of the button.
-		await component.dispatch('click', null, 'lightning-button');
+		await component.dispatch('click', null, null,'lightning-button');
 		
 		// Validate the value of the text input equals to the value
 		// which came from `search` mock of Apex action.
@@ -113,7 +113,7 @@ describe('c-your-lwc', () => {
 		textElement.value = `2`;
 		
 		// We emulate the click of the button.
-		await component.dispatch('click', null, 'lightning-button');
+		await component.dispatch('click', null, null, 'lightning-button');
 		
 		// Validate the value of the text input equals to the value
 		// which came from `search` mock of Apex action.
@@ -176,7 +176,7 @@ describe('c-your-lwc', () => {
 		
 		// We would like to emulate the button click.
 		// NOTE: "await" before the function call.
-		await component.dispatch(`click`, null, `lightning-button`);
+		await component.dispatch(`click`, null, null, `lightning-button`);
 		
 		// We expect the "send" event was called
 		// and detail.ids field contains IDs from mocked `getSelectedRows` function 
@@ -278,7 +278,7 @@ describe('c-your-lwc', () => {
 		// We can call {@link JestHtmlElement#dispatch} function of our LWC component
 		// with "onclick" event and specify a selector of our button element.
 		// NOTE: "await" before the function call.
-		await component.dispatch('click', null, 'lightning-button');
+		await component.dispatch('click', null, null, 'lightning-button');
 		
 		// Validate the results of the handler call here...
 	});
@@ -645,7 +645,7 @@ describe('c-your-lwc', () => {
 		
 		// We would like to emulate the button click. 
 		// NOTE: "await" before the function call.
-		await component.dispatch('click', null, 'lightning-button');
+		await component.dispatch('click', null, null, 'lightning-button');
 		
 		// We expect the "onbuttonclicked" event was called 
 		// and detail.text field has the value "John"
@@ -774,7 +774,7 @@ describe('c-your-lwc', () => {
 		
 		// We would like to emulate the button click. 
 		// NOTE: "await" before the function call.
-		await component.dispatch('click', null, 'lightning-button');
+		await component.dispatch('click', null, null, 'lightning-button');
 		
 		// We expect the "search" Apex action was called 
 		// and there is an argument "searchText" with the value "John".
@@ -972,7 +972,7 @@ describe('c-your-lwc', () => {
 		await component.isGenerated(`lightning-button`);
 		
 		// Click the button.
-		await component.dispatch(`click`, null, `lightning-button`);
+		await component.dispatch(`click`, null, null, `lightning-button`);
 		
 		// Validate a result of the button click here ...
 	});
@@ -1185,7 +1185,7 @@ describe('c-your-lwc', () => {
 			'c-your-lwc', YourLwc, {inputLabel: `input label text`, buttonLabel: `button label text`});
 		
 		// We would like to emulate a Search button click.
-		await component.dispatch('click', null, 'lightning-button');
+		await component.dispatch('click', null, null, 'lightning-button');
 		
 		// Once the button's onclick event is dispatched and the handler function is called, we can validate:
 		// - Was "onsuccess" event dispatched? If yes, then what are the values of the parameters of the event?
@@ -1226,12 +1226,12 @@ describe('c-your-lwc', () => {
 		// We would like to emulate a Search button click. 
 		// To call a handler function, use {@link JestHtmlElement#dispatch} function 
 		// to dispatch the onclick event which the handler is subscribed to.
-		// NOTE: 2nd parameter `{detail: {}}` is not required. 
-		// We can use null value instead. `{detail: {}}` is show here for demonstration purposes only.
+		// NOTE: 2nd parameter `{}` is not required. 
+		// We can use null value instead. `{}` is show here for demonstration purposes only.
 		// It is there just to show how we can pass additional details
 		// required for the functional code to the event.
 		// NOTE: "await" before the function call.
-		await component.dispatch('click', {detail: {}}, 'lightning-button');
+		await component.dispatch('click', {}, null, 'lightning-button');
 		
 		// Once the button's onclick event is dispatched and the handler function is called, we can validate:
 		// - Was "onsuccess" event dispatched? If yes, then what are the values of the parameters of the event?
@@ -1274,7 +1274,7 @@ describe('c-your-lwc', () => {
 		// To call a handler function, use {@link JestHtmlElement#dispatch} function 
 		// to dispatch the onclick event which the handler is subscribed to.
 		// NOTE: "await" before the function call.
-		await component.dispatch('click', null, 'lightning-button');
+		await component.dispatch('click', null, null, 'lightning-button');
 		
 		// Once the button's onclick event is dispatched and the handler function is called, we can validate:
 		// - Was "onsuccess" event dispatched? If yes, then what are the values of the parameters of the event?
